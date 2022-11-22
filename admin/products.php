@@ -92,9 +92,7 @@ if (check_permission() != 1) {
                                 <button class="search-close" type="submit"><i class="fa fa-close"></i></button>
                             </form>
                         </div>
-
-
-                        <div class="user-area dropdown float-right">
+                         <div class="user-area dropdown float-right">
                             <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true"
                                 aria-expanded="false">
                                 <img class="user-avatar rounded-circle" src="images/dra.png" alt="User Avatar">
@@ -137,8 +135,7 @@ if (check_permission() != 1) {
         <div class="content">
             <div class="animated fadeIn">
                 <div class="row">
-
-                    <div class="col-md-12">
+             <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
                                 <strong class="card-title">All Products</strong>
