@@ -1,9 +1,8 @@
 <?php
 require('../settings/core.php');
 require('../controllers/product_controller.php');
-
 $category = select_one_category_controller($_GET['cat_id']);
-if (check_permission() != 1) {
+if ($_SESSION['user_role'] != 1) {
     header('Location: ../login/login-user.php');
   }
 ?>

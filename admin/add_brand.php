@@ -116,6 +116,9 @@ if (check_permission() != 1) {
                             <li><i class="fa fa-product-hunt" style="color:black"></i><a href="products.php">View Products</a></li>
                         </ul>
                     </li>
+                    <li>
+                        <a href="log_out.php"><i class="menu-icon fa fa-sign-out"></i>Log Out</a> 
+                    </li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </nav>
