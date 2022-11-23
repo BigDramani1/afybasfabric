@@ -1,4 +1,4 @@
-<?php 
+ <?php 
 session_start();
 if (empty($_SESSION['name']) and empty($_SESSION['email']) ) {
 	$link="../login/login-user.php";
@@ -146,7 +146,7 @@ else{
 
 			$mail->SMTPDebug = 4;                               // Enable verbose debug output
 
-			$mail->isSMTP();                                      // Set mailer to use SMTP
+			// $mail->isSMTP();                                      // Set mailer to use SMTP
 			$mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
 			$mail->SMTPAuth = true;                               // Enable SMTP authentication
 			$mail->Username = EMAIL;                 // SMTP username
