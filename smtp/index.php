@@ -2,8 +2,11 @@
 $html="Testing";
 include('smtp/PHPMailerAutoload.php');   
 //echo stmp_mailer("johnmahama65@gmail.com", 'work', $html);
-function stmp_mailer(){
-   
+
+function stmp_mailer($to, $subject, $msg){
+   $to ="johnmahama65@gmail.com";
+   $subject="trying";
+   $msg="testing";
     $mail = new PHPMailer();
     $mail->SMTPDebug= 3;
     $mail -> IsSMTP();
@@ -17,12 +20,12 @@ function stmp_mailer(){
     
     //Recipients
     $mail->setFrom('johnmahama65@gmail.com');
-    $mail->addAddress('johnmahama65@gmail.com');     //Add a recipient            //Name is optional
+    $mail->addAddress($to);     //Add a recipient            //Name is optional
     $mail->addReplyTo('info@example.com', 'Information');
     
     //Content                              //Set email format to HTML
-    $mail->Subject = 'love';
-    $mail->Body    = 'jucie';
+    $mail->Subject = $subject;
+    $mail->Body    = $msg;
   
     $mail->SMTPOptions=array('ssl'=> array(
         'verify_peer'=> false,
