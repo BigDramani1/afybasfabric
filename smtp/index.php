@@ -1,10 +1,10 @@
 <?php
-$html="Testing";
+//$html="Testing";
 $to ="johnmahama65@gmail.com";
-   $subject="trying";
+   $subject="Doesn't";
    $msg="testing";
 include('smtp/PHPMailerAutoload.php');   
-//echo stmp_mailer($to, $subject, $html);
+echo stmp_mailer($to, $subject, $msg);
 
 function stmp_mailer($to, $subject, $msg){
    
