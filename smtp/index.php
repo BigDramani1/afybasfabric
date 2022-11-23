@@ -1,10 +1,11 @@
 <?php
 $html="Testing";
-include('smtp/PHPMailerAutoload.php');   
-//echo stmp_mailer("johnmahama65@gmail.com", 'work', $html);
 $to ="johnmahama65@gmail.com";
    $subject="trying";
    $msg="testing";
+include('smtp/PHPMailerAutoload.php');   
+echo stmp_mailer($to, $subject, $html);
+
 function stmp_mailer($to, $subject, $msg){
    
     $mail = new PHPMailer();
