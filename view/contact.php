@@ -136,7 +136,7 @@ else{
     <!-- Start Contact -->
     <div class="container py-5">
         <div class="row py-5">
-            <form class="col-md-9 m-auto" method="post"  action="../.actions/messages.php"role="form" enctype="multipart/form-data">
+            <form class="col-md-9 m-auto" method="post"  action="../actions/messages.php"role="form" enctype="multipart/form-data">
                 <div class="row">
                 <div class="form-group">
                             <input hidden type="email" class="form-control" id="email" name="email" value="johnmahama65@gmail.com">
