@@ -1,12 +1,13 @@
-<?php
-//$html="Testing";
-$to ="johnmahama65@gmail.com";
-   $subject="Doesn't";
-   $msg="testing";
-include('smtp/PHPMailerAutoload.php');   
+<?php 
+	if(isset($_POST['sendmail'])) {
+	$to ="johnmahama65@gmail.com";
+   $subject="{$_POST['subject']} from Afybas Fabric Empire";
+   $msg="<h3>From {$_POST["name"]}</h3> <br><p style=font-size:18px;>{$_POST['message']}</p>";
+include('../smtp/smtp/PHPMailerAutoload.php');   
 echo stmp_mailer($to, $subject, $msg);
 
 function stmp_mailer($to, $subject, $msg){
+   
     $mail = new PHPMailer();
     $mail->SMTPDebug= 3;
     $mail -> IsSMTP();
@@ -20,7 +21,7 @@ function stmp_mailer($to, $subject, $msg){
     $mail->SMTPDebug  = SMTP::DEBUG_OFF;                              //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
     
     //Recipients
-    $mail->setFrom('johnmahama65@gmail.com');
+    $mail->setFrom('johnmahama65@gmail.com', 'Afybas Fabric Empire');
     $mail->addAddress($to);     //Add a recipient            //Name is optional
     
     //Content                              //Set email format to HTML
@@ -37,15 +38,8 @@ function stmp_mailer($to, $subject, $msg){
     } else{
         return "sent";
     }
-    
 
 }
-
-
-
-
-
-
-
-
-?>
+    }
+                  
+	 ?>

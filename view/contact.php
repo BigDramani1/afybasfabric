@@ -136,42 +136,7 @@ else{
     <!-- Start Contact -->
     <div class="container py-5">
         <div class="row py-5">
-            <form class="col-md-9 m-auto" method="post" role="form" enctype="multipart/form-data">
-            <?php 
-		if(isset($_POST['sendmail'])) {
-			require '../PHPMailerAutoload.php';
-			require '../credential.php';
-
-			$mail = new PHPMailer;
-
-			$mail->SMTPDebug = 4;                               // Enable verbose debug output
-
-		 // $mail->isSMTP();                                      // Set mailer to use SMTP
-			$mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
-			$mail->SMTPAuth = true;                               // Enable SMTP authentication
-			$mail->Username = EMAIL;                 // SMTP username
-			$mail->Password = PASS;                           // SMTP password
-			$mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
-			$mail->Port = 587;    
-			$mail->SMTPDebug  = SMTP::DEBUG_OFF;                                // TCP port to connect to
-
-			$mail->setFrom(EMAIL, 'Afybas Fabric Empire');
-			$mail->addAddress($_POST['email']);     // Add a recipient
-
-			$mail->addReplyTo(EMAIL);
-		
-			$mail->isHTML(true);                                  // Set email format to HTML
-
-            $mail->Subject = "{$_POST['subject']} from Afybas Fabric Empire";
-			$mail->Body    = "<h3>From {$_POST["name"]}</h3> <br><p style=font-size:18px;>{$_POST['message']}</p>";
-    
-
-			if(!$mail->send()) {
-			    echo 'Message could not be sent.';
-			    echo 'Mailer Error: ' . $mail->ErrorInfo;
-			} 
-		}
-	 ?>
+            <form class="col-md-9 m-auto" method="post"  action="../actions/messages.php"role="form" enctype="multipart/form-data">
                 <div class="row">
                 <div class="form-group">
                             <input hidden type="email" class="form-control" id="email" name="email" value="johnmahama65@gmail.com">
