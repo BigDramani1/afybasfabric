@@ -17,7 +17,8 @@ function stmp_mailer($to, $subject, $msg){
     $mail -> isHTML(true) ;                   //Enable SMTP authentication
     $mail->Username   = 'johnmahama65@gmail.com';                     //SMTP username
     $mail->Password   = 'eorpvauwzsduanlm';                               //SMTP password           //Enable implicit TLS encryption
-    $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+    $mail->Port       = 587;       
+    $mail->SMTPDebug  = SMTP::DEBUG_OFF;                              //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
     
     //Recipients
     $mail->setFrom('johnmahama65@gmail.com');
