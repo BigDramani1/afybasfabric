@@ -4,7 +4,7 @@ $to ="johnmahama65@gmail.com";
    $subject="trying";
    $msg="testing";
 include('smtp/PHPMailerAutoload.php');   
-echo stmp_mailer($to, $subject, $html);
+//echo stmp_mailer($to, $subject, $html);
 
 function stmp_mailer($to, $subject, $msg){
    
