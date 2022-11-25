@@ -116,6 +116,9 @@ if (check_permission() != 1) {
                             <li><i class="fa fa-product-hunt" style="color:black"></i><a href="products.php">View Products</a></li>
                         </ul>
                     </li>
+                    <li>
+                        <a href="log_out.php"><i class="menu-icon fa fa-sign-out"></i>Log Out</a> 
+                    </li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </nav>
@@ -255,6 +258,13 @@ if (check_permission() != 1) {
                                             </label>
                                             <div class="col-lg-6">
                                                 <input type="text" class="form-control"  name="product_keywords" placeholder="Product keywords" required="required">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label" for="product_yards">Product number of yards <span class="text-danger">*</span>
+                                            </label>
+                                            <div class="col-lg-6">
+                                                <input type="text" class="form-control"  name="product_yards" placeholder="eg. 6 per yards" required="required">
                                             </div>
                                         </div>
                                         <div class="form-group row">

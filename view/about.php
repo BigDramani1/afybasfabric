@@ -99,17 +99,18 @@ else{
 
 
 
-    <section class="bg-success py-5">
+    <section class="bg-success">
         <div class="container">
-            <div class="row align-items-center py-5">
+            <div class="row align-items-center">
                 <div class="col-md-8 text-white">
                     <h1>About Us</h1>
-                    <p>
-                     Write something about them 
+                    <p><span style="font-size:30px; font-family:'Noto Serif Oriya', serif;">
+                    My name is Sandra Obiani Bonsu. I am the founder and CEO of <em>Afybas Fabric Empire</em>.
+                    Dealers in all kinds of fabrics including laces, brocades, crepe, chiffon, kaftan/senator fabrics and many more. </span>
                     </p>
                 </div>
                 <div class="col-md-4">
-                    <img src="../assets/img/about-hero.svg" alt="About Hero">
+                    <img src="../assets/img/owner.svg" alt="About Hero"style="height:690px" >
                 </div>
             </div>
         </div>
@@ -169,71 +170,26 @@ else{
                         We deal in Brocade, Lace, Porka, and Cotton Fabrics!!!
                     </p>
                 </div>
-                <div class="col-lg-9 m-auto tempaltemo-carousel">
+                <div class="col-lg-12 m-auto tempaltemo-carousel">
                     <div class="row d-flex flex-row">
-                        <!--Controls-->
-                        <div class="col-1 align-self-center">
-                            <a class="h1" href="#templatemo-slide-brand" role="button" data-bs-slide="prev">
-                                <i class="text-light fas fa-chevron-left"></i>
-                            </a>
-                        </div>
-                        <!--End Controls-->
 
                         <!--Carousel Wrapper-->
-                        <div class="col">
-                            <div class="carousel slide carousel-multi-item pt-2 pt-md-0" id="templatemo-slide-brand" data-bs-ride="carousel">
-                                <!--Slides-->
-                                <div class="carousel-inner product-links-wap" role="listbox">
-
-                                    <!--First slide-->
-                                    <div class="carousel-item active">
                                         <div class="row">
-                                        <div class="col-4" style="width:250px; height:300px;">
+                                        <div class="col-md-3" style="width:270px; height:300px;">
                                                 <a href="#"><img class="img-fluid brand-img" src="../assets/img/3.svg" alt="Brand Logo"></a>
                                             </div>
-                                            <div class="col-4 " style="width:250px; height:300px;">
+                                            <div class="col-md-3" style="width:270px; height:300px;">
                                                 <a href="#"><img class="img-fluid brand-img" src="../assets/img/4.svg" alt="Brand Logo"></a>
                                             </div>
-                                            <div class="col-4" style="width:250px; height:300px;">
-                                                <a href="#"><img class="img-fluid brand-img" src="../assets/img/1.svg" alt="Brand Logo"></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--End First slide-->
-
-                                    <!--Second slide-->
-                                    <div class="carousel-item">
-                                        <div class="row">
-                                        <div class="col-4" style="width:250px; height:300px;">
+                                            <div class="col-md-3" style="width:270px; height:300px;">
                                                 <a href="#"><img class="img-fluid brand-img" src="../assets/img/2.svg" alt="Brand Logo"></a>
                                             </div>
-                                            <div class="col-4 " style="width:250px; height:300px;">
+                                            <div class="col-md-3" style="width:270px; height:300px;">
                                                 <a href="#"><img class="img-fluid brand-img" src="../assets/img/1.svg" alt="Brand Logo"></a>
                                             </div>
-                                            <div class="col-4" style="width:250px; height:300px;">
-                                                <a href="#"><img class="img-fluid brand-img" src="../assets/img/3.svg" alt="Brand Logo"></a>
-                                            </div>
                                         </div>
-                                    </div>
-                                    <!--End Second slide-->
-
-
-                                </div>
-                                <!--End Slides-->
-                            </div>
-                        </div>
-                        <!--End Carousel Wrapper-->
-
-                        <!--Controls-->
-                        <div class="col-1 align-self-center">
-                            <a class="h1" href="#templatemo-slide-brand" role="button" data-bs-slide="next">
-                                <i class="text-light fas fa-chevron-right"></i>
-                            </a>
-                        </div>
-                        <!--End Controls-->
-                    </div>
+                                
                 </div>
-            </div>
         </div>
     </section>
     <!--End Brands-->
@@ -299,7 +255,7 @@ else{
                             <a class="text-light text-decoration-none" target="_blank" href=""><i class="fab fa-twitter fa-lg fa-fw"></i></a>
                         </li>
                         <li class="list-inline-item border border-light rounded-circle text-center">
-                            <a class="text-light text-decoration-none" target="_blank" href=""><i class="fab fa-whatsapp fa-lg fa-fw"></i></a>
+                            <a class="text-light text-decoration-none" target="_blank" href="https://wa.me/233553058208"><i class="fab fa-whatsapp fa-lg fa-fw"></i></a>
                         </li>
                     </ul>
                 </div>

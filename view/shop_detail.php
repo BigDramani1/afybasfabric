@@ -1,3 +1,9 @@
+<?php
+require('../settings/core.php');
+require('../controllers/product_controller.php');
+
+$product = select_one_product_controller($_GET['product_id']);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -98,7 +104,7 @@
             <div class="row">
                 <div class="col-lg-5 mt-5">
                     <div class="card mb-3" >
-                        <img class="card-img img-fluid" src="../assets/img/1.jpg" style="height:450px" alt="Card image cap" id="product-detail">
+                    <img src="../images/products/<?php echo htmlentities($product['product_image']); ?>" style="height:450px" alt="Card image cap" id="product-detail">
                     </div>
                     <div class="row"> 
                         <!--Start Controls-->
@@ -170,15 +176,12 @@
                 <div class="col-lg-7 mt-5">
                     <div class="card">
                         <div class="card-body">
-                            <h1 style="margin-bottom:10px;">Material name</h1>
-                            <p class="h4"><strong>Price:</strong> GH₵ 70 per yard</p>
+                            <h1 style="margin-bottom:10px;"><?php echo "{$product['product_title']}"; ?></h1>
+                            <p class="h4"><strong>Price:</strong><?php echo" GH₵ {$product['product_price']}";?></p>
                             <ul class="list-inline">
-                                <li class="list-inline-item">
-                                    <h6>Brand:</h6>
-                                </li>
-                                <li class="list-inline-item">
-                                    <p>Brocade fabric</p>
-                                </li>
+                                <!-- <li class="list-inline-item">
+                                    <h6>Brand:<?php echo "{$product['product_brand']}"; ?></h6>
+                                </li> -->
                                 <li><strong>Warning</strong>
                                 <i class="fa fa-warning fa-2x" style="color:red"></i>
                                 <i class="fa fa-warning fa-2x" style="color:red"></i>
@@ -192,7 +195,7 @@
                                     <h6>Available Color:</h6>
                                 </li>
                                 <li class="list-inline-item">
-                                    <p>White / Black</p>
+                                    <p><?php echo "{$product['product_keywords']}"; ?></p>
                                 </li>
                             </ul>
 
@@ -233,94 +236,35 @@
                 <h4>Related Products</h4>
             </div>
             <div class="row">
-                <div class="col-md-3">
-                <div class="p-2 pb-3">
-                    <div class="product-wap card rounded-0">
-                        <div class="card rounded-0" style="height:200px">
-                            <img class="card-img rounded-0 img-fluid" src="../assets/img/1.jpg" style="height:200px">
-                            <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
-                                <ul class="list-unstyled">
+            <?php
+                $displays = random_four_controller();
+                foreach ($displays as $display) {
+                    echo "
+                <div class=\"col-md-3\">
+                <div class=\"p-2 pb-3\">
+                <input type='hidden' name='product_id' value={$display['product_id']}>
+                    <div class=\"product-wap card rounded-0\">
+                        <div class=\"card rounded-0\" style=\"height:200px\">
+                            <img class=\"card-img rounded-0 img-fluid\" src='../images/products/{$display["product_image"]}'  style=\"height:200px\">
+                            <div class=\"card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center\">
+                                <ul class=\"list-unstyled\">
                                     
-                                    <li><a class="btn btn-success text-white mt-2" href="shop_detail.php"><i class="far fa-eye"></i></a></li>
-                                    <li><a class="btn btn-success text-white mt-2" href="shop_detail.php"><i class="fas fa-cart-plus"></i></a></li>
+                                    <li><a class=\"btn btn-success text-white mt-2\" href=\"shop_detail.php?product_id={$display["product_id"]}\"><i class=\"far fa-eye\"></i></a></li>
+                                    <li><a class=\"btn btn-success text-white mt-2\" href=\"shop_detail.php?product_id={$display["product_id"]}\"><i class=\"fas fa-cart-plus\"></i></a></li>
                                 </ul>
                             </div>
                         </div>
-                        <div class="card-body">
-                            <a href="view/shop_detail.php" class="p text-decoration-none text-dark">Materials</a>
-                            <p class="card-text">
-                                <strong>GH₵ 70 per yard</strong>
+                        <div class=\"card-body\">
+                            <a href=\"view/shop_detail.php\" class=\"p text-decoration-none text-dark\">Materials</a>
+                            <p class=\"card-text\">
+                            <strong>GH₵ {$display['product_price']}</strong>     &nbsp;{$display['product_yards']}
                             </p>
                         </div>
                     </div>
                 </div>
-                </div>
-                <div class="col-md-3">
-                <div class="p-2 pb-3">
-                    <div class="product-wap card rounded-0">
-                        <div class="card rounded-0" style="height:200px">
-                            <img class="card-img rounded-0 img-fluid" src="../assets/img/2.jpg" style="height:200px">
-                            <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
-                                <ul class="list-unstyled">
-                                   
-                                    <li><a class="btn btn-success text-white mt-2" href="shop_detail.php"><i class="far fa-eye"></i></a></li>
-                                    <li><a class="btn btn-success text-white mt-2" href="shop_detail.php"><i class="fas fa-cart-plus"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <a href="view/shop_detail.php" class="p text-decoration-none text-dark">Materials</a>
-                            <p class="card-text">
-                                <strong>GH₵ 70 per yard</strong>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                </div>
-                <div class="col-md-3">
-                <div class="p-2 pb-3">
-                    <div class="product-wap card rounded-0">
-                        <div class="card rounded-0"style="height:200px" >
-                            <img class="card-img rounded-0 img-fluid" src="../assets/img/3.jpg" style="height:200px">
-                            <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
-                                <ul class="list-unstyled">
-                                   
-                                    <li><a class="btn btn-success text-white mt-2" href="shop_detail.php"><i class="far fa-eye"></i></a></li>
-                                    <li><a class="btn btn-success text-white mt-2" href="shop_detail.php"><i class="fas fa-cart-plus"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <a href="view/shop_detail.php" class="p text-decoration-none text-dark">Materials</a>
-                            <p class="card-text">
-                                <strong>GH₵ 70 per yard</strong>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                </div>
-                <div class="col-md-3">
-                <div class="p-2 pb-3">
-                    <div class="product-wap card rounded-0">
-                        <div class="card rounded-0" style="height:200px">
-                            <img class="card-img rounded-0 img-fluid" style="height:200px" src="../assets/img/14.jpg">
-                            <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
-                                <ul class="list-unstyled">
-                                    
-                                    <li><a class="btn btn-success text-white mt-2" href="shop_detail.php"><i class="far fa-eye"></i></a></li>
-                                    <li><a class="btn btn-success text-white mt-2" href="shop_detail.php"><i class="fas fa-cart-plus"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <a href="view/shop_1.php" class="p text-decoration-none text-dark">Materials</a>
-                            <p class="card-text">
-                                <strong>GH₵ 70 per yard</strong>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                </div>
+                </div>";
+                }
+                ?>
         </div>
     </section>
 
@@ -385,7 +329,7 @@
                             <a class="text-light text-decoration-none" target="_blank" href=""><i class="fab fa-twitter fa-lg fa-fw"></i></a>
                         </li>
                         <li class="list-inline-item border border-light rounded-circle text-center">
-                            <a class="text-light text-decoration-none" target="_blank" href=""><i class="fab fa-whatsapp fa-lg fa-fw"></i></a>
+                            <a class="text-light text-decoration-none" target="_blank" href="https://wa.me/233553058208"><i class="fab fa-whatsapp fa-lg fa-fw"></i></a>
                         </li>
                     </ul>
                 </div>

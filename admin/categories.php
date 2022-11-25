@@ -1,7 +1,6 @@
 <?php
 require('../settings/core.php');
 require('../controllers/product_controller.php');
-$category = select_one_category_controller($_GET['cat_id']);
 if ($_SESSION['user_role'] != 1) {
     header('Location: ../login/login-user.php');
   }
@@ -67,6 +66,9 @@ if ($_SESSION['user_role'] != 1) {
                             <li><i class="fa fa-product-hunt" style="color:black"></i><a href="add_product.php">Add Product</a></li>
                             <li><i class="fa fa-product-hunt" style="color:black"></i><a href="products.php">View Products</a></li>
                         </ul>
+                    </li>
+                    <li>
+                        <a href="log_out.php"><i class="menu-icon fa fa-sign-out"></i>Log Out</a> 
                     </li>
                 </ul>
             </div><!-- /.navbar-collapse -->

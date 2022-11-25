@@ -80,15 +80,15 @@ function select_one_categoryname($category){
 // products methods
 
 // add product method
-    function add_product($product_cat, $product_brand, $product_title, $product_price, $product_desc, $product_image, $product_keywords){
+    function add_product($product_cat, $product_brand, $product_title, $product_price, $product_desc, $product_image, $product_keywords, $product_yards){
 
-		return $this->query("insert into products(product_cat, product_brand, product_title, product_price, product_desc, product_image, product_keywords) values('$product_cat', '$product_brand', '$product_title', '$product_price', '$product_desc', '$product_image','$product_keywords')");
+		return $this->query("insert into products(product_cat, product_brand, product_title, product_price, product_desc, product_image, product_keywords, product_yards) values('$product_cat', '$product_brand', '$product_title', '$product_price', '$product_desc', '$product_image','$product_keywords', '$product_yards'");
 	}
 
 // update one product method
-    function update_one_product ($product_id, $product_cat, $product_brand, $product_title, $product_price, $product_desc, $product_image, $product_keywords) {
+    function update_one_product ($product_id, $product_cat, $product_brand, $product_title, $product_price, $product_desc, $product_image, $product_keywords, $product_yards) {
         // return true or false
-        return $this->query("update products set product_cat = '$product_cat', product_brand = '$product_brand', product_title = '$product_title', product_price = '$product_price', product_desc = '$product_desc', product_image = '$product_image', product_keywords = '$product_keywords' where product_id = '$product_id'");
+        return $this->query("update products set product_cat = '$product_cat', product_brand = '$product_brand', product_title = '$product_title', product_price = '$product_price', product_desc = '$product_desc', product_image = '$product_image', product_keywords = '$product_keywords'  product_yards = '$product_yards' where product_id = '$product_id'");
 
     }
 
@@ -120,8 +120,31 @@ function select_one_categoryname($category){
 
     }
 
-    
-}
+    //selecting top three products
+    function random_four_numbers(){
+        return $this->fetch("SELECT * FROM products ORDER BY RAND()LIMIT 4");
+    }
 
+    //selecting top three products
+    function random_three_numbers(){
+        return $this->fetch("SELECT * FROM products ORDER BY RAND()LIMIT 3");
+    }
+
+    //select three products from different types
+    function pick_three(){
+        return $this->fetch('select * from products where product_cat=34 limit 3');
+    }
+
+    /// the number of products that should show on each page
+    function pagation($start_from, $num_per_page){
+        return $this->fetch("select * from products limit $start_from,$num_per_page");
+    }
+
+    // counting the number fof rows 
+    function count_rows(){
+        return $this->count("select * from products");
+    }
+
+}
 
 ?>

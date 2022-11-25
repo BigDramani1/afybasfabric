@@ -115,6 +115,9 @@ if (check_permission() != 1) {
                             <li><i class="fa fa-product-hunt" style="color:black"></i><a href="products.php">View Products</a></li>
                         </ul>
                     </li>
+                    <li>
+                        <a href="log_out.php"><i class="menu-icon fa fa-sign-out"></i>Log Out</a> 
+                    </li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </nav>
@@ -202,6 +205,7 @@ if (check_permission() != 1) {
 								?>
                                 <div class="form-group">
                                     <div class="input-group">
+                                        
                                         <div class="input-group-addon"><i class="fa fa-shopping-bag"></i></div>
                                         <input type="text"  name="category_name" placeholder="Category Name" class="form-control">
                                     </div>

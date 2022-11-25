@@ -19,9 +19,14 @@ if (isset($_POST['login'])) {
 
         if (password_verify($password, $customer_email['customer_pass'])) {
             $_SESSION['email'] = $email;
-            $status = $customer_email['status'];
-            // $_SESSION['user_id'] = $customer_email['customer_id'];
-            // $_SESSION['user_role'] = $customer_email['user_role'];
+            $status= $customer_email['status'];
+            if ($status== 'notverified'){
+                $_SESSION['status'] =  $customer_email['status'];
+                $info = "It's look like you haven't still verify your email ";
+                $_SESSION['info'] = $info;
+                header('location: user-otp.php');
+            }
+
             if ($status == 'verified') {
                 $_SESSION['email'] = $customer_email['customer_email'];
                 $_SESSION['password'] = $customer_email['customer_pass'];

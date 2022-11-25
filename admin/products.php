@@ -67,6 +67,9 @@ if (check_permission() != 1) {
                             <li><i class="fa fa-product-hunt" style="color:black"></i><a href="products.php">View Products</a></li>
                         </ul>
                     </li>
+                    <li>
+                        <a href="log_out.php"><i class="menu-icon fa fa-sign-out"></i>Log Out</a> 
+                    </li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </nav>
@@ -144,7 +147,6 @@ if (check_permission() != 1) {
                                 <table id="bootstrap-data-table" class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
-                                            <th>ID</th>
                                             <th>Category</th>
                                             <th>Brand</th>
                                             <th>Title</th>
@@ -152,8 +154,10 @@ if (check_permission() != 1) {
                                             <th>Description</th>
                                             <th>Image</th>
                                             <th>Keywords</th>
+                                            <th>No. of yards</th>
                                             <th> Action </th>
                                             <th> Action </th>
+                                            <th>Replace Image</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -164,7 +168,6 @@ if (check_permission() != 1) {
                                             echo 
                                                 "
                                                 <tr>
-                                                    <td>{$product['product_id']}</td>
                                                     <td>{$product['cat_name']}</td>
                                                     <td>{$product['brand_name']}</td>
                                                     <td>{$product['product_title']}</td>
@@ -172,8 +175,10 @@ if (check_permission() != 1) {
                                                     <td>{$product['product_desc']}</td>
                                                     <td><img src='../images/products/{$product["product_image"]}' alt='...' width='200' height='200'></td>
                                                     <td>{$product['product_keywords']}</td>
+                                                    <td>{$product['product_yards']}</td>
                                                     <td><a href='../admin/update_product.php?product_id={$product['product_id']}' class='btn btn-primary'>Update</a></td>
                                                     <td><a href='../actions/delete_product.php?product_id={$product['product_id']}'  class='btn btn-danger'>Delete</a></td>
+                                                    <td>Replace image</td>
                                                 </tr>
                                                 ";
                                             }

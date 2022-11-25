@@ -34,64 +34,67 @@ if (isset($_POST['signup'])) {
         $result = customer_info_controller($name, $email, $city, $phone, $password, $code, $status);
         $_SESSION['email'] = $email;
         if ($result == true) {
-            require '../PHPMailerAutoload.php';
-            require '../credential.php';
             $info = "We've sent a verification code to your email - $email";
             $_SESSION['info'] = $info;
             $_SESSION['email'] = $email;
-    
-            $mail = new PHPMailer;
-    
-            $mail->SMTPDebug = 4;                               // Enable verbose debug output
-    
-            $mail->isSMTP();                                      // Set mailer to use SMTP
-            $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
-            $mail->SMTPAuth = true;                               // Enable SMTP authentication
-            $mail->Username = EMAIL;                 // SMTP username
-            $mail->Password = PASS;                           // SMTP password
-            $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
-            $mail->Port = 587;
-            $mail->SMTPDebug  = SMTP::DEBUG_OFF;                                // TCP port to connect to
-    
-            $mail->setFrom(EMAIL, 'Afybas Fabric Haven');
-            $mail->addAddress($_SESSION['email']);     // Add a recipient
-    
-            $mail->addReplyTo(EMAIL);
-    
-            $mail->isHTML(true);                                  // Set email format to HTML
-    
-            $mail->Subject = "Your Verification Code";
-            $mail->Body    = "<div class=\"cont\" style=\"text-align:center;
-            width: 75%;
-            min-width: 400px;
-            padding: 35px 50px;
-            transform: translate(-50%,-50%);
-            position: relative;
-            left: 50%;
-            top: 380px;
-            border-radius: 10px;
-            -webkit-border-radius: 10px;
-            -moz-border-radius: 10px;
-            box-shadow: 0px 6px 18px 0px rgba(16, 5, 54, 0.17);\">   
-                <div class=\"img\">
-                    <img src=\"https://img.freepik.com/premium-vector/otp-onetime-password-2step-authentication-data-protection-internet-security-concept_100456-10200.jpg?\"
-                        style=\"width:220px; height:180px;\">
-                </div>
-                <div class=\"text\" style=\"text-align: center; line-height: 0cm;\">
-                    <p style=\"font-size:28px\">Hi</p>
-                    <br><p style=\"font-size:18px\">This is your verification code for Afybas Fabric Haven</p>
-                    <br><p style=\"font-size:40px\"><strong>{$code}</strong></p>
-                    <br><p style=\"font-size:14px\">Kindly ignore this if this notification wasn't mean't for you! Thank you</p>
-                </div>
-            </div>";
-
-            if (!$mail->send()) {
-                echo 'Message could not be sent.';
-                echo 'Mailer Error: ' . $mail->ErrorInfo;
-            } else {
+            $from ="johnmahama65@gmail.com";
+            $to =$email;
+           $subject="Your Verification Code";
+           $msg="<div class=\"cont\" style=\"text-align:center;
+           width: 75%;
+           min-width: 400px;
+           padding: 35px 50px;
+           transform: translate(-50%,-50%);
+           position: relative;
+           left: 50%;
+           top: 380px;
+           border-radius: 10px;
+           -webkit-border-radius: 10px;
+           -moz-border-radius: 10px;
+           box-shadow: 0px 6px 18px 0px rgba(16, 5, 54, 0.17);\">   
+               <div class=\"img\">
+                   <img src=\"https://img.freepik.com/premium-vector/otp-onetime-password-2step-authentication-data-protection-internet-security-concept_100456-10200.jpg?\"
+                       style=\"width:220px; height:180px;\">
+               </div>
+               <div class=\"text\" style=\"text-align: center; line-height: 0cm;\">
+                   <p style=\"font-size:28px\">Hi</p>
+                   <br><p style=\"font-size:18px\">This is your verification code for Afybas Fabric Haven</p>
+                   <br><p style=\"font-size:40px\"><strong>{$code}</strong></p>
+                   <br><p style=\"font-size:14px\">Kindly ignore this if this notification wasn't mean't for you! Thank you</p>
+               </div>
+           </div>";
+        include('../smtp/smtp/PHPMailerAutoload.php');   
+            $mail = new PHPMailer();
+            $mail->SMTPDebug= 3;
+            $mail -> IsSMTP();
+            $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+            $mail->SMTPAuth   = true;  
+            $mail->SMTPSecure = 'tls';   
+            $mail -> isHTML(true) ;                   //Enable SMTP authentication
+            $mail->Username   = 'johnmahama65@gmail.com';                     //SMTP username
+            $mail->Password   = 'eorpvauwzsduanlm';                               //SMTP password           //Enable implicit TLS encryption
+            $mail->Port       = 587;       
+            $mail->SMTPDebug  = SMTP::DEBUG_OFF;                              //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+            
+            //Recipients
+            $mail->setFrom($from, 'Afybas Fabric Empire');
+            $mail->addAddress($to);     //Add a recipient            //Name is optional
+            
+            //Content                              //Set email format to HTML
+            $mail->Subject = $subject;
+            $mail->Body    = $msg;
+          
+            $mail->SMTPOptions=array('ssl'=> array(
+                'verify_peer'=> false,
+                'verify_peer_name' => false,
+                'allow_self_signed'=> false
+            ));
+            if (!$mail->Send()){
+                echo $mail->ErrorInfo;
+            } else{
                 header('location: ../login/user-otp.php');
             }
-        }
+        }                                  
     }
 }
 
@@ -108,6 +111,7 @@ if (isset($_POST['check'])) {
         $errors['otp-error'] = "You've entered incorrect code!";
     }  if (count($errors) === 0){
         $update=customer_otp_controller($email);
+        $_SESSION['isverified'] = true;
         header('location: login-user.php');
     }
 }
@@ -125,63 +129,67 @@ if (isset($_POST['check-email'])) {
         $result = new_otp_controller($code, $email);
         $_SESSION['email'] = $email;
         if ($result == true) {
-            require '../PHPMailerAutoload.php';
-            require '../credential.php';
             $info = "We've sent a verification code to your email - $email";
             $_SESSION['info'] = $info;
             $_SESSION['email'] = $email;
-    
-            $mail = new PHPMailer;
-    
-            $mail->SMTPDebug = 4;                               // Enable verbose debug output
-    
-            $mail->isSMTP();                                      // Set mailer to use SMTP
-            $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
-            $mail->SMTPAuth = true;                               // Enable SMTP authentication
-            $mail->Username = EMAIL;                 // SMTP username
-            $mail->Password = PASS;                           // SMTP password
-            $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
-            $mail->Port = 587;
-            $mail->SMTPDebug  = SMTP::DEBUG_OFF;                                // TCP port to connect to
-    
-            $mail->setFrom(EMAIL, 'Afybas Fabric Haven');
-            $mail->addAddress($_SESSION['email']);     // Add a recipient
-    
-            $mail->addReplyTo(EMAIL);
-    
-            $mail->isHTML(true);                                  // Set email format to HTML
-    
-            $mail->Subject = "Your Verification Code";
-            $mail->Body    = "<div class=\"cont\" style=\"text-align:center;
-            width: 75%;
-            min-width: 400px;
-            padding: 35px 50px;
-            transform: translate(-50%,-50%);
-            position: relative;
-            left: 50%;
-            top: 380px;
-            border-radius: 10px;
-            -webkit-border-radius: 10px;
-            -moz-border-radius: 10px;
-            box-shadow: 0px 6px 18px 0px rgba(16, 5, 54, 0.17);\">   
-                <div class=\"img\">
-                    <img src=\"https://img.freepik.com/premium-vector/otp-onetime-password-2step-authentication-data-protection-internet-security-concept_100456-10200.jpg?\"
-                        style=\"width:220px; height:180px;\">
-                </div>
-                <div class=\"text\" style=\"text-align: center; line-height: 0cm;\">
-                    <p style=\"font-size:28px\">Hi</p>
-                    <br><p style=\"font-size:18px\">This is your verification code for Afybas Fabric Haven</p>
-                    <br><p style=\"font-size:40px\"><strong>{$code}</strong></p>
-                    <br><p style=\"font-size:14px\">Kindly ignore this if this notification wasn't mean't for you! Thank you</p>
-                </div>
-            </div>";
-            if (!$mail->send()) {
-                echo 'Message could not be sent.';
-                echo 'Mailer Error: ' . $mail->ErrorInfo;
-            } else {
+            $from ="johnmahama65@gmail.com";
+            $to =$email;
+           $subject="Your Verification Code";
+           $msg="<div class=\"cont\" style=\"text-align:center;
+           width: 75%;
+           min-width: 400px;
+           padding: 35px 50px;
+           transform: translate(-50%,-50%);
+           position: relative;
+           left: 50%;
+           top: 380px;
+           border-radius: 10px;
+           -webkit-border-radius: 10px;
+           -moz-border-radius: 10px;
+           box-shadow: 0px 6px 18px 0px rgba(16, 5, 54, 0.17);\">   
+               <div class=\"img\">
+                   <img src=\"https://img.freepik.com/premium-vector/otp-onetime-password-2step-authentication-data-protection-internet-security-concept_100456-10200.jpg?\"
+                       style=\"width:220px; height:180px;\">
+               </div>
+               <div class=\"text\" style=\"text-align: center; line-height: 0cm;\">
+                   <p style=\"font-size:28px\">Hi</p>
+                   <br><p style=\"font-size:18px\">This is your verification code for Afybas Fabric Haven</p>
+                   <br><p style=\"font-size:40px\"><strong>{$code}</strong></p>
+                   <br><p style=\"font-size:14px\">Kindly ignore this if this notification wasn't mean't for you! Thank you</p>
+               </div>
+           </div>";
+        include('../smtp/smtp/PHPMailerAutoload.php');   
+            $mail = new PHPMailer();
+            $mail->SMTPDebug= 3;
+            $mail -> IsSMTP();
+            $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+            $mail->SMTPAuth   = true;  
+            $mail->SMTPSecure = 'tls';   
+            $mail -> isHTML(true) ;                   //Enable SMTP authentication
+            $mail->Username   = 'johnmahama65@gmail.com';                     //SMTP username
+            $mail->Password   = 'eorpvauwzsduanlm';                               //SMTP password           //Enable implicit TLS encryption
+            $mail->Port       = 587;       
+            $mail->SMTPDebug  = SMTP::DEBUG_OFF;                              //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+            
+            //Recipients
+            $mail->setFrom($from, 'Afybas Fabric Empire');
+            $mail->addAddress($to);     //Add a recipient            //Name is optional
+            
+            //Content                              //Set email format to HTML
+            $mail->Subject = $subject;
+            $mail->Body    = $msg;
+          
+            $mail->SMTPOptions=array('ssl'=> array(
+                'verify_peer'=> false,
+                'verify_peer_name' => false,
+                'allow_self_signed'=> false
+            ));
+            if (!$mail->Send()){
+                echo $mail->ErrorInfo;
+            } else{
                 header('location: reset_password_otp.php');
             }
-        } 
+        }                                  
     }
         
 }
@@ -211,67 +219,71 @@ if(isset($_POST['resend'])){
     if ($customer) {
         $code = rand(999999, 111111);
         $result = new_otp_controller($code, $email);
-    if ($result == true) {
-        require '../PHPMailerAutoload.php';
-        require '../credential.php';
-        $info = "We've sent a verification code to your email - $email";
-        $_SESSION['info'] = $info;
-        $_SESSION['email'] = $email;
-
-        $mail = new PHPMailer;
-
-        $mail->SMTPDebug = 4;                               // Enable verbose debug output
-
-        $mail->isSMTP();                                      // Set mailer to use SMTP
-        $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
-        $mail->SMTPAuth = true;                               // Enable SMTP authentication
-        $mail->Username = EMAIL;                 // SMTP username
-        $mail->Password = PASS;                           // SMTP password
-        $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
-        $mail->Port = 587;
-        $mail->SMTPDebug  = SMTP::DEBUG_OFF;                                // TCP port to connect to
-
-        $mail->setFrom(EMAIL, 'Afybas Fabric Haven');
-        $mail->addAddress($_SESSION['email']);     // Add a recipient
-
-        $mail->addReplyTo(EMAIL);
-
-        $mail->isHTML(true);                                  // Set email format to HTML
-
-        $mail->Subject = "Your Verification Code";
-        $mail->Body    = "<div class=\"cont\" style=\"text-align:center;
-        width: 75%;
-        min-width: 400px;
-        padding: 35px 50px;
-        transform: translate(-50%,-50%);
-        position: relative;
-        left: 50%;
-        top: 380px;
-        border-radius: 10px;
-        -webkit-border-radius: 10px;
-        -moz-border-radius: 10px;
-        box-shadow: 0px 6px 18px 0px rgba(16, 5, 54, 0.17);\">   
-            <div class=\"img\">
-                <img src=\"https://img.freepik.com/premium-vector/otp-onetime-password-2step-authentication-data-protection-internet-security-concept_100456-10200.jpg?\"
-                    style=\"width:200px; height:150px;\">
-            </div>
-            <div class=\"text\" style=\"text-align: center; line-height: 0cm;\">
-                <p style=\"font-size:28px\">Hi</p>
-                <br><p style=\"font-size:13px\">This is your verification code for Afybas Fabric Haven</p>
-                <br><p style=\"font-size:40px\"><strong>{$code}</strong></p>
-                <br><p style=\"font-size:13px\">Kindly ignore this if this notification wasn't mean't for you! Thank you</p>
-            </div>
-        </div>";
-        if (!$mail->send()) {
-            echo 'Message could not be sent.';
-            echo 'Mailer Error: ' . $mail->ErrorInfo;
-        } else {
-            header('location: ../login/user-otp.php?message=success');
-        }
+        if ($result == true) {
+            $info = "We've sent a verification code to your email - $email";
+            $_SESSION['info'] = $info;
+            $_SESSION['email'] = $email;
+            $from ="johnmahama65@gmail.com";
+            $to =$email;
+           $subject="Your Verification Code";
+           $msg="<div class=\"cont\" style=\"text-align:center;
+           width: 75%;
+           min-width: 400px;
+           padding: 35px 50px;
+           transform: translate(-50%,-50%);
+           position: relative;
+           left: 50%;
+           top: 380px;
+           border-radius: 10px;
+           -webkit-border-radius: 10px;
+           -moz-border-radius: 10px;
+           box-shadow: 0px 6px 18px 0px rgba(16, 5, 54, 0.17);\">   
+               <div class=\"img\">
+                   <img src=\"https://img.freepik.com/premium-vector/otp-onetime-password-2step-authentication-data-protection-internet-security-concept_100456-10200.jpg?\"
+                       style=\"width:200px; height:150px;\">
+               </div>
+               <div class=\"text\" style=\"text-align: center; line-height: 0cm;\">
+                   <p style=\"font-size:28px\">Hi</p>
+                   <br><p style=\"font-size:13px\">This is your verification code for Afybas Fabric Haven</p>
+                   <br><p style=\"font-size:40px\"><strong>{$code}</strong></p>
+                   <br><p style=\"font-size:13px\">Kindly ignore this if this notification wasn't mean't for you! Thank you</p>
+               </div>
+           </div>";
+        include('../smtp/smtp/PHPMailerAutoload.php');   
+            $mail = new PHPMailer();
+            $mail->SMTPDebug= 3;
+            $mail -> IsSMTP();
+            $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+            $mail->SMTPAuth   = true;  
+            $mail->SMTPSecure = 'tls';   
+            $mail -> isHTML(true) ;                   //Enable SMTP authentication
+            $mail->Username   = 'johnmahama65@gmail.com';                     //SMTP username
+            $mail->Password   = 'eorpvauwzsduanlm';                               //SMTP password           //Enable implicit TLS encryption
+            $mail->Port       = 587;       
+            $mail->SMTPDebug  = SMTP::DEBUG_OFF;                              //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+            
+            //Recipients
+            $mail->setFrom($from, 'Afybas Fabric Empire');
+            $mail->addAddress($to);     //Add a recipient            //Name is optional
+            
+            //Content                              //Set email format to HTML
+            $mail->Subject = $subject;
+            $mail->Body    = $msg;
+          
+            $mail->SMTPOptions=array('ssl'=> array(
+                'verify_peer'=> false,
+                'verify_peer_name' => false,
+                'allow_self_signed'=> false
+            ));
+            if (!$mail->Send()){
+                echo $mail->ErrorInfo;
+            } else{
+                header('location: ../login/user-otp.php?message=success');
+            }
+        }                                  
     }
-}   
-    
 }
+
 // This is for resending verification code when you want to reset your password 
 if(isset($_POST['resending'])){
     $email=$_SESSION['email'];
@@ -281,64 +293,67 @@ if(isset($_POST['resending'])){
         $result = new_otp_controller($code, $email);
     }
     if ($result == true) {
-        require '../PHPMailerAutoload.php';
-        require '../credential.php';
         $info = "We've sent a verification code to your email - $email";
         $_SESSION['info'] = $info;
         $_SESSION['email'] = $email;
-
-        $mail = new PHPMailer;
-
-        $mail->SMTPDebug = 4;                               // Enable verbose debug output
-
-        $mail->isSMTP();                                      // Set mailer to use SMTP
-        $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
-        $mail->SMTPAuth = true;                               // Enable SMTP authentication
-        $mail->Username = EMAIL;                 // SMTP username
-        $mail->Password = PASS;                           // SMTP password
-        $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
-        $mail->Port = 587;
-        $mail->SMTPDebug  = SMTP::DEBUG_OFF;                                // TCP port to connect to
-
-        $mail->setFrom(EMAIL, 'Afybas Fabric Haven');
-        $mail->addAddress($_SESSION['email']);     // Add a recipient
-
-        $mail->addReplyTo(EMAIL);
-
-        $mail->isHTML(true);                                  // Set email format to HTML
-
-        $mail->Subject = "Your Verification Code";
-        $mail->Body    = "<div class=\"cont\" style=\"text-align:center;
-        width: 75%;
-        min-width: 400px;
-        padding: 35px 50px;
-        transform: translate(-50%,-50%);
-        position: relative;
-        left: 50%;
-        top: 380px;
-        border-radius: 10px;
-        -webkit-border-radius: 10px;
-        -moz-border-radius: 10px;
-        box-shadow: 0px 6px 18px 0px rgba(16, 5, 54, 0.17);\">   
-            <div class=\"img\">
-                <img src=\"https://img.freepik.com/premium-vector/otp-onetime-password-2step-authentication-data-protection-internet-security-concept_100456-10200.jpg?\"
-                    style=\"width:200px; height:150px;\">
-            </div>
-            <div class=\"text\" style=\"text-align: center; line-height: 0cm;\">
-                <p style=\"font-size:28px\">Hi</p>
-                <br><p style=\"font-size:13px\">This is your verification code for Afybas Fabric Haven</p>
-                <br><p style=\"font-size:40px\"><strong>{$code}</strong></p>
-            </div>
-            <br><p style=\"font-size:13px\">Kindly ignore this if this notification wasn't mean't for you! Thank you</p>
-        </div>";
-        if (!$mail->send()) {
-            echo 'Message could not be sent.';
-            echo 'Mailer Error: ' . $mail->ErrorInfo;
-        } else {
+        $from ="johnmahama65@gmail.com";
+        $to =$email;
+       $subject="Your Verification Code";
+       $msg="<div class=\"cont\" style=\"text-align:center;
+       width: 75%;
+       min-width: 400px;
+       padding: 35px 50px;
+       transform: translate(-50%,-50%);
+       position: relative;
+       left: 50%;
+       top: 380px;
+       border-radius: 10px;
+       -webkit-border-radius: 10px;
+       -moz-border-radius: 10px;
+       box-shadow: 0px 6px 18px 0px rgba(16, 5, 54, 0.17);\">   
+           <div class=\"img\">
+               <img src=\"https://img.freepik.com/premium-vector/otp-onetime-password-2step-authentication-data-protection-internet-security-concept_100456-10200.jpg?\"
+                   style=\"width:200px; height:150px;\">
+           </div>
+           <div class=\"text\" style=\"text-align: center; line-height: 0cm;\">
+               <p style=\"font-size:28px\">Hi</p>
+               <br><p style=\"font-size:13px\">This is your verification code for Afybas Fabric Haven</p>
+               <br><p style=\"font-size:40px\"><strong>{$code}</strong></p>
+               <br><p style=\"font-size:13px\">Kindly ignore this if this notification wasn't mean't for you! Thank you</p>
+           </div>
+       </div>";
+    include('../smtp/smtp/PHPMailerAutoload.php');   
+        $mail = new PHPMailer();
+        $mail->SMTPDebug= 3;
+        $mail -> IsSMTP();
+        $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+        $mail->SMTPAuth   = true;  
+        $mail->SMTPSecure = 'tls';   
+        $mail -> isHTML(true) ;                   //Enable SMTP authentication
+        $mail->Username   = 'johnmahama65@gmail.com';                     //SMTP username
+        $mail->Password   = 'eorpvauwzsduanlm';                               //SMTP password           //Enable implicit TLS encryption
+        $mail->Port       = 587;       
+        $mail->SMTPDebug  = SMTP::DEBUG_OFF;                              //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+        
+        //Recipients
+        $mail->setFrom($from, 'Afybas Fabric Empire');
+        $mail->addAddress($to);     //Add a recipient            //Name is optional
+        
+        //Content                              //Set email format to HTML
+        $mail->Subject = $subject;
+        $mail->Body    = $msg;
+      
+        $mail->SMTPOptions=array('ssl'=> array(
+            'verify_peer'=> false,
+            'verify_peer_name' => false,
+            'allow_self_signed'=> false
+        ));
+        if (!$mail->Send()){
+            echo $mail->ErrorInfo;
+        } else{
             header('location: ../login/reset_password_otp.php?message=success');
         }
-    }   
-    
+    }                                  
 }
 //if the user clicks on change password button
 if (isset($_POST['change-password'])) {

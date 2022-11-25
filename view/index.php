@@ -1,6 +1,7 @@
- <?php 
-session_start();
-if (empty($_SESSION['name']) and empty($_SESSION['email']) ) {
+<?php 
+require('../settings/core.php');
+require('../controllers/product_controller.php');
+if (check_permission() != 1) {
 	$link="../login/login-user.php";
     $cart="../login/login-user.php";
 }
@@ -13,24 +14,22 @@ else{
 <html lang="en">
 
 <head>
-    <title>Afybas Fabric Empire - Contact</title>
+    <title>Afybas Fabric Empire</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="apple-touch-icon" href="../assets/img/apple-icon.png">
-    <link rel="shortcut icon" type="image/x-icon" href="../assets/img/favicon.ico">
+    <link rel="shortcut icon" type="i../mage/x-icon" href="assets/img/favicon.ico">
 
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="../assets/css/templatemo.css">
     <link rel="stylesheet" href="../assets/css/custom.css">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
     <link rel="stylesheet" href="../assets/css/fontawesome.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </head>
+
 
 <body>
     <!-- Header -->
@@ -38,7 +37,7 @@ else{
         <div class="container d-flex justify-content-between align-items-center">
 
             <a class="navbar-brand text-success logo h1 align-self-center" href="index.php">
-            Afybas 
+                Afybas 
             </a>
 
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#templatemo_main_nav" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -49,7 +48,7 @@ else{
                 <div class="flex-fill">
                     <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="../index.php">Home</a>
+                            <a class="nav-link" href="index.php">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="about.php">About</a>
@@ -76,7 +75,6 @@ else{
                     </a>
                     <a class="nav-icon position-relative text-decoration-none" href="<?php echo $cart; ?>">
                         <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
-                        <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">7</span>
                     </a>
                     <a class="nav-icon position-relative text-decoration-none" href="<?php echo $link; ?>">
                         <i class="fa fa-fw fa-user text-dark mr-3"></i>
@@ -106,70 +104,147 @@ else{
     </div>
 
 
-    <!-- Start Content Page -->
-    <div class="container-fluid bg-light py-5">
-        <div class="col-md-6 m-auto text-center">
-            <h1 class="h1">Contact Us</h1>
-            <p>
-                You can reach us here!
-            </p>
-            <p> <i class="fa fa-phone" style="font-size:20px;color:red"></i> Call us at<strong> +233 553058208</strong></p>
-        </div>
-    </div>
 
-    <!-- Start Map -->
-    <div class="comb" style="  background-color: #ffff;
-    width: 80%;
-    min-width: 420px;
-    padding: 35px 50px;
-    transform: translate(-50%,-50%);
-    position: relative;
-    left: 50%;
-    top: 210px;
-    border-radius: 10px;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    box-shadow: 0px 6px 18px 0px rgb(16 5 54 / 17%);">
-    Our Location
-        <iframe src="https://maps.google.com/maps?q=Ashesi%20University%20&t=k&z=13&ie=UTF8&iwloc=&output=embed" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-    </div>
-    
-    <!-- Ena Map -->
-    <!-- Start Contact -->
-    <div class="container py-5">
-        <div class="row py-5">
-            <form class="col-md-9 m-auto" method="post"  action="../actions/messages.php"role="form" enctype="multipart/form-data">
-                <div class="row">
-                <div class="form-group">
-                            <input hidden type="email" class="form-control" id="email" name="email" value="johnmahama65@gmail.com">
+    <!-- Start Banner Hero -->
+    <div id="template-mo-zay-hero-carousel" class="carousel slide" data-bs-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="0" class="active"></li>
+            <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="1"></li>
+            <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="container">
+                    <div class="row p-5">
+                        <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
+                            <img class="img-fluid" src="../assets/img/first.svg" alt="">
+                        </div>
+                        <div class="col-lg-6 mb-0 d-flex align-items-center">
+                            <div class="text-align-left align-self-center">
+                                <h1 class="h1 text-success"><b>Afybas</b> Fabric Haven</h1>
+                                <h3 class="h2">Don't miss out</h3>
+                                <p>
+                                    Get your affordable clothing materials from here!
+                                </p>
                             </div>
-                    <div class="form-group col-md-6 mb-3">
-                        <label>Name</label>
-                        <input type="text" required class="form-control input-custom input-full" name="name" id="name" placeholder="Full name" required>
-                    </div>
-                    <div class="form-group col-md-6 mb-3">
-                        <label>Email</label>
-                        <input type="text" class="form-control input-custom input-full" name="subject" id="subject" placeholder="Email" required  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" title="email must be eg. a.dramani@gmail.com">
+                        </div>
                     </div>
                 </div>
-                <div class="mb-3">
-                    <label>Message</label>
-                    <textarea class="form-control mt-1" id="message" name="message" placeholder="Message" rows="8"></textarea>
-                </div>
-                <div class="row">
-                    <div class="col text-end mt-2">
-                        <button type="submit" name="sendmail" id="sweet" class="btn btn-success btn-lg px-3">Send Message </button>
+            </div>
+            <div class="carousel-item">
+                <div class="container">
+                    <div class="row p-5">
+                        <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
+                            <img class="img-fluid" src="../assets/img/final.svg" alt="">
+                        </div>
+                        <div class="col-lg-6 mb-0 d-flex align-items-center">
+                            <div class="text-align-left">
+                                <h1 class="h1">Our prices are Cheap!!!</h1>
+                                <p> The starting price is GH₵ 50 a yard</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                
-            </form>
+            </div>
+            <div class="carousel-item">
+                <div class="container">
+                    <div class="row p-5">
+                        <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
+                            <img class="img-fluid" src="../assets/img/5.svg" alt="">
+                        </div>
+                        <div class="col-lg-6 mb-0 d-flex align-items-center">
+                            <div class="text-align-left">
+                                <h1 class="h1 text-success"><b>Explore your true style</b></h1>
+                                <p>
+                                    We promise comfort!
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+        <a class="carousel-control-prev text-decoration-none w-auto ps-3" href="#template-mo-zay-hero-carousel" role="button" data-bs-slide="prev">
+            <i class="fas fa-chevron-left"></i>
+        </a>
+        <a class="carousel-control-next text-decoration-none w-auto pe-3" href="#template-mo-zay-hero-carousel" role="button" data-bs-slide="next">
+            <i class="fas fa-chevron-right"></i>
+        </a>
     </div>
-    <!-- End Contact -->
+    <!-- End Banner Hero -->
 
 
-    <!-- Start Footer -->
-    <footer class="bg-dark" id="tempaltemo_footer">
+    <!-- Start Categories of The Month -->
+    <section class="container py-5">
+        <div class="row text-center pt-3">
+            <div class="col-lg-6 m-auto">
+                <h1 class="h1">Categories of The Month</h1>
+                <p>
+                    Our new stocks materials. It gets randomized every single time
+                </p>
+            </div>
+        </div>
+        <div class="row">
+        <?php 
+                $random = random_three_controller();
+                                            foreach($random as $product){
+                                                echo "
+            <div class=\"col-12 col-md-4 p-5 mt-3\">
+            <input type='hidden'>
+                <a href=\"#\"><img  src='../images/products/{$product["product_image"]}' class=\"rounded-circle img-fluid border\" style='height:300px; width:300px;'></a>
+                <h5 class=\"text-center mt-3 mb-3\">{$product['product_title']}</h5>
+                <p class=\"text-center\"><a  href=\"view/shop.php\" class=\"btn btn-success\">Go Shop</a></p>
+            </div>";
+        }?>
+        </div>
+    </section>
+    <!-- End Categories of The Month -->
+
+    <!-- Start Featured Product -->
+    <section class="bg-light">
+        <div class="container py-5">
+            <div class="row text-center py-3">
+                <div class="col-lg-6 m-auto">
+                    <h1 class="h1">Featured Product</h1>
+                    <p>
+                        <p class="text-center"><a  href="view/shop.php" class="btn btn-success">View more</a></p>
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <?php
+                 $picks = random_three_controller();
+                 foreach($picks as $product){
+                echo"
+                <div class=\"col-12 col-md-4 mb-4\">
+                    <div class=\"card mb-4 product-wap rounded-0\">
+                            <div class=\"card rounded-0\">
+                                <img class=\"card-img rounded-0 img-fluid\" src='../images/products/{$product["product_image"]}'style=\"height:355px\">
+                                <div class=\"card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center\">
+                                    <ul class=\"list-unstyled\">
+                                        <li><a class=\"btn btn-success text-white mt-2\" href=\"shop_detail.php?product_id={$product["product_id"]}\"><i class=\"far fa-eye\"></i></a></li>
+                                        <li><a class=\"btn btn-success text-white mt-2\" href=\"shop_detail.php?product_id={$product["product_id"]}\"><i class=\"fas fa-cart-plus\"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        <div class=\"card-body\">
+                            <a href=\"view/shop_detail.php\" class=\"p text-decoration-none text-dark\">Materials</a>
+                            <p class=\"card-text\">
+                            <strong>GH₵ {$product['product_price']}</strong>     &nbsp;{$product['product_yards']}
+                            </p>
+                        </div>
+                    </div>
+                </div>";
+    }
+               ?>
+            </div>
+        </div>
+    </section>
+    <!-- End Featured Product -->
+
+
+   <!-- Start Footer -->
+   <footer class="bg-dark" id="tempaltemo_footer">
         <div class="container">
             <div class="row">
 
@@ -204,9 +279,9 @@ else{
                     <ul class="list-unstyled text-light footer-link-list">
                         <li><a class="text-decoration-none" href="index.php">Home</a></li>
                         <li><a class="text-decoration-none" href="about.php">About Us</a></li>
-                        <li><a class="text-decoration-none" href="#">Shop Locations</a></li>
+                        <li><a class="text-decoration-none" href="contact.php">Shop Locations</a></li>
                         <li><a class="text-decoration-none" href="#">FAQs</a></li>
-                        <li><a class="text-decoration-none" href="#">Contact</a></li>
+                        <li><a class="text-decoration-none" href="contact.php">Contact</a></li>
                     </ul>
                 </div>
 
@@ -228,7 +303,7 @@ else{
                             <a class="text-light text-decoration-none" target="_blank" href=""><i class="fab fa-twitter fa-lg fa-fw"></i></a>
                         </li>
                         <li class="list-inline-item border border-light rounded-circle text-center">
-                            <a class="text-light text-decoration-none" target="_blank" href="https://wa.me/233553058208"><i class="fab fa-whatsapp fa-lg fa-fw"></i></a>
+                            <a class="text-light text-decoration-none" target="_blank" href=""><i class="fab fa-whatsapp fa-lg fa-fw"></i></a>
                         </li>
                     </ul>
                 </div>
@@ -251,35 +326,15 @@ else{
         </div>
 
     </footer>
-    <?php if(isset($_GET['message'])) : ?>
-        <div class='flash-data' data-flashdata="<? $_GET['message'];?>"></div>
-    <?php endif; ?>
-
-    <script>
-    const flashdata = $('.flash-data').data('flashdata');
-
-        if(flashdata) {
-            Swal.fire({
-                icon: 'success',
-                title: "Congratulations!",
-                text: "Message sent!",
-                type: "success" 
-            }).then(function () {
-                setTimeout(function(){
-                    window.location.reload();
-                    window.location.href="../index.php"
-                }, 500)
-                
-            });
-        }
-
-    </script> 
     <!-- End Footer -->
-    <script src="assets/js/jquery-1.11.0.min.js"></script>
-    <script src="assets/js/jquery-migrate-1.2.1.min.js"></script>
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/templatemo.js"></script>
-    <script src="assets/js/custom.js"></script>
+   
+
+    <!-- Start Script -->
+    <script src="../assets/js/jquery-1.11.0.min.js"></script>
+    <script src="../assets/js/jquery-migrate-1.2.1.min.js"></script>
+    <script src="../assets/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/templatemo.js"></script>
+    <script src="../assets/js/custom.js"></script>
     <!-- End Script -->
 </body>
 

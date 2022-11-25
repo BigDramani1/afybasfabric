@@ -60,7 +60,18 @@ class Connection{
 		return false;
 		
 	}
+	// method to fetch multiple rows from database (select)
+	function count($query){
 
+		// if query executes successfully
+		if($this->query($query)) {
+			// return all the rows
+			return mysqli_num_rows($this->result);
+		}
+		// else return false
+		return false;
+		
+	}
 
 	// method to fetch one row from database (select)
 	function fetchOne($query){

@@ -13,6 +13,7 @@ if(isset($_POST['updateProduct'])){
     $product_title = $_POST['product_title'];
     $product_price = $_POST['product_price'];
     $product_desc = $_POST['product_desc'];
+    $product_yards = $_POST['product_yards'];
     $product_image = $_FILES['product_image']['name'];
     move_uploaded_file($_FILES["product_image"]["tmp_name"],"../images/products/".$_FILES["product_image"]["name"]);
     $product_keywords = $_POST['product_keywords'];
@@ -24,7 +25,7 @@ if(isset($_POST['updateProduct'])){
         $product = select_one_product_controller($product_id);
         $old_image = $product['product_image'];
         //if the user did not change the image, insert the previous image and other data from the form
-        $result = update_one_product_controller($product_id, $product_cat, $product_brand, $product_title, $product_price, $product_desc, $old_image, $product_keywords);
+        $result = update_one_product_controller($product_id, $product_cat, $product_brand, $product_title, $product_price, $product_desc, $old_image, $product_keywords,  $product_yards);
 
         
         if($result) {
@@ -40,7 +41,7 @@ if(isset($_POST['updateProduct'])){
     else{
         // if the user wants to change the image, use the new image instead
 
-        $result = update_one_product_controller($product_id, $product_cat, $product_brand, $product_title, $product_price, $product_desc, $product_image, $product_keywords);
+        $result = update_one_product_controller($product_id, $product_cat, $product_brand, $product_title, $product_price, $product_desc, $product_image, $product_keywords,  $product_yards);
 
         if($result) {
             header('Location: ../admin/products.php');

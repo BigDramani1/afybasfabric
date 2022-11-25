@@ -1,13 +1,24 @@
-<?php 
-session_start();
-if (empty($_SESSION['name']) and empty($_SESSION['email']) ) {
-	$link="../login/login-user.php";
-    $cart="../login/login-user.php";
+<?php
+require('../settings/core.php');
+require('../controllers/product_controller.php');
+if (check_permission() != 1) {
+    $link = "../login/login-user.php";
+    $cart = "../login/login-user.php";
+} else {
+    $link = "../view/dash/dashboard.php";
+    $cart = "cart.php";
 }
-else{
-	$link="../view/dash/dashboard.php";
-    $cart="cart.php";
+
+if(isset($_GET['page']))
+{
+    $page = $_GET['page'];
 }
+else
+{
+    $page = 1;
+}
+$num_per_page = 6;
+$start_from = ($page-1)*6;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -107,202 +118,59 @@ else{
     <div class="container py-5">
         <div class="row">
             <div class="col-lg-9">
-                    <div class="col-md-6">
-                        <ul class="list-inline shop-top-menu pb-3 pt-1">
-                            <li class="list-inline-item">
-                                <a class="h3 text-dark text-decoration-none mr-3" href="#">All Products</a>
-                            </li>
-                        </ul>
-                    </div>
+                <div class="col-md-6">
+                    <ul class="list-inline shop-top-menu pb-3 pt-1">
+                        <li class="list-inline-item">
+                            <a class="h3 text-dark text-decoration-none mr-3" href="#">All Products</a>
+                        </li>
+                    </ul>
                 </div>
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="card mb-4 product-wap rounded-0">
-                            <div class="card rounded-0">
-                                <img class="card-img rounded-0 img-fluid" src="../assets/img/4.jpg" style="height:355px">
-                                <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
-                                    <ul class="list-unstyled">
-                                        <li><a class="btn btn-success text-white mt-2" href="shop_detail.php"><i class="far fa-eye"></i></a></li>
-                                        <li><a class="btn btn-success text-white mt-2" href="shop_detail.php"><i class="fas fa-cart-plus"></i></a></li>
+            </div>
+            <div class="row">
+                <?php
+                $clothes =  pagaition($start_from, $num_per_page);
+                foreach ($clothes as $food) {
+                    echo "
+                    <div class=\"col-md-4\">
+                    <input type='hidden' name='product_id' value={$food['product_id']}>
+                        <div class=\"card mb-4 product-wap rounded-0\">
+                            <div class=\"card rounded-0\">
+                                <img class=\"card-img rounded-0 img-fluid\" src='../images/products/{$food["product_image"]}' style=\"height:355px\">
+                                <div class=\"card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center\">
+                                    <ul class=\"list-unstyled\">
+                                        <li><a class=\"btn btn-success text-white mt-2\" href=\"shop_detail.php?product_id={$food["product_id"]}\"><i class=\"far fa-eye\"></i></a></li>
+                                        <li><a class=\"btn btn-success text-white mt-2\" href=\"shop_detail.php?product_id={$food["product_id"]}\"><i class=\"fas fa-cart-plus\"></i></a></li>
                                     </ul>
                                 </div>
                             </div>
-                            <div class="card-body">
-                                <a href="shop_detail.php" class="p text-decoration-none text-dark">Kente Material</a>
-                                <p class="card-text">
-                                    <strong>GH₵ 50 per yard</strong>
+                            <div class=\"card-body\">
+                                <a href=\"shop_detail.php\" class=\"p text-decoration-none text-dark\"> {$food['product_title']}</a>
+                                <p class=\"card-text\">
+                                    <strong>GH₵ {$food['product_price']}</strong>     &nbsp;{$food['product_yards']}
                                 </p>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card mb-4 product-wap rounded-0">
-                            <div class="card rounded-0">
-                                <img class="card-img rounded-0 img-fluid" src="../assets/img/5.jpg" style="height:355px">
-                                <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
-                                    <ul class="list-unstyled">
-                                        <li><a class="btn btn-success text-white mt-2" href="shop_detail.php"><i class="far fa-eye"></i></a></li>
-                                        <li><a class="btn btn-success text-white mt-2" href="shop_detail.php"><i class="fas fa-cart-plus"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <a href="shop_detail.php" class="p text-decoration-none text-dark">Kente Material</a>
-                                <p class="card-text">
-                                    <strong>GH₵ 50 per yard</strong>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card mb-4 product-wap rounded-0">
-                            <div class="card rounded-0">
-                                <img class="card-img rounded-0 img-fluid" src="../assets/img/6.jpg" style="height:355px">
-                                <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
-                                    <ul class="list-unstyled">
-                                        <li><a class="btn btn-success text-white mt-2" href="shop_detail.php"><i class="far fa-eye"></i></a></li>
-                                        <li><a class="btn btn-success text-white mt-2" href="shop_detail.php"><i class="fas fa-cart-plus"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <a href="shop_detail.php" class="p text-decoration-none text-dark">Kente Material</a>
-                                <p class="card-text">
-                                    <strong>GH₵ 50 per yard</strong>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card mb-4 product-wap rounded-0">
-                            <div class="card rounded-0">
-                                <img class="card-img rounded-0 img-fluid" src="../assets/img/1.jpg" style="height:355px">
-                                <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
-                                    <ul class="list-unstyled">
-                                  
-                                        <li><a class="btn btn-success text-white mt-2" href="shop_detail.php"><i class="far fa-eye"></i></a></li>
-                                        <li><a class="btn btn-success text-white mt-2" href="shop_detail.php"><i class="fas fa-cart-plus"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <a href="shop_detail.php" class="p text-decoration-none text-dark">Kente Material</a>
-                                <p class="card-text">
-                                    <strong>GH₵ 50 per yard</strong>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card mb-4 product-wap rounded-0">
-                            <div class="card rounded-0">
-                                <img class="card-img rounded-0 img-fluid" src="../assets/img/2.jpg" style="height:355px">
-                                <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
-                                    <ul class="list-unstyled">
-                                      
-                                        <li><a class="btn btn-success text-white mt-2" href="shop_detail.php
-"><i class="far fa-eye"></i></a></li>
-                                        <li><a class="btn btn-success text-white mt-2" href="shop_detail.php"><i class="fas fa-cart-plus"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <a href="shop_detail.php" class="p text-decoration-none text-dark">Kente MaterialF</a>
-                                <p class="card-text">
-                                    <strong>GH₵ 50 per yard</strong>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card mb-4 product-wap rounded-0">
-                            <div class="card rounded-0">
-                                <img class="card-img rounded-0 img-fluid" src="../assets/img/3.jpg" style="height:355px">
-                                <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
-                                    <ul class="list-unstyled">
-                                        <li><a class="btn btn-success text-white mt-2" href="shop_detail.php"><i class="far fa-eye"></i></a></li>
-                                        <li><a class="btn btn-success text-white mt-2" href="shop_detail.php"><i class="fas fa-cart-plus"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <a href="shop_detail.php" class="p text-decoration-none text-dark">Kente Material</a>
-                                <p class="card-text">
-                                    <strong>GH₵ 50 per yard</strong>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card mb-4 product-wap rounded-0">
-                            <div class="card rounded-0">
-                                <img class="card-img rounded-0 img-fluid" src="../assets/img/7.jpg" style="height:355px">
-                                <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
-                                    <ul class="list-unstyled">
-                                        <li><a class="btn btn-success text-white mt-2" href="shop_detail.php"><i class="far fa-eye"></i></a></li>
-                                        <li><a class="btn btn-success text-white mt-2" href="shop_detail.php"><i class="fas fa-cart-plus"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <a href="shop_detail.php" class="p text-decoration-none text-dark">Kente Material</a>
-                                <p class="card-text">
-                                    <strong>GH₵ 50 per yard</strong>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card mb-4 product-wap rounded-0">
-                            <div class="card rounded-0">
-                                <img class="card-img rounded-0 img-fluid" src="../assets/img/8.jpg" style="height:355px">
-                                <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
-                                    <ul class="list-unstyled">
-                                        <li><a class="btn btn-success text-white mt-2" href="shop_detail.php"><i class="far fa-eye"></i></a></li>
-                                        <li><a class="btn btn-success text-white mt-2" href="shop_detail.php"><i class="fas fa-cart-plus"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <a href="shop_detail.php" class="p text-decoration-none text-dark">Kente Material</a>
-                                <p class="card-text">
-                                    <strong>GH₵ 50 per yard</strong>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card mb-4 product-wap rounded-0">
-                            <div class="card rounded-0">
-                                <img class="card-img rounded-0 img-fluid" src="../assets/img/9.jpg" style="height:355px">
-                                <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
-                                    <ul class="list-unstyled">
-                                       
-                                        <li><a class="btn btn-success text-white mt-2" href="shop_detail.php"><i class="far fa-eye"></i></a></li>
-                                        <li><a class="btn btn-success text-white mt-2" href="shop_detail.php"><i class="fas fa-cart-plus"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <a href="shop_detail.php" class="p text-decoration-none text-dark">Kente Material</a>
-                                <p class="card-text">
-                                    <strong>GH₵ 50 per yard</strong>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    </div>";
+                }
+                ?>
+
                 <div div="row">
                     <ul class="pagination pagination-lg justify-content-end">
-                        <li class="page-item disabled">
-                            <a class="page-link active rounded-0 mr-3 shadow-sm border-top-0 border-left-0" href="#" tabindex="-1">1</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark" href="#">2</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link rounded-0 shadow-sm border-top-0 border-left-0 text-dark" href="#">3</a>
-                        </li>
+                        <?php
+                       
+                        $total_record = count_rows_controller();
+                        $total_page = ($total_record/$num_per_page);
+                        if ($page > 1) {
+                            echo "<a class=\"page-link rounded-0 shadow-sm border-top-0 border-left-0 text-dark\" href='shop.php?page=" . ($page - 1) . "''>Previous</a>";
+                        }
+                        for ($i = 1; $i < $total_page; $i++) {
+
+                            echo "  <a class=\"page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark\" href='shop.php?page=". $i."'>$i</a>";
+                        }
+                        if ($i > $page) {
+                            echo "<a class=\"page-link rounded-0 shadow-sm border-top-0 border-left-0 text-dark\" href='shop.php?page=" . ($page + 1) . "'>Next</a>";
+                        }
+                        ?>
                     </ul>
                 </div>
             </div>
@@ -311,112 +179,9 @@ else{
     </div>
     <!-- End Content -->
 
-    <!-- Start Brands -->
-    <section class="bg-light py-5">
-        <div class="container my-4">
-            <div class="row text-center py-3">
-                <div class="col-lg-6 m-auto">
-                    <h1 class="h1">Our Brands</h1>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                        Lorem ipsum dolor sit amet.
-                    </p>
-                </div>
-                <div class="col-lg-9 m-auto tempaltemo-carousel">
-                    <div class="row d-flex flex-row">
-                        <!--Controls-->
-                        <div class="col-1 align-self-center">
-                            <a class="h1" href="#multi-item-example" role="button" data-bs-slide="prev">
-                                <i class="text-light fas fa-chevron-left"></i>
-                            </a>
-                        </div>
-                        <!--End Controls-->
 
-                        <!--Carousel Wrapper-->
-                        <div class="col">
-                            <div class="carousel slide carousel-multi-item pt-2 pt-md-0" id="multi-item-example" data-bs-ride="carousel">
-                                <!--Slides-->
-                                <div class="carousel-inner product-links-wap" role="listbox">
-
-                                    <!--First slide-->
-                                    <div class="carousel-item active">
-                                        <div class="row">
-                                            <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="assets/img/brand_01.png" alt="Brand Logo"></a>
-                                            </div>
-                                            <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="assets/img/brand_02.png" alt="Brand Logo"></a>
-                                            </div>
-                                            <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="assets/img/brand_03.png" alt="Brand Logo"></a>
-                                            </div>
-                                            <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="assets/img/brand_04.png" alt="Brand Logo"></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--End First slide-->
-
-                                    <!--Second slide-->
-                                    <div class="carousel-item">
-                                        <div class="row">
-                                            <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="assets/img/brand_01.png" alt="Brand Logo"></a>
-                                            </div>
-                                            <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="assets/img/brand_02.png" alt="Brand Logo"></a>
-                                            </div>
-                                            <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="assets/img/brand_03.png" alt="Brand Logo"></a>
-                                            </div>
-                                            <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="assets/img/brand_04.png" alt="Brand Logo"></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--End Second slide-->
-
-                                    <!--Third slide-->
-                                    <div class="carousel-item">
-                                        <div class="row">
-                                            <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="assets/img/brand_01.png" alt="Brand Logo"></a>
-                                            </div>
-                                            <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="assets/img/brand_02.png" alt="Brand Logo"></a>
-                                            </div>
-                                            <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="assets/img/brand_03.png" alt="Brand Logo"></a>
-                                            </div>
-                                            <div class="col-3 p-md-5">
-                                                <a href="#"><img class="img-fluid brand-img" src="assets/img/brand_04.png" alt="Brand Logo"></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--End Third slide-->
-
-                                </div>
-                                <!--End Slides-->
-                            </div>
-                        </div>
-                        <!--End Carousel Wrapper-->
-
-                        <!--Controls-->
-                        <div class="col-1 align-self-center">
-                            <a class="h1" href="#multi-item-example" role="button" data-bs-slide="next">
-                                <i class="text-light fas fa-chevron-right"></i>
-                            </a>
-                        </div>
-                        <!--End Controls-->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--End Brands-->
-
- <!-- Start Footer -->
- <footer class="bg-dark" id="tempaltemo_footer">
+    <!-- Start Footer -->
+    <footer class="bg-dark" id="tempaltemo_footer">
         <div class="container">
             <div class="row">
 
@@ -475,11 +240,11 @@ else{
                             <a class="text-light text-decoration-none" target="_blank" href=""><i class="fab fa-twitter fa-lg fa-fw"></i></a>
                         </li>
                         <li class="list-inline-item border border-light rounded-circle text-center">
-                            <a class="text-light text-decoration-none" target="_blank" href=""><i class="fab fa-whatsapp fa-lg fa-fw"></i></a>
+                            <a class="text-light text-decoration-none" target="_blank" href="https://wa.me/233553058208"><i class="fab fa-whatsapp fa-lg fa-fw"></i></a>
                         </li>
                     </ul>
                 </div>
-               
+
             </div>
         </div>
 
@@ -501,11 +266,11 @@ else{
     <!-- End Footer -->
 
     <!-- Start Script -->
-    <script src="assets/js/jquery-1.11.0.min.js"></script>
-    <script src="assets/js/jquery-migrate-1.2.1.min.js"></script>
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/templatemo.js"></script>
-    <script src="assets/js/custom.js"></script>
+    <script src="../assets/js/jquery-1.11.0.min.js"></script>
+    <script src="../assets/js/jquery-migrate-1.2.1.min.js"></script>
+    <script src="../assets/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/templatemo.js"></script>
+    <script src="../assets/js/custom.js"></script>
     <!-- End Script -->
 </body>
 
