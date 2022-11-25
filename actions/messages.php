@@ -2,7 +2,7 @@
 if (isset($_POST['sendmail'])) {
     $from = "johnmahama65@gmail.com";
     $to = "a.dramani@aisghana.org";
-    $subject = "{$_POST['subject']} from Afybas Fabric Empire";
+    $subject = "{$_POST['subject']} from Afybas Fabric Haven";
     $msg = "<h3>From {$_POST["name"]}</h3> <br><p style=font-size:18px;>{$_POST['message']}</p>";
     include('../smtp/smtp/PHPMailerAutoload.php');
     $mail = new PHPMailer();
@@ -18,7 +18,7 @@ if (isset($_POST['sendmail'])) {
     $mail->SMTPDebug  = SMTP::DEBUG_OFF;                              //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
     //Recipients
-    $mail->setFrom($from, 'Afybas Fabric Empire');
+    $mail->setFrom($from, 'Afybas Fabric Haven');
     $mail->addAddress($to);     //Add a recipient            //Name is optional
 
     //Content                              //Set email format to HTML

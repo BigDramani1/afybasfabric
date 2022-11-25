@@ -14,7 +14,7 @@ else{
 <html lang="en">
 
 <head>
-    <title>Afybas Fabric Empire</title>
+    <title>Afybas Fabric Haven</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -249,7 +249,7 @@ else{
             <div class="row">
 
                 <div class="col-md-4 pt-5">
-                    <h2 class="h2 text-success border-bottom pb-3 border-light logo">Afybas Fabric Empire</h2>
+                    <h2 class="h2 text-success border-bottom pb-3 border-light logo">Afybas Fabric Haven</h2>
                     <ul class="list-unstyled text-light footer-link-list">
                         <li>
                             <i class="fas fa-map-marker-alt fa-fw"></i>

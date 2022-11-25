@@ -13,7 +13,7 @@ else{
 <html lang="en">
 
 <head>
-    <title>Afybas Fabric Empire - About Page</title>
+    <title>Afybas Fabric Haven - About Page</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="apple-touch-icon" href="../assets/img/apple-icon.png">
@@ -105,7 +105,7 @@ else{
                 <div class="col-md-8 text-white">
                     <h1>About Us</h1>
                     <p><span style="font-size:30px; font-family:'Noto Serif Oriya', serif;">
-                    My name is Sandra Obiani Bonsu. I am the founder and CEO of <em>Afybas Fabric Empire</em>.
+                    My name is Sandra Obiani Bonsu. I am the founder and CEO of <em>Afybas Fabric Haven</em>.
                     Dealers in all kinds of fabrics including laces, brocades, crepe, chiffon, kaftan/senator fabrics and many more. </span>
                     </p>
                 </div>
@@ -201,7 +201,7 @@ else{
             <div class="row">
 
                 <div class="col-md-4 pt-5">
-                    <h2 class="h2 text-success border-bottom pb-3 border-light logo">Afybas Fabric Empire</h2>
+                    <h2 class="h2 text-success border-bottom pb-3 border-light logo">Afybas Fabric Haven</h2>
                     <ul class="list-unstyled text-light footer-link-list">
                         <li>
                             <i class="fas fa-map-marker-alt fa-fw"></i>
