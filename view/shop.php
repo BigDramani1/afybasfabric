@@ -45,7 +45,7 @@ $start_from = ($page-1)*6;
     <nav class="navbar navbar-expand-lg navbar-light shadow">
         <div class="container d-flex justify-content-between align-items-center">
 
-            <a class="navbar-brand text-success logo h1 align-self-center" href="../index.php">
+            <a class="navbar-brand text-success logo h1 align-self-center" href="index.php">
                 Afybas
             </a>
 
@@ -57,7 +57,7 @@ $start_from = ($page-1)*6;
                 <div class="flex-fill">
                     <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="../index.php">Home</a>
+                            <a class="nav-link" href="index.php">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="about.php">About</a>
@@ -129,24 +129,24 @@ $start_from = ($page-1)*6;
             <div class="row">
                 <?php
                 $clothes =  pagaition($start_from, $num_per_page);
-                foreach ($clothes as $food) {
+                foreach ($clothes as $product) {
                     echo "
                     <div class=\"col-md-4\">
-                    <input type='hidden' name='product_id' value={$food['product_id']}>
+                    <input type='hidden' name='product_id' value={$product['product_id']}>
                         <div class=\"card mb-4 product-wap rounded-0\">
                             <div class=\"card rounded-0\">
-                                <img class=\"card-img rounded-0 img-fluid\" src='../images/products/{$food["product_image"]}' style=\"height:355px\">
+                                <img class=\"card-img rounded-0 img-fluid\" src='../images/products/{$product["product_image"]}' style=\"height:355px\">
                                 <div class=\"card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center\">
                                     <ul class=\"list-unstyled\">
-                                        <li><a class=\"btn btn-success text-white mt-2\" href=\"shop_detail.php?product_id={$food["product_id"]}\"><i class=\"far fa-eye\"></i></a></li>
-                                        <li><a class=\"btn btn-success text-white mt-2\" href=\"shop_detail.php?product_id={$food["product_id"]}\"><i class=\"fas fa-cart-plus\"></i></a></li>
+                                        <li><a class=\"btn btn-success text-white mt-2\" href=\"shop_detail.php?product_id={$product["product_id"]}\"><i class=\"far fa-eye\"></i></a></li>
+                                        <li><a class=\"btn btn-success text-white mt-2\" href=\"shop_detail.php?product_id={$product["product_id"]}\"><i class=\"fas fa-cart-plus\"></i></a></li>
                                     </ul>
                                 </div>
                             </div>
                             <div class=\"card-body\">
-                                <a href=\"shop_detail.php\" class=\"p text-decoration-none text-dark\"> {$food['product_title']}</a>
+                                <a href=\"shop_detail.php\" class=\"p text-decoration-none text-dark\"> {$product['product_title']}</a>
                                 <p class=\"card-text\">
-                                    <strong>GH₵ {$food['product_price']}</strong>     &nbsp;{$food['product_yards']}
+                                    <strong>GH₵ {$product['product_price']}</strong>     &nbsp;{$product['product_yards']}
                                 </p>
                             </div>
                         </div>

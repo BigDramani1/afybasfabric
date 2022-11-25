@@ -140,7 +140,7 @@ else{
                         <div class="col-lg-6 mb-0 d-flex align-items-center">
                             <div class="text-align-left">
                                 <h1 class="h1">Our prices are Cheap!!!</h1>
-                                <p> The starting price is GH₵ 50 a yard</p>
+                                <p> The starting price is GH₵ 35 per yard</p>
                             </div>
                         </div>
                     </div>
@@ -193,7 +193,7 @@ else{
             <input type='hidden'>
                 <a href=\"#\"><img  src='../images/products/{$product["product_image"]}' class=\"rounded-circle img-fluid border\" style='height:300px; width:300px;'></a>
                 <h5 class=\"text-center mt-3 mb-3\">{$product['product_title']}</h5>
-                <p class=\"text-center\"><a  href=\"view/shop.php\" class=\"btn btn-success\">Go Shop</a></p>
+                <p class=\"text-center\"><a  href=\"shop.php\" class=\"btn btn-success\">Go Shop</a></p>
             </div>";
         }?>
         </div>
@@ -207,7 +207,7 @@ else{
                 <div class="col-lg-6 m-auto">
                     <h1 class="h1">Featured Product</h1>
                     <p>
-                        <p class="text-center"><a  href="view/shop.php" class="btn btn-success">View more</a></p>
+                        <p class="text-center"><a  href="shop.php" class="btn btn-success">View more</a></p>
                     </p>
                 </div>
             </div>

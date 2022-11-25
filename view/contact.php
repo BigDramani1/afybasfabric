@@ -49,7 +49,7 @@ else{
                 <div class="flex-fill">
                     <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="../index.php">Home</a>
+                            <a class="nav-link" href="index.php">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="about.php">About</a>
@@ -267,7 +267,7 @@ else{
             }).then(function () {
                 setTimeout(function(){
                     window.location.reload();
-                    window.location.href="../index.php"
+                    window.location.href="index.php"
                 }, 500)
                 
             });

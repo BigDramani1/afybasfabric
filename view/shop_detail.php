@@ -43,7 +43,7 @@ $product = select_one_product_controller($_GET['product_id']);
                 <div class="flex-fill">
                     <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="../index.php">Home</a>
+                            <a class="nav-link" href="index.php">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="about.php">About</a>
@@ -199,9 +199,6 @@ $product = select_one_product_controller($_GET['product_id']);
                                 </li>
                             </ul>
 
-                        
-
-                            <form action="" method="GET">
                                 <input type="hidden" name="product-title" value="Activewear">
                                     <div class="col-auto">
                                         <ul class="list-inline pb-3">
@@ -216,11 +213,9 @@ $product = select_one_product_controller($_GET['product_id']);
                                     </div>
                                 <div class="row pb-3">              
                                     <div class="col d-grid">
-                                        <button type="submit" class="btn btn-success btn-lg" name="submit" value="addtocard">Add To Cart</button>
+                                        <button type="submit" class="btn btn-success btn-lg">Add To Cart</button>
                                     </div>
                                 </div>
-                            </form>
-
                         </div>
                     </div>
                 </div>
@@ -255,7 +250,7 @@ $product = select_one_product_controller($_GET['product_id']);
                             </div>
                         </div>
                         <div class=\"card-body\">
-                            <a href=\"view/shop_detail.php\" class=\"p text-decoration-none text-dark\">Materials</a>
+                            <a href=\"view/shop_detail.php\" class=\"p text-decoration-none text-dark\">{$display['product_title']}</a>
                             <p class=\"card-text\">
                             <strong>GH₵ {$display['product_price']}</strong>     &nbsp;{$display['product_yards']}
                             </p>
