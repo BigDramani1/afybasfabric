@@ -1,7 +1,7 @@
 <?php 
 require('../settings/core.php');
 require('../controllers/product_controller.php');
-if (check_login()) {
+if (empty($_SESSION['id'])) {
 	$link="../login/login-user.php";
     $cart="../login/login-user.php";
 }
@@ -10,6 +10,7 @@ else{
     $cart="cart.php";
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -260,7 +261,7 @@ else{
                         </li>
                         <li>
                             <i class="fa fa-envelope fa-fw"></i>
-                            <a class="text-decoration-none" href="mailto:info@company.com">info@company.com</a>
+                            <a class="text-decoration-none" href="mailto:sandybons28@gmail.com">sandybons28@gmail.com</a>
                         </li>
                     </ul>
                 </div>

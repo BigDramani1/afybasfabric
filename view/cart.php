@@ -1,6 +1,6 @@
 <?php 
 session_start();
-if (empty($_SESSION['name']) and empty($_SESSION['email']) ) {
+if (empty($_SESSION['id'])) {
 	$link="../login/login-user.php";
 }
 ?>
@@ -116,7 +116,7 @@ if (empty($_SESSION['name']) and empty($_SESSION['email']) ) {
                         </li>
                         <li>
                             <i class="fa fa-envelope fa-fw"></i>
-                            <a class="text-decoration-none" href="mailto:info@company.com">info@company.com</a>
+                            <a class="text-decoration-none" href="mailto:sandybons28@gmail.com">sandybons28@gmail.com</a>
                         </li>
                     </ul>
                 </div>
