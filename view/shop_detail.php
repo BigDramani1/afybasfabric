@@ -3,6 +3,14 @@ require('../settings/core.php');
 require('../controllers/product_controller.php');
 
 $product = select_one_product_controller($_GET['product_id']);
+if (check_login()) {
+	$link="../login/login-user.php";
+    $cart="../login/login-user.php";
+}
+else{
+	$link="../view/dash/dashboard.php";
+    $cart="cart.php";
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -68,11 +76,11 @@ $product = select_one_product_controller($_GET['product_id']);
                     <a class="nav-icon d-none d-lg-inline" href="#" data-bs-toggle="modal" data-bs-target="#templatemo_search">
                         <i class="fa fa-fw fa-search text-dark mr-2"></i>
                     </a>
-                    <a class="nav-icon position-relative text-decoration-none" href="#">
+                    <a class="nav-icon position-relative text-decoration-none" href="<?php echo $link; ?>">
                         <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
                       
                     </a>
-                    <a class="nav-icon position-relative text-decoration-none" href="#">
+                    <a class="nav-icon position-relative text-decoration-none" href="<?php echo $cart; ?>">
                         <i class="fa fa-fw fa-user text-dark mr-3"></i>
                     </a>
                 </div>

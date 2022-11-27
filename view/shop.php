@@ -1,12 +1,13 @@
 <?php
 require('../settings/core.php');
 require('../controllers/product_controller.php');
-if (check_permission() != 1) {
-    $link = "../login/login-user.php";
-    $cart = "../login/login-user.php";
-} else {
-    $link = "../view/dash/dashboard.php";
-    $cart = "cart.php";
+if (check_login()) {
+	$link="../login/login-user.php";
+    $cart="../login/login-user.php";
+}
+else{
+	$link="../view/dash/dashboard.php";
+    $cart="cart.php";
 }
 
 if(isset($_GET['page']))

@@ -1,6 +1,5 @@
 <?php 
-session_start();
-if (empty($_SESSION['name']) and empty($_SESSION['email']) ) {
+if (check_login()) {
 	$link="../login/login-user.php";
     $cart="../login/login-user.php";
 }
