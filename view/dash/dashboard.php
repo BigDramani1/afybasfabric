@@ -185,14 +185,14 @@ if ($_SESSION['user_role'] != 2){
                       <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label>Username</label>
-                                <input type="text" class="form-control" placeholder="<?php echo $_SESSION["username"];?>" readonly>
+                                <label>Full name</label>
+                                <input type="text" class="form-control" placeholder="<?php echo $_SESSION["name"];?>" readonly>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
-                                <label>Full Name</label>
-                                <input type="text" class="form-control" placeholder="<?php echo $_SESSION["fullname"];?>" readonly>
+                                <label>City</label>
+                                <input type="text" class="form-control" placeholder="<?php echo $_SESSION["city"];?>" readonly>
                             </div>
                         </div>
                         <div class="col-sm-6">
@@ -204,7 +204,7 @@ if ($_SESSION['user_role'] != 2){
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label>Phone Number</label>
-                                <input type="text" class="form-control" placeholder="<?php echo $_SESSION["phone"];?>" readonly>
+                                <input type="text" class="form-control" placeholder="<?php echo $_SESSION["contact"];?>" readonly>
                             </div>
                         </div>
                     </div>

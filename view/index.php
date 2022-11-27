@@ -1,7 +1,7 @@
 <?php 
 require('../settings/core.php');
 require('../controllers/product_controller.php');
-if (check_permission() != 1) {
+if (check_login()) {
 	$link="../login/login-user.php";
     $cart="../login/login-user.php";
 }

@@ -8,7 +8,7 @@ if (empty($_SESSION['name']) and empty($_SESSION['email']) ) {
 <html lang="en">
 
 <head>
-    <title>Afybas Fabric Haven - Contact</title>
+    <title>Afybas Fabric Haven - Cart</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
