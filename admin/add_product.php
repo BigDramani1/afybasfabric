@@ -149,7 +149,7 @@ if (check_permission() != 1) {
                         <div class="user-area dropdown float-right">
                             <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true"
                                 aria-expanded="false">
-                                <img class="user-avatar rounded-circle" src="images/dra.png" alt="User Avatar">
+                                <i class="fa fa-user fa-2x"></i>
                             </a>
 
                             <div class="user-menu dropdown-menu">
@@ -264,7 +264,7 @@ if (check_permission() != 1) {
                                             <label class="col-lg-4 col-form-label" for="product_yards">Product number of yards <span class="text-danger">*</span>
                                             </label>
                                             <div class="col-lg-6">
-                                                <input type="text" class="form-control"  name="product_yards" placeholder="eg. 6 per yards" required="required">
+                                                <input type="text" class="form-control"  name="product_yards" placeholder="eg. per 6 yards">
                                             </div>
                                         </div>
                                         <div class="form-group row">

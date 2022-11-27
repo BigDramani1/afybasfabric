@@ -98,8 +98,8 @@ if (empty($_SESSION['name']) and empty($_SESSION['email']) ) {
         </div>
     </div>
 
-    <!-- Start Footer -->
-    <footer class="bg-dark" id="tempaltemo_footer">
+      <!-- Start Footer -->
+      <footer class="bg-dark" id="tempaltemo_footer">
         <div class="container">
             <div class="row">
 
@@ -124,8 +124,12 @@ if (empty($_SESSION['name']) and empty($_SESSION['email']) ) {
                 <div class="col-md-4 pt-5">
                     <h2 class="h2 text-light border-bottom pb-3 border-light">Products</h2>
                     <ul class="list-unstyled text-light footer-link-list">
-                        <li><a class="text-decoration-none" href="#">Materials</a></li>
-                        <li><a class="text-decoration-none" href="#">Materials Styles</a></li>
+                        <li><a class="text-decoration-none" href="shop.php">Brocade Fabrics</a></li>
+                        <li><a class="text-decoration-none" href="shop.php">Lace Fabrics</a></li>
+                        <li><a class="text-decoration-none" href="shop.php">Cotton Fabrics</a></li>
+                        <li><a class="text-decoration-none" href="shop.php">Crepe Fabrics</a></li>
+                        <li><a class="text-decoration-none" href="shop.php">Satins Fabrics</a></li>
+                        <li><a class="text-decoration-none" href="shop.php">Silk Fabrics</a></li>
                     </ul>
                 </div>
 
@@ -134,9 +138,9 @@ if (empty($_SESSION['name']) and empty($_SESSION['email']) ) {
                     <ul class="list-unstyled text-light footer-link-list">
                         <li><a class="text-decoration-none" href="index.php">Home</a></li>
                         <li><a class="text-decoration-none" href="about.php">About Us</a></li>
-                        <li><a class="text-decoration-none" href="#">Shop Locations</a></li>
+                        <li><a class="text-decoration-none" href="contact.php">Shop Locations</a></li>
                         <li><a class="text-decoration-none" href="#">FAQs</a></li>
-                        <li><a class="text-decoration-none" href="#">Contact</a></li>
+                        <li><a class="text-decoration-none" href="contact.php">Contact</a></li>
                     </ul>
                 </div>
 
@@ -149,16 +153,16 @@ if (empty($_SESSION['name']) and empty($_SESSION['email']) ) {
                 <div class="col-auto me-auto">
                     <ul class="list-inline text-left footer-icons">
                         <li class="list-inline-item border border-light rounded-circle text-center">
-                            <a class="text-light text-decoration-none" target="_blank" href=""><i class="fab fa-facebook-f fa-lg fa-fw"></i></a>
+                            <a class="text-light text-decoration-none" target="_blank" href="https://www.facebook.com/profile.php?id=100075874705542&mibextid=ZbWKwL"><i class="fab fa-facebook-f fa-lg fa-fw"></i></a>
                         </li>
                         <li class="list-inline-item border border-light rounded-circle text-center">
-                            <a class="text-light text-decoration-none" target="_blank" href=""><i class="fab fa-instagram fa-lg fa-fw"></i></a>
+                            <a class="text-light text-decoration-none" target="_blank" href="https://instagram.com/afybas_fabric_haven?igshid=YmMyMTA2M2Y="><i class="fab fa-instagram fa-lg fa-fw"></i></a>
                         </li>
                         <li class="list-inline-item border border-light rounded-circle text-center">
-                            <a class="text-light text-decoration-none" target="_blank" href=""><i class="fab fa-twitter fa-lg fa-fw"></i></a>
+                            <a class="text-light text-decoration-none" target="_blank" href=""><i class="fab fa-tiktok fa-lg fa-fw"></i></a>
                         </li>
                         <li class="list-inline-item border border-light rounded-circle text-center">
-                            <a class="text-light text-decoration-none" target="_blank" href=""><i class="fab fa-whatsapp fa-lg fa-fw"></i></a>
+                            <a class="text-light text-decoration-none" target="_blank" href="https://wa.me/233553058208"><i class="fab fa-whatsapp fa-lg fa-fw"></i></a>
                         </li>
                     </ul>
                 </div>
@@ -181,15 +185,8 @@ if (empty($_SESSION['name']) and empty($_SESSION['email']) ) {
         </div>
 
     </footer>
-    <!-- End Footer -->
 
-    <!-- Start Script -->
-    <script>
-       document.getElementById('sweet').addEventListener("click", function(){
-       swal.fire("Congratulations!", "Messaged sent!", "success");
-        })
-     
-    </script>
+  
     <script src="assets/js/jquery-1.11.0.min.js"></script>
     <script src="assets/js/jquery-migrate-1.2.1.min.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>

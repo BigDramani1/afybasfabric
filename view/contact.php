@@ -131,7 +131,8 @@ else{
     -moz-border-radius: 10px;
     box-shadow: 0px 6px 18px 0px rgb(16 5 54 / 17%);">
     Our Location
-        <iframe src="https://maps.google.com/maps?q=Ashesi%20University%20&t=k&z=13&ie=UTF8&iwloc=&output=embed" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3970.282317776592!2d-0.1991558!3d5.672262099999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xfdf9c4479b3ed23%3A0x82df5006e09589d1!2s4%20Pear%20St%2C%20Accra!5e0!3m2!1sen!2sgh!4v1669425754054!5m2!1sen!2sgh"  width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          
     </div>
     
     <!-- Ena Map -->
@@ -168,8 +169,8 @@ else{
     <!-- End Contact -->
 
 
-    <!-- Start Footer -->
-    <footer class="bg-dark" id="tempaltemo_footer">
+     <!-- Start Footer -->
+     <footer class="bg-dark" id="tempaltemo_footer">
         <div class="container">
             <div class="row">
 
@@ -194,8 +195,12 @@ else{
                 <div class="col-md-4 pt-5">
                     <h2 class="h2 text-light border-bottom pb-3 border-light">Products</h2>
                     <ul class="list-unstyled text-light footer-link-list">
-                        <li><a class="text-decoration-none" href="#">Materials</a></li>
-                        <li><a class="text-decoration-none" href="#">Materials Styles</a></li>
+                        <li><a class="text-decoration-none" href="shop.php">Brocade Fabrics</a></li>
+                        <li><a class="text-decoration-none" href="shop.php">Lace Fabrics</a></li>
+                        <li><a class="text-decoration-none" href="shop.php">Cotton Fabrics</a></li>
+                        <li><a class="text-decoration-none" href="shop.php">Crepe Fabrics</a></li>
+                        <li><a class="text-decoration-none" href="shop.php">Satins Fabrics</a></li>
+                        <li><a class="text-decoration-none" href="shop.php">Silk Fabrics</a></li>
                     </ul>
                 </div>
 
@@ -204,9 +209,9 @@ else{
                     <ul class="list-unstyled text-light footer-link-list">
                         <li><a class="text-decoration-none" href="index.php">Home</a></li>
                         <li><a class="text-decoration-none" href="about.php">About Us</a></li>
-                        <li><a class="text-decoration-none" href="#">Shop Locations</a></li>
+                        <li><a class="text-decoration-none" href="contact.php">Shop Locations</a></li>
                         <li><a class="text-decoration-none" href="#">FAQs</a></li>
-                        <li><a class="text-decoration-none" href="#">Contact</a></li>
+                        <li><a class="text-decoration-none" href="contact.php">Contact</a></li>
                     </ul>
                 </div>
 
@@ -219,13 +224,13 @@ else{
                 <div class="col-auto me-auto">
                     <ul class="list-inline text-left footer-icons">
                         <li class="list-inline-item border border-light rounded-circle text-center">
-                            <a class="text-light text-decoration-none" target="_blank" href=""><i class="fab fa-facebook-f fa-lg fa-fw"></i></a>
+                            <a class="text-light text-decoration-none" target="_blank" href="https://www.facebook.com/profile.php?id=100075874705542&mibextid=ZbWKwL"><i class="fab fa-facebook-f fa-lg fa-fw"></i></a>
                         </li>
                         <li class="list-inline-item border border-light rounded-circle text-center">
-                            <a class="text-light text-decoration-none" target="_blank" href=""><i class="fab fa-instagram fa-lg fa-fw"></i></a>
+                            <a class="text-light text-decoration-none" target="_blank" href="https://instagram.com/afybas_fabric_haven?igshid=YmMyMTA2M2Y="><i class="fab fa-instagram fa-lg fa-fw"></i></a>
                         </li>
                         <li class="list-inline-item border border-light rounded-circle text-center">
-                            <a class="text-light text-decoration-none" target="_blank" href=""><i class="fab fa-twitter fa-lg fa-fw"></i></a>
+                            <a class="text-light text-decoration-none" target="_blank" href=""><i class="fab fa-tiktok fa-lg fa-fw"></i></a>
                         </li>
                         <li class="list-inline-item border border-light rounded-circle text-center">
                             <a class="text-light text-decoration-none" target="_blank" href="https://wa.me/233553058208"><i class="fab fa-whatsapp fa-lg fa-fw"></i></a>

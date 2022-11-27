@@ -25,7 +25,7 @@ if(isset($_POST['updateProduct'])){
         $product = select_one_product_controller($product_id);
         $old_image = $product['product_image'];
         //if the user did not change the image, insert the previous image and other data from the form
-        $result = update_one_product_controller($product_id, $product_cat, $product_brand, $product_title, $product_price, $product_desc, $old_image, $product_keywords,  $product_yards);
+        $result = update_one_product_controller($product_id, $product_cat, $product_brand, $product_title, $product_price, $product_desc, $old_image, $product_keywords, $product_yards);
 
         
         if($result) {

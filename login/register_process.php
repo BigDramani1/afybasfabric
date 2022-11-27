@@ -77,7 +77,7 @@ if (isset($_POST['signup'])) {
             $mail->SMTPDebug  = SMTP::DEBUG_OFF;                              //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
             
             //Recipients
-            $mail->setFrom($from, 'Afybas Fabric Empire');
+            $mail->setFrom($from, 'Afybas Fabric Haven');
             $mail->addAddress($to);     //Add a recipient            //Name is optional
             
             //Content                              //Set email format to HTML
@@ -172,7 +172,7 @@ if (isset($_POST['check-email'])) {
             $mail->SMTPDebug  = SMTP::DEBUG_OFF;                              //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
             
             //Recipients
-            $mail->setFrom($from, 'Afybas Fabric Empire');
+            $mail->setFrom($from, 'Afybas Fabric Haven');
             $mail->addAddress($to);     //Add a recipient            //Name is optional
             
             //Content                              //Set email format to HTML
@@ -263,7 +263,7 @@ if(isset($_POST['resend'])){
             $mail->SMTPDebug  = SMTP::DEBUG_OFF;                              //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
             
             //Recipients
-            $mail->setFrom($from, 'Afybas Fabric Empire');
+            $mail->setFrom($from, 'Afybas Fabric Haven');
             $mail->addAddress($to);     //Add a recipient            //Name is optional
             
             //Content                              //Set email format to HTML
@@ -336,7 +336,7 @@ if(isset($_POST['resending'])){
         $mail->SMTPDebug  = SMTP::DEBUG_OFF;                              //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
         
         //Recipients
-        $mail->setFrom($from, 'Afybas Fabric Empire');
+        $mail->setFrom($from, 'Afybas Fabric Haven');
         $mail->addAddress($to);     //Add a recipient            //Name is optional
         
         //Content                              //Set email format to HTML

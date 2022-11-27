@@ -100,7 +100,7 @@ if ($_SESSION['user_role'] != 1) {
                         <div class="user-area dropdown float-right">
                             <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true"
                                 aria-expanded="false">
-                                <img class="user-avatar rounded-circle" src="images/dra.png" alt="User Avatar">
+                                <i class="fa fa-user fa-2x"></i>
                             </a>
 
                             <div class="user-menu dropdown-menu">

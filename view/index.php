@@ -124,7 +124,7 @@ else{
                                 <h1 class="h1 text-success"><b>Afybas</b> Fabric Haven</h1>
                                 <h3 class="h2">Don't miss out</h3>
                                 <p>
-                                    Get your affordable clothing materials from here!
+                                    Get your affordable clothing fabrics from here!
                                 </p>
                             </div>
                         </div>
@@ -180,7 +180,7 @@ else{
             <div class="col-lg-6 m-auto">
                 <h1 class="h1">Categories of The Month</h1>
                 <p>
-                    Our new stocks materials. It gets randomized every single time
+                    Our new stocks fabrics. It gets randomized every single time
                 </p>
             </div>
         </div>
@@ -228,7 +228,7 @@ else{
                                 </div>
                             </div>
                         <div class=\"card-body\">
-                            <a href=\"view/shop_detail.php\" class=\"p text-decoration-none text-dark\">Materials</a>
+                            <a href=\"view/shop_detail.php\" class=\"p text-decoration-none text-dark\">{$product['product_title']}</a>
                             <p class=\"card-text\">
                             <strong>GH₵ {$product['product_price']}</strong>     &nbsp;{$product['product_yards']}
                             </p>
@@ -242,9 +242,8 @@ else{
     </section>
     <!-- End Featured Product -->
 
-
-   <!-- Start Footer -->
-   <footer class="bg-dark" id="tempaltemo_footer">
+  <!-- Start Footer -->
+  <footer class="bg-dark" id="tempaltemo_footer">
         <div class="container">
             <div class="row">
 
@@ -269,8 +268,12 @@ else{
                 <div class="col-md-4 pt-5">
                     <h2 class="h2 text-light border-bottom pb-3 border-light">Products</h2>
                     <ul class="list-unstyled text-light footer-link-list">
-                        <li><a class="text-decoration-none" href="#">Materials</a></li>
-                        <li><a class="text-decoration-none" href="#">Materials Styles</a></li>
+                        <li><a class="text-decoration-none" href="shop.php">Brocade Fabrics</a></li>
+                        <li><a class="text-decoration-none" href="shop.php">Lace Fabrics</a></li>
+                        <li><a class="text-decoration-none" href="shop.php">Cotton Fabrics</a></li>
+                        <li><a class="text-decoration-none" href="shop.php">Crepe Fabrics</a></li>
+                        <li><a class="text-decoration-none" href="shop.php">Satins Fabrics</a></li>
+                        <li><a class="text-decoration-none" href="shop.php">Silk Fabrics</a></li>
                     </ul>
                 </div>
 
@@ -294,16 +297,16 @@ else{
                 <div class="col-auto me-auto">
                     <ul class="list-inline text-left footer-icons">
                         <li class="list-inline-item border border-light rounded-circle text-center">
-                            <a class="text-light text-decoration-none" target="_blank" href=""><i class="fab fa-facebook-f fa-lg fa-fw"></i></a>
+                            <a class="text-light text-decoration-none" target="_blank" href="https://www.facebook.com/profile.php?id=100075874705542&mibextid=ZbWKwL"><i class="fab fa-facebook-f fa-lg fa-fw"></i></a>
                         </li>
                         <li class="list-inline-item border border-light rounded-circle text-center">
-                            <a class="text-light text-decoration-none" target="_blank" href=""><i class="fab fa-instagram fa-lg fa-fw"></i></a>
+                            <a class="text-light text-decoration-none" target="_blank" href="https://instagram.com/afybas_fabric_haven?igshid=YmMyMTA2M2Y="><i class="fab fa-instagram fa-lg fa-fw"></i></a>
                         </li>
                         <li class="list-inline-item border border-light rounded-circle text-center">
-                            <a class="text-light text-decoration-none" target="_blank" href=""><i class="fab fa-twitter fa-lg fa-fw"></i></a>
+                            <a class="text-light text-decoration-none" target="_blank" href=""><i class="fab fa-tiktok fa-lg fa-fw"></i></a>
                         </li>
                         <li class="list-inline-item border border-light rounded-circle text-center">
-                            <a class="text-light text-decoration-none" target="_blank" href=""><i class="fab fa-whatsapp fa-lg fa-fw"></i></a>
+                            <a class="text-light text-decoration-none" target="_blank" href="https://wa.me/233553058208"><i class="fab fa-whatsapp fa-lg fa-fw"></i></a>
                         </li>
                     </ul>
                 </div>

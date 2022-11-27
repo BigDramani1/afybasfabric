@@ -106,7 +106,8 @@ else{
                     <h1>About Us</h1>
                     <p><span style="font-size:30px; font-family:'Noto Serif Oriya', serif;">
                     My name is Sandra Obiani Bonsu. I am the founder and CEO of <em>Afybas Fabric Haven</em>.
-                    Dealers in all kinds of fabrics including laces, brocades, crepe, chiffon, kaftan/senator fabrics and many more. </span>
+                    There's a saying that "Choosing the right fabric is the foundation to every style" and for that matter myself and my team are here to help you choose the perfect fabrics for your outfit styles. 
+We deal in all kinds of fabrics including laces, brocades, crepe, chiffon, kaftan/senator fabrics and many more. </span>
                     </p>
                 </div>
                 <div class="col-md-4">
@@ -167,31 +168,81 @@ else{
                 <div class="col-lg-6 m-auto">
                     <h1 class="h1">Our Brands</h1>
                     <p>
-                        We deal in Brocade, Lace, Porka, and Cotton Fabrics!!!
+                        We deal in Brocade, Lace, Polka, Cotton, Crepe, Satins and Silk Fabrics!!!
                     </p>
                 </div>
-                <div class="col-lg-12 m-auto tempaltemo-carousel">
-                    <div class="row d-flex flex-row">
+                <div class="col-lg-9 m-auto tempaltemo-carousel">
+    <div class="row d-flex flex-row">
+        <!--Controls-->
+        <div class="col-1 align-self-center">
+            <a class="h1" href="#templatemo-slide-brand" role="button" data-bs-slide="prev">
+                <i class="text-light fas fa-chevron-left"></i>
+            </a>
+        </div>
+        <!--End Controls-->
 
-                        <!--Carousel Wrapper-->
-                                        <div class="row">
-                                        <div class="col-md-3" style="width:270px; height:300px;">
+        <!--Carousel Wrapper-->
+        <div class="col">
+            <div class="carousel slide carousel-multi-item pt-2 pt-md-0" id="templatemo-slide-brand" data-bs-ride="carousel">
+                <!--Slides-->
+                <div class="carousel-inner product-links-wap" role="listbox">
+
+                    <!--First slide-->
+                    <div class="carousel-item active">
+                    <div class="row">
+                                        <div class="col-md-3" style="width:200px; height:200px;">
                                                 <a href="#"><img class="img-fluid brand-img" src="../assets/img/3.svg" alt="Brand Logo"></a>
                                             </div>
-                                            <div class="col-md-3" style="width:270px; height:300px;">
+                                            <div class="col-md-3" style="width:200px; height:200px;">
                                                 <a href="#"><img class="img-fluid brand-img" src="../assets/img/4.svg" alt="Brand Logo"></a>
                                             </div>
-                                            <div class="col-md-3" style="width:270px; height:300px;">
+                                            <div class="col-md-3" style="width:200px; height:200px;">
                                                 <a href="#"><img class="img-fluid brand-img" src="../assets/img/2.svg" alt="Brand Logo"></a>
                                             </div>
-                                            <div class="col-md-3" style="width:270px; height:300px;">
+                                            <div class="col-md-3" style="width:200px; height:200px;">
                                                 <a href="#"><img class="img-fluid brand-img" src="../assets/img/1.svg" alt="Brand Logo"></a>
                                             </div>
                                         </div>
-                                
+                    </div>
+                    <!--End First slide-->
+
+                    <!--Second slide-->
+                    <div class="carousel-item">
+                    <div class="row">
+                                        <div class="col-md-3" style="width:200px; height:200px;">
+                                                <a href="#"><img class="img-fluid brand-img" src="../assets/img/5.png" alt="Brand Logo"></a>
+                                            </div>
+                                            <div class="col-md-3" style="width:200px; height:200px;">
+                                                <a href="#"><img class="img-fluid brand-img" src="../assets/img/6.svg" alt="Brand Logo"></a>
+                                            </div>
+                                            <div class="col-md-3" style="width:200px; height:200px;">
+                                                <a href="#"><img class="img-fluid brand-img" src="../assets/img/7.png" alt="Brand Logo"></a>
+                                            </div>
+                                            <div class="col-md-3" style="width:200px; height:200px;">
+                                                <a href="#"><img class="img-fluid brand-img" src="../assets/img/3.svg" alt="Brand Logo"></a>
+                                            </div>
+                                        </div>
+                    </div>
+                    <!--End Second slide-->
+
                 </div>
+                <!--End Slides-->
+            </div>
         </div>
-    </section>
+        <!--End Carousel Wrapper-->
+
+        <!--Controls-->
+        <div class="col-1 align-self-center">
+            <a class="h1" href="#templatemo-slide-brand" role="button" data-bs-slide="next">
+                <i class="text-light fas fa-chevron-right"></i>
+            </a>
+        </div>
+        <!--End Controls-->
+    </div>
+</div>
+</div>
+</div>
+</section>
     <!--End Brands-->
 
 
@@ -221,8 +272,12 @@ else{
                 <div class="col-md-4 pt-5">
                     <h2 class="h2 text-light border-bottom pb-3 border-light">Products</h2>
                     <ul class="list-unstyled text-light footer-link-list">
-                        <li><a class="text-decoration-none" href="#">Materials</a></li>
-                        <li><a class="text-decoration-none" href="#">Materials Styles</a></li>
+                        <li><a class="text-decoration-none" href="shop.php">Brocade Fabrics</a></li>
+                        <li><a class="text-decoration-none" href="shop.php">Lace Fabrics</a></li>
+                        <li><a class="text-decoration-none" href="shop.php">Cotton Fabrics</a></li>
+                        <li><a class="text-decoration-none" href="shop.php">Crepe Fabrics</a></li>
+                        <li><a class="text-decoration-none" href="shop.php">Satins Fabrics</a></li>
+                        <li><a class="text-decoration-none" href="shop.php">Silk Fabrics</a></li>
                     </ul>
                 </div>
 
@@ -231,9 +286,9 @@ else{
                     <ul class="list-unstyled text-light footer-link-list">
                         <li><a class="text-decoration-none" href="index.php">Home</a></li>
                         <li><a class="text-decoration-none" href="about.php">About Us</a></li>
-                        <li><a class="text-decoration-none" href="#">Shop Locations</a></li>
+                        <li><a class="text-decoration-none" href="contact.php">Shop Locations</a></li>
                         <li><a class="text-decoration-none" href="#">FAQs</a></li>
-                        <li><a class="text-decoration-none" href="#">Contact</a></li>
+                        <li><a class="text-decoration-none" href="contact.php">Contact</a></li>
                     </ul>
                 </div>
 
@@ -246,13 +301,13 @@ else{
                 <div class="col-auto me-auto">
                     <ul class="list-inline text-left footer-icons">
                         <li class="list-inline-item border border-light rounded-circle text-center">
-                            <a class="text-light text-decoration-none" target="_blank" href=""><i class="fab fa-facebook-f fa-lg fa-fw"></i></a>
+                            <a class="text-light text-decoration-none" target="_blank" href="https://www.facebook.com/profile.php?id=100075874705542&mibextid=ZbWKwL"><i class="fab fa-facebook-f fa-lg fa-fw"></i></a>
                         </li>
                         <li class="list-inline-item border border-light rounded-circle text-center">
-                            <a class="text-light text-decoration-none" target="_blank" href=""><i class="fab fa-instagram fa-lg fa-fw"></i></a>
+                            <a class="text-light text-decoration-none" target="_blank" href="https://instagram.com/afybas_fabric_haven?igshid=YmMyMTA2M2Y="><i class="fab fa-instagram fa-lg fa-fw"></i></a>
                         </li>
                         <li class="list-inline-item border border-light rounded-circle text-center">
-                            <a class="text-light text-decoration-none" target="_blank" href=""><i class="fab fa-twitter fa-lg fa-fw"></i></a>
+                            <a class="text-light text-decoration-none" target="_blank" href=""><i class="fab fa-tiktok fa-lg fa-fw"></i></a>
                         </li>
                         <li class="list-inline-item border border-light rounded-circle text-center">
                             <a class="text-light text-decoration-none" target="_blank" href="https://wa.me/233553058208"><i class="fab fa-whatsapp fa-lg fa-fw"></i></a>
