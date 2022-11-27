@@ -1,6 +1,6 @@
 <?php
 session_start();
-if ($_SESSION['user_role'] != 2){
+if ($_SESSION['user_role'] != 2 and empty($_SESSION['id'])){
   header("Location: ../../login/login-user.php");// this will take the customer to a new page
   }
 ?>
@@ -35,44 +35,44 @@ if ($_SESSION['user_role'] != 2){
         <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
           <ul class="navbar-nav mr-lg-2">
             <li class="nav-item  d-none d-lg-flex">
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="../index.php">
                 Home
               </a>
             </li>
             <li class="nav-item  d-none d-lg-flex">
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="../about.php">
                 About Us
               </a>
             </li>
             <li class="nav-item  d-none d-lg-flex">
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="../shop.php">
                 Shop
               </a>
             </li>
             <li class="nav-item  d-none d-lg-flex">
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="../contact.php">
                 Contact Us
               </a>
             </li>
           </ul>
           <ul class="navbar-nav navbar-nav-right">
             <li class="nav-item dropdown  d-flex">
-              <a class="nav-link count-indicator dropdown-toggle d-flex align-items-center justify-content-center" id="notificationDropdown" href="#" data-toggle="dropdown">
+              <a class="nav-link count-indicator dropdown-toggle d-flex align-items-center justify-content-center" id="notificationDropdown" href="../cart.php">
                 <i class="mdi mdi-cart mr-0"></i>
-                <span class="count bg-danger">2</span>
+                <span class="count bg-danger">4</span>
               </a>
             </li>
             <li class="nav-item nav-profile dropdown">
               <a class="nav-link dropdown-toggle  pl-0 pr-0" href="#" data-toggle="dropdown" id="profileDropdown">
                 <i class="typcn typcn-user-outline mr-0"></i>
-                <span class="nav-profile-name">Evan Morales</span>
+                <span class="nav-profile-name"><?php echo $_SESSION['name']; ?></span>
               </a>
               <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-                <a class="dropdown-item">
+                <a class="dropdown-item" href="user/settings.php">
                 <i class="typcn typcn-cog text-primary"></i>
                 Settings
                 </a>
-                <a class="dropdown-item">
+                <a class="dropdown-item" href="log_out.php">
                 <i class="typcn typcn-power text-primary"></i>
                 Logout
                 </a>
@@ -98,7 +98,7 @@ if ($_SESSION['user_role'] != 2){
               </div>
               <div class="sidebar-profile-name">
                 <p class="sidebar-name">
-                  Kenneth Osborne
+                <?php echo $_SESSION['name']; ?>
                 </p>
                 <p class="sidebar-designation"style="color:white;">
                   Welcome

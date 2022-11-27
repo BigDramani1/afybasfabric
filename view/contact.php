@@ -1,4 +1,5 @@
  <?php 
+ require('../settings/core.php');
 if (check_login()) {
 	$link="../login/login-user.php";
     $cart="../login/login-user.php";

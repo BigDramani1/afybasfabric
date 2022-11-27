@@ -1,3 +1,9 @@
+<?php
+session_start();
+if ($_SESSION['user_role'] != 2 and empty($_SESSION['id'])){
+  header("Location: ../../login/login-user.php");// this will take the customer to a new page
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,52 +33,52 @@
         </button>
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
-        <ul class="navbar-nav mr-lg-2">
-          <li class="nav-item  d-none d-lg-flex">
-            <a class="nav-link" href="#">
-              Home
-            </a>
-          </li>
-          <li class="nav-item  d-none d-lg-flex">
-            <a class="nav-link" href="#">
-              About Us
-            </a>
-          </li>
-          <li class="nav-item  d-none d-lg-flex">
-            <a class="nav-link" href="#">
-              Shop
-            </a>
-          </li>
-          <li class="nav-item  d-none d-lg-flex">
-            <a class="nav-link" href="#">
-              Contact Us
-            </a>
-          </li>
-        </ul>
-        <ul class="navbar-nav navbar-nav-right">
-          <li class="nav-item dropdown  d-flex">
-            <a class="nav-link count-indicator dropdown-toggle d-flex align-items-center justify-content-center" id="notificationDropdown" href="#" data-toggle="dropdown">
-              <i class="mdi mdi-cart mr-0"></i>
-              <span class="count bg-danger">2</span>
-            </a>
-          </li>
-          <li class="nav-item nav-profile dropdown">
-            <a class="nav-link dropdown-toggle  pl-0 pr-0" href="#" data-toggle="dropdown" id="profileDropdown">
-              <i class="typcn typcn-user-outline mr-0"></i>
-              <span class="nav-profile-name">Evan Morales</span>
-            </a>
-            <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-              <a class="dropdown-item">
-              <i class="typcn typcn-cog text-primary"></i>
-              Settings
+      <ul class="navbar-nav mr-lg-2">
+            <li class="nav-item  d-none d-lg-flex">
+              <a class="nav-link" href="../../index.php">
+                Home
               </a>
-              <a class="dropdown-item">
-              <i class="typcn typcn-power text-primary"></i>
-              Logout
+            </li>
+            <li class="nav-item  d-none d-lg-flex">
+              <a class="nav-link" href="../../about.php">
+                About Us
               </a>
-            </div>
-          </li>
-        </ul>
+            </li>
+            <li class="nav-item  d-none d-lg-flex">
+              <a class="nav-link" href="../../shop.php">
+                Shop
+              </a>
+            </li>
+            <li class="nav-item  d-none d-lg-flex">
+              <a class="nav-link" href="../../contact.php">
+                Contact Us
+              </a>
+            </li>
+          </ul>
+          <ul class="navbar-nav navbar-nav-right">
+            <li class="nav-item dropdown  d-flex">
+              <a class="nav-link count-indicator dropdown-toggle d-flex align-items-center justify-content-center" id="notificationDropdown" href="../cart.php">
+                <i class="mdi mdi-cart mr-0"></i>
+                <span class="count bg-danger">4</span>
+              </a>
+            </li>
+            <li class="nav-item nav-profile dropdown">
+              <a class="nav-link dropdown-toggle  pl-0 pr-0" href="#" data-toggle="dropdown" id="profileDropdown">
+                <i class="typcn typcn-user-outline mr-0"></i>
+                <span class="nav-profile-name"><?php echo $_SESSION['name']; ?></span>
+              </a>
+              <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+                <a class="dropdown-item" href="user/settings.php">
+                <i class="typcn typcn-cog text-primary"></i>
+                Settings
+                </a>
+                <a class="dropdown-item" href="log_out.php">
+                <i class="typcn typcn-power text-primary"></i>
+                Logout
+                </a>
+              </div>
+            </li>
+          </ul>
         <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
           <span class="typcn typcn-th-menu"></span>
         </button>
@@ -80,33 +86,7 @@
     </nav>
     <!-- partial -->
     <div class="container-fluid page-body-wrapper">
-      <!-- partial:../../partials/_settings-panel.html -->
-      <div class="theme-setting-wrapper">
-          <div id="settings-trigger"><i class="typcn typcn-cog-outline"></i></div>
-          <div id="theme-settings" class="settings-panel">
-            <i class="settings-close typcn typcn-delete-outline"></i>
-            <p class="settings-heading">SIDEBAR SKINS</p>
-            <div class="sidebar-bg-options" id="sidebar-light-theme">
-              <div class="img-ss rounded-circle bg-light border mr-3"></div>
-              Light
-            </div>
-            <div class="sidebar-bg-options selected" id="sidebar-dark-theme">
-              <div class="img-ss rounded-circle bg-dark border mr-3"></div>
-              Dark
-            </div>
-            <p class="settings-heading mt-2">HEADER SKINS</p>
-            <div class="color-tiles mx-0 px-4">
-              <div class="tiles success"></div>
-              <div class="tiles warning"></div>
-              <div class="tiles danger"></div>
-              <div class="tiles primary"></div>
-              <div class="tiles info"></div>
-              <div class="tiles dark"></div>
-              <div class="tiles default border"></div>
-            </div>
-          </div>
-        </div>
-      <!-- partial -->
+      <!-- partial:../../partials/_settings-panel.html -->   
       <!-- partial:../../partials/_sidebar.html -->
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
