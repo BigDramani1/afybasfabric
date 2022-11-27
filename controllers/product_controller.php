@@ -126,7 +126,7 @@ function update_one_product_controller($product_id, $product_cat, $product_brand
     //create an instance of the product class
     $product_instance = new Product();
     //call the update_one_product method from the class
-    return $product_instance-> update_one_product($product_id, $product_cat, $product_brand, $product_title, $product_price, $product_desc, $product_image, $product_keywords,  $product_yards);
+    return $product_instance-> update_one_product($product_id, $product_cat, $product_brand, $product_title, $product_price, $product_desc, $product_image, $product_keywords, $product_yards);
 }
 
 function delete_one_product_controller($product_id){
