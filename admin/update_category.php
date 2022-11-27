@@ -154,7 +154,7 @@ $cat = select_one_category_controller($_GET['cat_id']);
                             </a>
 
                             <div class="user-menu dropdown-menu">
-                                <a class="nav-link" href="#"><i class="fa fa-power -off"></i>Logout</a>
+                                <a class="nav-link" href="log_out.php"><i class="fa fa-power -off"></i>Log out</a>
                             </div>
                         </div>
                     </div>

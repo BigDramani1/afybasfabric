@@ -68,11 +68,11 @@ if ($_SESSION['user_role'] != 2 and empty($_SESSION['id'])){
                 <span class="nav-profile-name"><?php echo $_SESSION['name']; ?></span>
               </a>
               <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-                <a class="dropdown-item" href="user/settings.php">
+                <a class="dropdown-item" href="../user/settings.php">
                 <i class="typcn typcn-cog text-primary"></i>
                 Settings
                 </a>
-                <a class="dropdown-item" href="log_out.php">
+                <a class="dropdown-item" href="../log_out.php">
                 <i class="typcn typcn-power text-primary"></i>
                 Logout
                 </a>
@@ -98,7 +98,7 @@ if ($_SESSION['user_role'] != 2 and empty($_SESSION['id'])){
               </div>
               <div class="sidebar-profile-name">
                 <p class="sidebar-name">
-                  Kenneth Osborne
+                <?php echo $_SESSION['name']; ?>
                 </p>
                 <p class="sidebar-designation"style="color:white;">
                   Welcome

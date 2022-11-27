@@ -1,3 +1,9 @@
+<?php
+session_start();
+if ($_SESSION['user_role'] != 2 and empty($_SESSION['id'])){
+  header("Location: ../../login/login-user.php");// this will take the customer to a new page
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,59 +30,59 @@
     <!-- partial:partials/_navbar.html -->
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-        <a class="navbar-brand brand-logo" href="dashboard.php"><img src="../images/logo.svg" alt="logo"/></a>
-        <a class="navbar-brand brand-logo-mini" href="dashboard.php"><img src="../images/logo-mini.svg" alt="logo"/></a>
+        <a class="navbar-brand brand-logo" href="../dashboard.php"><img src="../images/logo.svg" alt="logo"/></a>
+        <a class="navbar-brand brand-logo-mini" href="../dashboard.php"><img src="../images/logo-mini.svg" alt="logo"/></a>
         <button class="navbar-toggler navbar-toggler align-self-center d-none d-lg-flex" type="button" data-toggle="minimize">
           <span class="typcn typcn-th-menu"></span>
         </button>
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
-        <ul class="navbar-nav mr-lg-2">
-          <li class="nav-item  d-none d-lg-flex">
-            <a class="nav-link" href="#">
-              Home
-            </a>
-          </li>
-          <li class="nav-item  d-none d-lg-flex">
-            <a class="nav-link" href="#">
-              About Us
-            </a>
-          </li>
-          <li class="nav-item  d-none d-lg-flex">
-            <a class="nav-link" href="#">
-              Shop
-            </a>
-          </li>
-          <li class="nav-item  d-none d-lg-flex">
-            <a class="nav-link" href="#">
-              Contact Us
-            </a>
-          </li>
-        </ul>
-        <ul class="navbar-nav navbar-nav-right">
-          <li class="nav-item dropdown  d-flex">
-            <a class="nav-link count-indicator dropdown-toggle d-flex align-items-center justify-content-center" id="notificationDropdown" href="#" data-toggle="dropdown">
-              <i class="mdi mdi-cart mr-0"></i>
-              <span class="count bg-danger">2</span>
-            </a>
-          </li>
-          <li class="nav-item nav-profile dropdown">
-            <a class="nav-link dropdown-toggle  pl-0 pr-0" href="#" data-toggle="dropdown" id="profileDropdown">
-              <i class="typcn typcn-user-outline mr-0"></i>
-              <span class="nav-profile-name">Evan Morales</span>
-            </a>
-            <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-              <a class="dropdown-item">
-              <i class="typcn typcn-cog text-primary"></i>
-              Settings
+      <ul class="navbar-nav mr-lg-2">
+            <li class="nav-item  d-none d-lg-flex">
+              <a class="nav-link" href="../../index.php">
+                Home
               </a>
-              <a class="dropdown-item">
-              <i class="typcn typcn-power text-primary"></i>
-              Logout
+            </li>
+            <li class="nav-item  d-none d-lg-flex">
+              <a class="nav-link" href="../../about.php">
+                About Us
               </a>
-            </div>
-          </li>
-        </ul>
+            </li>
+            <li class="nav-item  d-none d-lg-flex">
+              <a class="nav-link" href="../../shop.php">
+                Shop
+              </a>
+            </li>
+            <li class="nav-item  d-none d-lg-flex">
+              <a class="nav-link" href="../../contact.php">
+                Contact Us
+              </a>
+            </li>
+          </ul>
+          <ul class="navbar-nav navbar-nav-right">
+            <li class="nav-item dropdown  d-flex">
+              <a class="nav-link count-indicator dropdown-toggle d-flex align-items-center justify-content-center" id="notificationDropdown" href="../cart.php">
+                <i class="mdi mdi-cart mr-0"></i>
+                <span class="count bg-danger">4</span>
+              </a>
+            </li>
+            <li class="nav-item nav-profile dropdown">
+              <a class="nav-link dropdown-toggle  pl-0 pr-0" href="#" data-toggle="dropdown" id="profileDropdown">
+                <i class="typcn typcn-user-outline mr-0"></i>
+                <span class="nav-profile-name"><?php echo $_SESSION['name']; ?></span>
+              </a>
+              <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+                <a class="dropdown-item" href="settings.php">
+                <i class="typcn typcn-cog text-primary"></i>
+                Settings
+                </a>
+                <a class="dropdown-item" href="../log_out.php">
+                <i class="typcn typcn-power text-primary"></i>
+                Logout
+                </a>
+              </div>
+            </li>
+          </ul>
         <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
           <span class="typcn typcn-th-menu"></span>
         </button>
@@ -97,7 +103,7 @@
               </div>
               <div class="sidebar-profile-name">
                 <p class="sidebar-name">
-                  Kenneth Osborne
+                <?php echo $_SESSION['name']; ?>
                 </p>
                 <p class="sidebar-designation"style="color:white;">
                   Welcome
@@ -124,7 +130,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../user/settings.php">
+            <a class="nav-link" href="settings.php">
               <i class="mdi mdi-settings menu-icon"></i>
               <span class="menu-title">Settings</span>
             </a>

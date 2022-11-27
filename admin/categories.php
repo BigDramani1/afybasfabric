@@ -104,7 +104,7 @@ if ($_SESSION['user_role'] != 1) {
                             </a>
 
                             <div class="user-menu dropdown-menu">
-                                <a class="nav-link" href="#"><i class="fa fa-power -off"></i>Logout</a>
+                                <a class="nav-link" href="log_out.php"><i class="fa fa-power -off"></i>Log out</a>
                             </div>
                         </div>
                     </div>
