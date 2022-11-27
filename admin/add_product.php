@@ -264,7 +264,7 @@ if (check_permission() != 1) {
                                             <label class="col-lg-4 col-form-label" for="product_yards">Product number of yards <span class="text-danger">*</span>
                                             </label>
                                             <div class="col-lg-6">
-                                                <input type="text" class="form-control"  name="product_yards" placeholder="eg. per 6 yards">
+                                                <input type="text" class="form-control"  name="yards" placeholder="eg. per 6 yards" required="required">
                                             </div>
                                         </div>
                                         <div class="form-group row">
