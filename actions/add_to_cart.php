@@ -22,7 +22,7 @@ if(isset($_POST['add_cart'])){
         $updated_qty = update_quantity_controller($product_id, $customer_id, $new_quantity);
             
         if($updated_qty){
-        header("Location:../view/view_cart.php");
+        header("Location:../view/cart.php");
 
         }
         
@@ -38,7 +38,7 @@ if(isset($_POST['add_cart'])){
         $result = add_to_cart_controller($product_id, $ip_address, $customer_id, $quantity); 
 
          if ($result){
-             header("Location: ../view/view_cart.php");
+             header("Location: ../view/cart.php");
         
          }else {
              //redirect the user to the store front

@@ -33,7 +33,20 @@ else{
     <link rel="stylesheet" type="text/css" href="../assets/css/slick-theme.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-
+<style>
+    .forms{
+    width: 10%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    color: #555;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%);
+    box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%);
+    }
+</style>
 <body>
     <!-- Header -->
     <nav class="navbar navbar-expand-lg navbar-light shadow">
@@ -212,12 +225,11 @@ else{
                                         <ul class="list-inline pb-3">
                                             <li class="list-inline-item text-right">
                                                 Quantity
-                                                <input type="hidden" name="quantity" value="1">
                                             </li>
                                             <input type="hidden" name="product_id" value= "<?php echo $product['product_id'] ?>">
-                                            <li class="list-inline-item"><span class="btn btn-success" id="btn-minus">-</span></li>
-                                            <li class="list-inline-item"><span class="badge bg-secondary" id="var-value">1</span></li>
-                                            <li class="list-inline-item"><span class="btn btn-success" id="btn-plus">+</span></li>
+                                            <button id="minus" class="btn btn-success">−</button>
+                                            <input type="number" name="quantity" value="1" class="forms" id="input">
+                                            <button id="plus" class="btn btn-success">+</button>
                                         </ul>
                                     </div>
                                 <div class="row pb-3">              
@@ -361,7 +373,24 @@ else{
         </div>
 
     </footer>
+<script>
 
+const minusButton = document.getElementById('minus');
+const plusButton = document.getElementById('plus');
+const inputField = document.getElementById('input');
+
+minusButton.addEventListener('click', event => {
+  event.preventDefault();
+  const currentValue = Number(inputField.value) || 0;
+  inputField.value = currentValue - 1;
+});
+
+plusButton.addEventListener('click', event => {
+  event.preventDefault();
+  const currentValue = Number(inputField.value) || 0;
+  inputField.value = currentValue + 1;
+});
+</script>
 
     <!-- Start Script -->
     <script src="../assets/js/jquery-1.11.0.min.js"></script>

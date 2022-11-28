@@ -13,6 +13,7 @@ $customer_id= $_SESSION['id'];
 $products = select_all_from_cart_controller($customer_id);
 $amount = total_amount_controller($customer_id);
 
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -134,21 +135,20 @@ start carting -->
                             <th>Products</th>
                             <th>Price</th>
                             <th>Quantity</th>
-                            <th>Total</th>
                             <th>Remove</th>
                         </tr>
                     </thead>
                     <tbody class="align-middle">
                     <?php foreach($products as $product){echo"
                         <tr>
-                            <td><img src=\"../assets/img/5.png\"  style=\"width:100px; height:100px;\"></td>
-                            <td class=\"align-middle\"> Colorful</td>
-                            <td class=\"align-middle\">$150</td>
+                            <td><img src='../images/products/{$product['product_image']}' style=\"width:100px; height:100px;\"></td>
+                            <input type='hidden' name='product_id' value= {$product['product_id']} ?>	
+                            <td class=\"align-middle\"> {$product['product_title']}</td>
+                            <td class=\"align-middle\">{$product['product_price']}</td>
                             <td class=\"align-middle\">
-                                <input style=\"width:50%; text-align:center;\"value=\"2\">
+                                <input style=\"width:50%; text-align:center;\"value={$product['qty']}>
                             </td>
-                            <td class=\"align-middle\">$150</td>
-                            <td class=\"align-middle\"><button class=\"btn btn-sm btn-danger\"><i class=\"fa fa-times\"></i></button></td>
+                            <td class=\"align-middle\"><a href='../actions/remove_from_cart.php?product_id={$product['p_id']}' class=\"btn btn-sm btn-danger\"><i class=\"fa fa-times\"></i></a></td>
                         </tr>
                    "; }
                     ?>
@@ -156,18 +156,22 @@ start carting -->
                 </table>
             </div>
             <div class="col-lg-4">
-                <div class="card border-success mb-5">
-                    <div class="card-header" style="background-color:#17a2b8;">
-                        <h4 class="font-weight-semi-bold m-0 text-white">Cart Summary</h4>
+            <?php
+                  echo "
+                <div class=\"card border-success mb-5\">
+                    <div class=\"card-header\" style=\"background-color:#17a2b8;\">
+                        <h4 class=\"font-weight-semi-bold m-0 text-white\">Cart Summary</h4>
                     </div>
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between mb-3 pt-1">
-                            <h6 class="font-weight-medium">Subtotal</h6>
-                            <h6 class="font-weight-medium">$150</h6>
+               
+                    <div class=\"card-body\">
+                        <div class=\"d-flex justify-content-between mb-3 pt-1\">
+                            <h6 class=\"font-weight-medium\">Subtotal</h6>
+                            <h6 class=\"font-weight-medium\">GH₵{$amount['Amount']}</h6>
                         </div>
                     </div>
-                        <button class="btn btn-success btn-lg" style="width:100%">Proceed To Checkout</button>
-                    </div>
+                        <button class=\"btn btn-success btn-lg\" style=\"width:100%\">Proceed To Checkout</button>
+                    </div>";
+                    ?>
                 </div>
             </div>
         </div>
