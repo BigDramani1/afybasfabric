@@ -76,11 +76,11 @@ else{
                     <a class="nav-icon d-none d-lg-inline" href="#" data-bs-toggle="modal" data-bs-target="#templatemo_search">
                         <i class="fa fa-fw fa-search text-dark mr-2"></i>
                     </a>
-                    <a class="nav-icon position-relative text-decoration-none" href="<?php echo $link; ?>">
+                    <a class="nav-icon position-relative text-decoration-none" href="<?php echo $cart; ?>">
                         <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
                       
                     </a>
-                    <a class="nav-icon position-relative text-decoration-none" href="<?php echo $cart; ?>">
+                    <a class="nav-icon position-relative text-decoration-none" href="<?php echo $link; ?>">
                         <i class="fa fa-fw fa-user text-dark mr-3"></i>
                     </a>
                 </div>
@@ -206,14 +206,15 @@ else{
                                     <p><?php echo "{$product['product_keywords']}"; ?></p>
                                 </li>
                             </ul>
-
+                            <form method = "post" action='../actions/add_to_cart.php'>
                                 <input type="hidden" name="product-title" value="Activewear">
                                     <div class="col-auto">
                                         <ul class="list-inline pb-3">
                                             <li class="list-inline-item text-right">
                                                 Quantity
-                                                <input type="hidden" name="product-quanity" id="product-quanity" value="1">
+                                                <input type="hidden" name="quantity" value="1">
                                             </li>
+                                            <input type="hidden" name="product_id" value= "<?php echo $product['product_id'] ?>">
                                             <li class="list-inline-item"><span class="btn btn-success" id="btn-minus">-</span></li>
                                             <li class="list-inline-item"><span class="badge bg-secondary" id="var-value">1</span></li>
                                             <li class="list-inline-item"><span class="btn btn-success" id="btn-plus">+</span></li>
@@ -221,9 +222,10 @@ else{
                                     </div>
                                 <div class="row pb-3">              
                                     <div class="col d-grid">
-                                        <button type="submit" class="btn btn-success btn-lg">Add To Cart</button>
+                                        <button type="submit" class="btn btn-success btn-lg" name="add_cart">Add To Cart</button>
                                     </div>
                                 </div>
+                            </form>
                         </div>
                     </div>
                 </div>
