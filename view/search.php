@@ -105,8 +105,8 @@ $search = $_GET['query'];
             </div>
             <form action="../actions/search.php" method="get" class="modal-content modal-body border-0 p-0">
                 <div class="input-group mb-2">
-                    <input type="text" class="form-control" id="inputModalSearch" name="query" placeholder="Search ...">
-                    <button type="submit" class="input-group-text bg-success text-light">
+                    <input type="text" class="form-control" id="inputModalSearch" value="<?php echo $_GET['query']; ?>" name="query" placeholder="Search ...">
+                    <button type="submit" name=search class="input-group-text bg-success text-light">
                         <i class="fa fa-fw fa-search text-white"></i>
                     </button>
                 </div>
@@ -153,7 +153,9 @@ $search = $_GET['query'];
                             </div>
                         </div>
                     </div>";
-                }
+                }if(!$results){
+                    echo "Sorry no results found";
+                 }
                 ?>
 
                 <div div="row">
@@ -163,14 +165,14 @@ $search = $_GET['query'];
                         $total_record = search_count_controller($search);
                         $total_page = ($total_record/$num_per_page);
                         if ($page > 1) {
-                            echo "<a class=\"page-link rounded-0 shadow-sm border-top-0 border-left-0 text-dark\" href='search.php?page=" . ((int)$page - 1) . "?query=$search'>Previous</a>";
+                            echo "<a class=\"page-link rounded-0 shadow-sm border-top-0 border-left-0 text-dark\" href='search.php?query=$search&page=" . ((int)$page - 1) . "'>Previous</a>";
                         }
                         for ($i = 1; $i < $total_page; $i++) {
 
-                            echo "  <a class=\"page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark\" href='search.php?page=". $i. "query=$search'>$i</a>";
+                            echo "  <a class=\"page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark\" href='search.php?query=$search&page=". $i. "'>$i</a>";
                         }
                         if ($i > $page) {
-                            echo "<a class=\"page-link rounded-0 shadow-sm border-top-0 border-left-0 text-dark\" href='search.php?page=" . ((int)$page + 1) . "?query=$search'>Next</a>";
+                            echo "<a class=\"page-link rounded-0 shadow-sm border-top-0 border-left-0 text-dark\" href='search.php?query=$search&page=" . ((int)$page + 1) . "'>Next</a>";
                         }
                         ?>
                     </ul>
