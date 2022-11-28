@@ -118,12 +118,12 @@ if ($_SESSION['user_role'] != 2 and empty($_SESSION['id'])){
               <span class="menu-title">My Purchases </span>
             </a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link" href="../favorites/favorites.php">
               <i class="mdi mdi-heart menu-icon"></i>
               <span class="menu-title">Favorite Materials </span>
             </a>
-          </li>
+          </li> -->
           <li class="nav-item">
             <a class="nav-link" href="../user/settings.php">
               <i class="mdi mdi-settings menu-icon"></i>

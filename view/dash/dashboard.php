@@ -119,12 +119,6 @@ if ($_SESSION['user_role'] != 2 and empty($_SESSION['id'])){
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="favorites/favorites.php">
-              <i class="mdi mdi-heart menu-icon"></i>
-              <span class="menu-title">Favorite Materials </span>
-            </a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" href="user/settings.php">
               <i class="mdi mdi-settings menu-icon"></i>
               <span class="menu-title">Settings</span>
@@ -142,7 +136,7 @@ if ($_SESSION['user_role'] != 2 and empty($_SESSION['id'])){
         <div class="main-panel">
           <div class="content-wrapper">
             <div class="row">
-              <div class="col-lg-4 d-flex grid-margin stretch-card">
+              <div class="col-lg-6 d-flex grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
                     <div class="d-flex flex-wrap justify-content-between">
@@ -153,7 +147,7 @@ if ($_SESSION['user_role'] != 2 and empty($_SESSION['id'])){
                 </div>
               </div>
           
-              <div class="col-lg-4 d-flex grid-margin stretch-card">
+              <div class="col-lg-6 d-flex grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
                     <div class="d-flex flex-wrap justify-content-between">

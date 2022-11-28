@@ -124,12 +124,6 @@ if ($_SESSION['user_role'] != 2 and empty($_SESSION['id'])){
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="../favorites/favorites.php">
-              <i class="mdi mdi-heart menu-icon"></i>
-              <span class="menu-title">Favorite Materials </span>
-            </a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" href="settings.php">
               <i class="mdi mdi-settings menu-icon"></i>
               <span class="menu-title">Settings</span>
