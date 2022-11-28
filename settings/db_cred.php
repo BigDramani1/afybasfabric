@@ -3,7 +3,7 @@
 // define('SERVER', 'localhost');
 // define('USERNAME','root');
 // define('PASSWORD', '');
-// define('DATABASE', 'fashion');
+// define('DATABASE', 'shoppn');
 
 //Database credentials for heroku
 define('SERVER', 'us-cdbr-east-06.cleardb.net');
