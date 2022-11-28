@@ -152,16 +152,7 @@ if ($_SESSION['user_role'] != 2 and empty($_SESSION['id'])){
                   </div>
                 </div>
               </div>
-              <div class="col-lg-4 d-flex grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="d-flex flex-wrap justify-content-between">
-                      <i class="fa fa-heart fa-4x" style="color:red"><span style="margin-left:50px">4</span></i>
-                    </div> 
-                                    <p style="text-align: center;">Number of Materials Liked</p>           
-                  </div>
-                </div>
-              </div>
+          
               <div class="col-lg-4 d-flex grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
