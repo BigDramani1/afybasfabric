@@ -101,11 +101,11 @@ function select_one_categoryname_controller($category){
 
 
 //product controllers
-function add_product_controller($product_cat, $product_brand, $product_title, $product_price, $product_desc, $product_image, $product_keywords,  $product_yards){
+function add_product_controller($product_cat, $product_brand, $product_title, $product_price, $product_desc, $product_image, $product_keywords, $product_yards){
     // create an instance of the product class
     $product_instance = new Product();
     // call the add_product method form the product class
-    return $product_instance->add_product($product_cat, $product_brand, $product_title, $product_price, $product_desc, $product_image, $product_keywords,  $product_yards);
+    return $product_instance->add_product($product_cat, $product_brand, $product_title, $product_price, $product_desc, $product_image, $product_keywords, $product_yards);
 }
 
 function select_all_products_controller(){

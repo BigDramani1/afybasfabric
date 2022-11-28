@@ -82,7 +82,7 @@ function select_one_categoryname($category){
 // add product method
     function add_product($product_cat, $product_brand, $product_title, $product_price, $product_desc, $product_image, $product_keywords, $product_yards){
 
-		return $this->query("insert into products(product_cat, product_brand, product_title, product_price, product_desc, product_image, product_keywords, product_yards) values('$product_cat', '$product_brand', '$product_title', '$product_price', '$product_desc', '$product_image','$product_keywords', '$product_yards'");
+		return $this->query("insert into products(product_cat, product_brand, product_title, product_price, product_desc, product_image, product_keywords, product_yards) values('$product_cat', '$product_brand', '$product_title', '$product_price', '$product_desc', '$product_image','$product_keywords', '$product_yards')");
 	}
 
 // update one product method

@@ -22,7 +22,7 @@ if(isset($_POST['addProduct'])){
     if ($result){
         header("Location: ../admin/products.php");
     }else{
-        echo ("<script>alert('Could not add the product, try logging out and logging in again.'); window.location.href = '../admin/addproduct.php';</script>");
+        echo ("<script>alert('Could not add the product, try logging out and logging in again.'); window.location.href = '../admin/add_product.php';</script>");
     }
 
 }
