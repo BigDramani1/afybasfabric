@@ -19,13 +19,14 @@ else
     $page = 1;
 }
 $num_per_page = 6;
-$start_from = ($page-1)*6;
+$start_from = ((int)$page-1)*6;
+$search = $_GET['query'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <title>Afybas Fabric Haven</title>
+    <title>Afybas Fabric Haven Search</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -105,7 +106,7 @@ $start_from = ($page-1)*6;
             <form action="../actions/search.php" method="get" class="modal-content modal-body border-0 p-0">
                 <div class="input-group mb-2">
                     <input type="text" class="form-control" id="inputModalSearch" name="query" placeholder="Search ...">
-                    <button type="submit" name=search class="input-group-text bg-success text-light">
+                    <button type="submit" class="input-group-text bg-success text-light">
                         <i class="fa fa-fw fa-search text-white"></i>
                     </button>
                 </div>
@@ -122,15 +123,15 @@ $start_from = ($page-1)*6;
                 <div class="col-md-6">
                     <ul class="list-inline shop-top-menu pb-3 pt-1">
                         <li class="list-inline-item">
-                            <a class="h3 text-dark text-decoration-none mr-3" href="#">All Products</a>
+                            <a class="h3 text-dark text-decoration-none mr-3" href="#">All Results</a>
                         </li>
                     </ul>
                 </div>
             </div>
             <div class="row">
                 <?php
-                $clothes =  pagaition($start_from, $num_per_page);
-                foreach ($clothes as $product) {
+                $results = search_pagination_controller($search, $start_from, $num_per_page);
+                foreach($results as $product){
                     echo "
                     <div class=\"col-md-4\">
                     <input type='hidden' name='product_id' value={$product['product_id']}>
@@ -159,17 +160,17 @@ $start_from = ($page-1)*6;
                     <ul class="pagination pagination-lg justify-content-end">
                         <?php
                        
-                        $total_record = count_rows_controller();
+                        $total_record = search_count_controller($search);
                         $total_page = ($total_record/$num_per_page);
                         if ($page > 1) {
-                            echo "<a class=\"page-link rounded-0 shadow-sm border-top-0 border-left-0 text-dark\" href='shop.php?page=" . ($page - 1) . "''>Previous</a>";
+                            echo "<a class=\"page-link rounded-0 shadow-sm border-top-0 border-left-0 text-dark\" href='search.php?page=" . ((int)$page - 1) . "?query=$search'>Previous</a>";
                         }
                         for ($i = 1; $i < $total_page; $i++) {
 
-                            echo "  <a class=\"page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark\" href='shop.php?page=". $i."'>$i</a>";
+                            echo "  <a class=\"page-link rounded-0 mr-3 shadow-sm border-top-0 border-left-0 text-dark\" href='search.php?page=". $i. "query=$search'>$i</a>";
                         }
                         if ($i > $page) {
-                            echo "<a class=\"page-link rounded-0 shadow-sm border-top-0 border-left-0 text-dark\" href='shop.php?page=" . ($page + 1) . "'>Next</a>";
+                            echo "<a class=\"page-link rounded-0 shadow-sm border-top-0 border-left-0 text-dark\" href='search.php?page=" . ((int)$page + 1) . "?query=$search'>Next</a>";
                         }
                         ?>
                     </ul>

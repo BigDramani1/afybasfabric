@@ -119,6 +119,23 @@ function select_one_categoryname($category){
         return $this->fetch($sql);
 
     }
+//search pagination
+function search_pagination($search, $start_from, $num_per_page){
+
+    $sql = "select * from products where product_title LIKE '%$search%' OR product_keywords LIKE '%$search%' limit $start_from,$num_per_page";
+
+    return $this->fetch($sql);
+
+}
+
+// counting the number of items being searched 
+function count_search($search){
+
+    $sql = "select * from products where product_title LIKE '%$search%' OR product_keywords LIKE '%$search%'";
+
+    return $this->count($sql);
+
+}
 
     //selecting top three products
     function random_four_numbers(){

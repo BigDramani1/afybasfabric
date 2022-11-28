@@ -145,6 +145,23 @@ function search_products_controller($search){
     return $product_instance->search_products($search);
 }
 
+//search pagination controller
+
+function search_pagination_controller($search, $start_from, $num_per_page){
+    // create an instance of the Product class
+    $product_instance = new Product();
+    // call the search_products method from the class
+    return $product_instance->search_pagination($search, $start_from, $num_per_page);
+}
+
+// count search controller
+function search_count_controller($search){
+    // create an instance of the Product class
+    $product_instance = new Product();
+    // call the search_products method from the class
+    return $product_instance->count_search($search);
+}
+
 // random four function controller
 
 function random_four_controller(){
