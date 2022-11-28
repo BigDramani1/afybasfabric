@@ -141,17 +141,34 @@ start carting -->
                     <tbody class="align-middle">
                     <?php foreach($products as $product){echo"
                         <tr>
+                            <form id='myform'>
                             <td><img src='../images/products/{$product['product_image']}' style=\"width:100px; height:100px;\"></td>
                             <input type='hidden' name='product_id' value= {$product['product_id']} ?>	
                             <td class=\"align-middle\"> {$product['product_title']}</td>
                             <td class=\"align-middle\">{$product['product_price']}</td>
                             <td class=\"align-middle\">
-                                <input style=\"width:50%; text-align:center;\"value={$product['qty']}>
+                                <input style=\"width:50%; text-align:center;\" name='quantity'id='quant' value={$product['qty']}>
                             </td>
                             <td class=\"align-middle\"><a href='../actions/remove_from_cart.php?product_id={$product['p_id']}' class=\"btn btn-sm btn-danger\"><i class=\"fa fa-times\"></i></a></td>
+                            </form>
+                            <div id=\"postData\"></div>
                         </tr>
                    "; }
                     ?>
+                     <script type="text/javascript">
+                           $(document).ready(function(){
+                        $('#myForm').submit(function(e){
+                            e.preventDefault();
+                            $.ajax({
+                                url: '../actions/update_quantity.php',
+                                type: "POST",
+                                data: $(this).serialize(),
+                                
+                            });
+                        });
+                    });
+
+                    </script>
                     </tbody>
                 </table>
             </div>
