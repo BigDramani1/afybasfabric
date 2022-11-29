@@ -193,3 +193,4 @@ function count_rows_controller(){
     $product_instance = new Product();
     return $product_instance->count_rows();
  }
+

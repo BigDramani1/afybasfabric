@@ -3,6 +3,7 @@ session_start();
 if ($_SESSION['user_role'] != 2 and empty($_SESSION['id'])){
   header("Location: ../../login/login-user.php");// this will take the customer to a new page
   }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -146,18 +147,19 @@ if ($_SESSION['user_role'] != 2 and empty($_SESSION['id'])){
               <div class="card">
                 <div class="card-body">
                   <h4 class="card-title">Update Your Account</h4>
-                  <form class="forms-sample">
+                  <form class="forms-sample" action='../../../actions/update_user.php' method="POST">
                     <div class="form-group">
                       <label for="exampleInputUsername1">Full Name</label>
-                      <input type="text" class="form-control" id="exampleInputUsername1">
+                      <input type="hidden" class="form-control" name="email" value="<?php echo $_SESSION['email'];?>">
+                      <input type="text" class="form-control" name="name" value="<?php echo $_SESSION['name'];?>">
                     </div>
                     <div class="form-group">
                       <label for="exampleInputEmail1">City</label>
-                      <input type="text" class="form-control" id="exampleInputEmail1">
+                      <input type="text" class="form-control" name="city" value="<?php echo $_SESSION['city'];?>">
                     </div>
                     <div class="form-check form-check-flat form-check-primary">
                     </div>
-                    <button type="submit" class="btn btn-primary mr-2">Update</button>
+                    <button type="submit" name="submit" class="btn btn-primary mr-2">Update</button>
                   </form>
                 </div>
               </div>

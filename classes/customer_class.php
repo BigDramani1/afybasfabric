@@ -36,6 +36,11 @@ class Customer extends Connection{
     function select_all_customers(){
         return $this->fetch("select * from customer where user_role=2");
     }
+
+    //function to update user name and city
+    function update_user_account($name, $city, $email){
+        return $this->query("UPDATE customer set customer_name = '$name', customer_city='$city' where customer_email='$email'");
+        }
 }
 
 ?>

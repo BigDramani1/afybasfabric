@@ -46,4 +46,11 @@ function select_all_customers_controller(){
     return $all->select_all_customers();
 }
 
+ //controller to update customer account
+ 
+ function update_customer_account_ctr($name, $city, $email){
+    $update = new customer();
+        return $update->update_user_account($name, $city, $email);
+ }
+
 ?>
