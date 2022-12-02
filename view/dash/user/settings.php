@@ -3,6 +3,10 @@ session_start();
 if ($_SESSION['user_role'] != 2 and empty($_SESSION['id'])){
   header("Location: ../../login/login-user.php");// this will take the customer to a new page
   }
+  require('../../../controllers/cart_controller.php');
+  $customer_id = $_SESSION['id'];
+  // this is for cart counting
+  $cart_count = cart_count_controller($customer_id);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -61,9 +65,9 @@ if ($_SESSION['user_role'] != 2 and empty($_SESSION['id'])){
           </ul>
           <ul class="navbar-nav navbar-nav-right">
             <li class="nav-item dropdown  d-flex">
-              <a class="nav-link count-indicator dropdown-toggle d-flex align-items-center justify-content-center" id="notificationDropdown" href="../cart.php">
+              <a class="nav-link count-indicator dropdown-toggle d-flex align-items-center justify-content-center" id="notificationDropdown" href="../../cart.php">
                 <i class="mdi mdi-cart mr-0"></i>
-                <span class="count bg-danger">4</span>
+                <span class="count bg-danger"><?php echo $cart_count['counting'];?></span>
               </a>
             </li>
             <li class="nav-item nav-profile dropdown">

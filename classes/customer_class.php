@@ -1,5 +1,5 @@
 <?php
-require ('../settings/connection.php');
+include_once(dirname(__FILE__)).'../../settings/connection.php';
 
 /// inherit the method from the connection file
 class Customer extends Connection{

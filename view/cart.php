@@ -12,9 +12,11 @@ $customer_id = $_SESSION['id'];
 $products = select_all_from_cart_controller($customer_id);
 $amount = total_amount_controller($customer_id);
 
-    // this is for cart counting
 
- $cart_count = cart_count_controller($customer_id);
+    // this is for cart counting
+$cart_count = cart_count_controller($customer_id);
+
+//  print_r($products);
 
 ?>
 <!DOCTYPE html>
@@ -84,7 +86,7 @@ $amount = total_amount_controller($customer_id);
                     </a>
                     <a class="nav-icon position-relative text-decoration-none" href="<?php echo $cart; ?>">
                         <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
-                        <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark"></span>
+                        <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark"> <?php echo $cart_count['counting'];?></span>
                     </a>
                     <a class="nav-icon position-relative text-decoration-none" href="<?php echo $link; ?>">
                         <i class="fa fa-fw fa-user text-dark mr-3"></i>
@@ -137,12 +139,14 @@ start carting -->
                             <th>Products</th>
                             <th>Price</th>
                             <th>Quantity</th>
+                            <th>Total</th>
                             <th>Update Quantity</th>
                             <th>Remove</th>
                         </tr>
                     </thead>
                     <tbody class="align-middle">
                         <?php foreach ($products as $product) {
+$each_item =each_total_amount_controller($customer_id, $product['p_id']);
                             echo "
                         <tr>
                            
@@ -155,6 +159,7 @@ start carting -->
                             <input type='hidden' name='product_id' value= {$product['product_id']} ?>	
                                 <input style=\"width:50%; text-align:center;\" name='quantity' value={$product['qty']}>
                             </td>
+                            <td class=\"align-middle\">{$each_item['each_amount']}</td>
                             <td class=\"align-middle\"> <input class='btn btn-success' name = 'updateQty' type = 'submit'  value = 'Update'></td>
                             <td class=\"align-middle\"><a href='../actions/remove_from_cart.php?product_id={$product['p_id']}' class=\"btn btn-sm btn-danger\"><i class=\"fa fa-times\"></i></a></td>
                             </form>

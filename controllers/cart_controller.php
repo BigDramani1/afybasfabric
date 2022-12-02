@@ -1,6 +1,6 @@
 <?php 
 
-require('../classes/cart_class.php');
+include_once(dirname(__FILE__)).'/../classes/cart_class.php';
 
 
 function add_to_cart_controller($product_id, $ip_address, $customer_id, $quantity) {
@@ -42,7 +42,7 @@ function  update_quantity_controller($product_id, $customer_id, $quantity){
      return $cart_instance->update_quantity($product_id, $customer_id, $quantity);
 }
 
-
+//total amount
 function  total_amount_controller($customer_id){
     //create an instance of the cart class
     $cart_instance = new Cart();
@@ -50,6 +50,11 @@ function  total_amount_controller($customer_id){
     return $cart_instance->total_amount ($customer_id);
 }
 
+// total amount for each item
+function each_total_amount_controller($customer_id, $product_id){
+    $new_cart = new Cart();
+    return $new_cart->each_total_amount ($customer_id, $product_id);
+}
 
 function  add_order_controller($customer_id, $invoice_no, $order_date, $order_status){
     //create an instance of the cart class

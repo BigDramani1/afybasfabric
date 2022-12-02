@@ -1,6 +1,6 @@
 <?php
 
-require('../settings/connection.php');
+include_once(dirname(__FILE__)).'../../settings/connection.php';
 
 //inheriting the methods from connection
 

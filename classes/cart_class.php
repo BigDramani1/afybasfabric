@@ -1,8 +1,7 @@
 <?php 
 
 //inheriting the methods from connection
-require('../settings/connection.php');
-
+include_once(dirname(__FILE__)).'../../settings/connection.php';
 
 class Cart extends Connection {
 
@@ -36,8 +35,12 @@ class Cart extends Connection {
     function total_amount ($customer_id){
         return $this->fetchOne("SELECT SUM(products.product_price *cart.qty) as Amount FROM cart join products on (products.product_id = cart.p_id) where cart.c_id = '$customer_id'");
     }  
-
   
+ // calculate the total amount for each items in the cart
+ function each_total_amount ($customer_id, $product_id){
+    return $this->fetchOne("SELECT (products.product_price *cart.qty) as each_amount FROM cart join products on (products.product_id = cart.p_id) where cart.c_id = '$customer_id' and cart.p_id = '$product_id'");
+} 
+
     function add_order($customer_id, $invoice_no, $order_date, $order_status){
         return $this->query("insert into orders (customer_id, invoice_no, order_date, order_status) values('$customer_id','$invoice_no', '$order_date', '$order_status')");
     }
@@ -67,8 +70,7 @@ class Cart extends Connection {
     }
 
     function cart_count($customer_id){
-        return $this->fetchOne("select count (p_id) as counting from cart where c_id ='$customer_id'");
-
+        return $this->fetchOne("SELECT COUNT(p_id) as counting FROM cart where c_id ='$customer_id'");
     }
 
 }

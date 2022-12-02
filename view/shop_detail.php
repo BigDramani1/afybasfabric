@@ -1,7 +1,7 @@
 <?php
 require('../settings/core.php');
 require('../controllers/product_controller.php');
-
+require('../controllers/cart_controller.php');
 $product = select_one_product_controller($_GET['product_id']);
 if (empty($_SESSION['id'])) {
 	$link="../login/login-user.php";
@@ -11,6 +11,9 @@ else{
 	$link="../view/dash/dashboard.php";
     $cart="cart.php";
 }
+$customer_id = $_SESSION['id'];
+ // this is for cart counting
+    $cart_count = cart_count_controller($customer_id);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -90,7 +93,7 @@ else{
                         <i class="fa fa-fw fa-search text-dark mr-2"></i>
                     </a>
                     <a class="nav-icon position-relative text-decoration-none" href="<?php echo $cart; ?>">
-                        <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
+                        <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i><span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark"><?php echo $cart_count['counting'];?></span>
                       
                     </a>
                     <a class="nav-icon position-relative text-decoration-none" href="<?php echo $link; ?>">

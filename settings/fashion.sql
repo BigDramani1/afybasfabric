@@ -92,6 +92,7 @@ CREATE TABLE `orderdetails` (
 -- Table structure for table `orders`
 --
 
+
 CREATE TABLE `orders` (
   `order_id` int(11) NOT NULL,
   `customer_id` int(11) NOT NULL,

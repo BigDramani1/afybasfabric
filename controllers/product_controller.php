@@ -1,5 +1,5 @@
 <?php
-require('../classes/product_class.php');
+include_once(dirname(__FILE__)).'/../classes/product_class.php';
 //brand controllers
 function add_brand_controller($brandname){
     //create an instance of the Product class

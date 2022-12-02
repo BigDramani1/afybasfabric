@@ -1,5 +1,5 @@
 <?php
-require('../classes/customer_class.php');
+include_once(dirname(__FILE__)).'/../classes/customer_class.php';
 
 function customer_info_controller($name, $email, $city, $phone, $password, $code, $status){
     $new_customer = new Customer();
