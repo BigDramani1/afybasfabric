@@ -1,18 +1,20 @@
-<?php 
+<?php
 require('../settings/core.php');
 require('../controllers/cart_controller.php');
- if (empty($_SESSION['id'])) {
-	$link="../login/login-user.php";
-    $cart="../login/login-user.php";
+if (empty($_SESSION['id'])) {
+    $link = "../login/login-user.php";
+    $cart = "../login/login-user.php";
+} else {
+    $link = "../view/dash/dashboard.php";
+    $cart = "cart.php";
 }
-else{
-	$link="../view/dash/dashboard.php";
-    $cart="cart.php";
-}
-$customer_id= $_SESSION['id'];
+$customer_id = $_SESSION['id'];
 $products = select_all_from_cart_controller($customer_id);
 $amount = total_amount_controller($customer_id);
 
+    // this is for cart counting
+
+ $cart_count = cart_count_controller($customer_id);
 
 ?>
 <!DOCTYPE html>
@@ -44,7 +46,7 @@ $amount = total_amount_controller($customer_id);
         <div class="container d-flex justify-content-between align-items-center">
 
             <a class="navbar-brand text-success logo h1 align-self-center" href="index.php">
-            Afybas 
+                Afybas
             </a>
 
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#templatemo_main_nav" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -82,7 +84,7 @@ $amount = total_amount_controller($customer_id);
                     </a>
                     <a class="nav-icon position-relative text-decoration-none" href="<?php echo $cart; ?>">
                         <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
-                        <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">7</span>
+                        <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark"></span>
                     </a>
                     <a class="nav-icon position-relative text-decoration-none" href="<?php echo $link; ?>">
                         <i class="fa fa-fw fa-user text-dark mr-3"></i>
@@ -121,12 +123,12 @@ $amount = total_amount_controller($customer_id);
             </p>
         </div>
     </div>
-<!-- 
+    <!-- 
 start carting -->
-  <!-- Cart Start -->
-  <div class="container-fluid pt-5">
+    <!-- Cart Start -->
+    <div class="container-fluid pt-5">
         <div class="row px-xl-5">
-        <h6><i class="fa fa-exclamation-circle" style="color:red;"></i>Delivery fee is going to be a separate payment and it fee is going to be based on your location</h6>
+            <h6><i class="fa fa-exclamation-circle" style="color:red;"></i>Delivery fee is going to be a separate payment and it fee is going to be based on your location</h6>
             <div class="col-lg-8 table-responsive mb-5">
                 <table class="table table-bordered text-center mb-0">
                     <thead>
@@ -135,68 +137,61 @@ start carting -->
                             <th>Products</th>
                             <th>Price</th>
                             <th>Quantity</th>
+                            <th>Update Quantity</th>
                             <th>Remove</th>
                         </tr>
                     </thead>
                     <tbody class="align-middle">
-                    <?php foreach($products as $product){echo"
+                        <?php foreach ($products as $product) {
+                            echo "
                         <tr>
-                            <form id='myform'>
+                           
                             <td><img src='../images/products/{$product['product_image']}' style=\"width:100px; height:100px;\"></td>
                             <input type='hidden' name='product_id' value= {$product['product_id']} ?>	
                             <td class=\"align-middle\"> {$product['product_title']}</td>
                             <td class=\"align-middle\">{$product['product_price']}</td>
+                            <form method = 'post' action='../actions/update_quantity.php'>
                             <td class=\"align-middle\">
-                                <input style=\"width:50%; text-align:center;\" name='quantity'id='quant' value={$product['qty']}>
+                            <input type='hidden' name='product_id' value= {$product['product_id']} ?>	
+                                <input style=\"width:50%; text-align:center;\" name='quantity' value={$product['qty']}>
                             </td>
+                            <td class=\"align-middle\"> <input class='btn btn-success' name = 'updateQty' type = 'submit'  value = 'Update'></td>
                             <td class=\"align-middle\"><a href='../actions/remove_from_cart.php?product_id={$product['p_id']}' class=\"btn btn-sm btn-danger\"><i class=\"fa fa-times\"></i></a></td>
                             </form>
                             <div id=\"postData\"></div>
                         </tr>
-                   "; }
-                    ?>
-                     <script type="text/javascript">
-                           $(document).ready(function(){
-                        $('#myForm').submit(function(e){
-                            e.preventDefault();
-                            $.ajax({
-                                url: '../actions/update_quantity.php',
-                                type: "POST",
-                                data: $(this).serialize(),
-                                
-                            });
-                        });
-                    });
-
-                    </script>
+                   ";
+                        }
+                        ?>
                     </tbody>
                 </table>
             </div>
             <div class="col-lg-4">
-            <?php
-                  echo "
-                <div class=\"card border-success mb-5\">
-                    <div class=\"card-header\" style=\"background-color:#17a2b8;\">
-                        <h4 class=\"font-weight-semi-bold m-0 text-white\">Cart Summary</h4>
+                <div class="card border-success mb-5">
+                    <div class="card-header" style="background-color:#17a2b8;">
+                        <h4 class="font-weight-semi-bold m-0 text-white">Cart Summary</h4>
                     </div>
-               
-                    <div class=\"card-body\">
-                        <div class=\"d-flex justify-content-between mb-3 pt-1\">
-                            <h6 class=\"font-weight-medium\">Subtotal</h6>
-                            <h6 class=\"font-weight-medium\">GH₵{$amount['Amount']}</h6>
+                    <form id='paymentForm'>
+                        <div class="card-body">
+                        <div class="d-flex justify-content-between mb-3 pt-1">
+                            <h6 class="font-weight-medium">Subtotal</h6>
+                            <h6 class="font-weight-medium">GH₵<?php echo $amount['Amount'];?></h6>
                         </div>
+                        <input type='hidden' id='amount'value='<?php echo $amount['Amount'];?>'>
+                        <input type='hidden' id='email'value='<?php echo $_SESSION['email']; ?>'>
                     </div>
-                        <button class=\"btn btn-success btn-lg\" style=\"width:100%\">Proceed To Checkout</button>
-                    </div>";
-                    ?>
-                </div>
+                        <button class="btn btn-success btn-lg" onclick="payWithPaystack()" style="width:100%;">Proceed To Checkout</button>
+                    </div>
+                    </form>
+            
             </div>
         </div>
     </div>
+    </div>
     <!-- Cart End -->
 
-     <!-- Start Footer -->
-     <footer class="bg-dark" id="tempaltemo_footer">
+    <!-- Start Footer -->
+    <footer class="bg-dark" id="tempaltemo_footer">
         <div class="container">
             <div class="row">
 
@@ -263,7 +258,7 @@ start carting -->
                         </li>
                     </ul>
                 </div>
-               
+
             </div>
         </div>
 
@@ -289,6 +284,38 @@ start carting -->
     <script src="../assets/js/templatemo.js"></script>
     <script src="../assets/js/custom.js"></script>
     <!-- End Script -->
+    <script src="https://js.paystack.co/v1/inline.js"></script> 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+  const paymentForm = document.getElementById('paymentForm');
+  paymentForm.addEventListener("submit", payWithPaystack, false);
+
+  // PAYMENT FUNCTION
+  function payWithPaystack(e) {
+	e.preventDefault();
+	let handler = PaystackPop.setup({
+		key: 'pk_test_9a66f0be5bdc776def0d8776416b637dc1060720', // Replace with your public key
+		email: document.getElementById("email").value,
+		amount: document.getElementById("amount").value * 100,
+		currency:'GHS',
+		onClose: function(){
+		alert('Window closed.');
+		},
+		callback: function(response){
+            alert("payment have been made"+ response.reference);
+            $.ajax({
+              url:"processing.php?reference="+ response.reference,
+              method:'GET',
+              success: function (response){
+                alert(response);
+              }
+
+            });
+		}
+	});
+	handler.openIframe();
+}
+</script> 
 </body>
 
 </html>

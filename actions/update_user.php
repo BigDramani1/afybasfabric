@@ -10,6 +10,8 @@ if (isset($_POST['submit'])) {
 
         $result = update_customer_account_ctr($name, $city, $email);
         if ($result== true) {
+            $_SESSION['name'] = $name;
+            $_SESSION['city'] = $city;
             header("location: ../view/dash/dashboard.php");
         }
     }

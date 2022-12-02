@@ -1,6 +1,5 @@
 <?php
 require('../classes/product_class.php');
-
 //brand controllers
 function add_brand_controller($brandname){
     //create an instance of the Product class

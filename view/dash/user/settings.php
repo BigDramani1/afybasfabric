@@ -3,7 +3,6 @@ session_start();
 if ($_SESSION['user_role'] != 2 and empty($_SESSION['id'])){
   header("Location: ../../login/login-user.php");// this will take the customer to a new page
   }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -9,7 +9,6 @@ if (isset($_POST['login'])) {
 
     //store all data
     $customer_email = one_customer_email_controller($email);
-
     //check if the email exists in the database.
     if ($customer_email == NULL) {
         $errors['pemail'] = "Incorrect email or password!";

@@ -84,11 +84,12 @@ function add_payment_controller($amount, $customer_id, $order_id, $currency, $pa
     return $payment_instance-> add_payment($amount, $customer_id, $order_id, $currency, $payment_date);
 }
 
-function select_all_orderdetails_controller(){
-    $order = new Cart();
-    return $order->select_all_orderdetails();
-
+// displaying customer order
+function show_customer_order($customer_id){
+    $show = new Cart();
+    return $show->user_orders($customer_id);
 }
+
 
 function show_orders_controller(){
     //create an instance of the cart class
@@ -96,5 +97,11 @@ function show_orders_controller(){
     //call the show_orders method from the cart class
    return $payment_instance->show_orders();
 
+}
+
+// cart count
+function cart_count_controller($customer_id){
+    $count = new Cart();
+    return $count->cart_count($customer_id);
 }
 ?>

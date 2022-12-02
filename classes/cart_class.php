@@ -55,14 +55,20 @@ class Cart extends Connection {
         return $this->query("insert into payment(amt, customer_id, order_id, currency, payment_date) values('$amount', '$customer_id', '$order_id', '$currency', '$payment_date')");
     }
 
-    function select_all_orderdetails(){
-        return $this->fetchOne("select * from orderdetails");
-    }
+  
     function show_orders(){
         //display orders that customers have placed
-        // return $this->fetch("select * from orders inner join customer on orders.customer_id = customer.customer_id" );
         return $this->fetch("SELECT  `customer`.`customer_name`,`customer`.`customer_id`,  `orders`.`order_id`, `orders`.`invoice_no`, `orders`.`order_date`, `orders`.`order_status` FROM `orders` 
         JOIN `customer` ON (`customer`.`customer_id` = `orders`.`customer_id`)");
+    }
+
+    function user_orders($customer_id){
+        return $this->fetch("select * from orderdetails where order_id = '$customer_id'");
+    }
+
+    function cart_count($customer_id){
+        return $this->fetchOne("select count (p_id) as counting from cart where c_id ='$customer_id'");
+
     }
 
 }
