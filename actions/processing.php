@@ -31,6 +31,8 @@ $err = curl_error($curl);
 curl_close($curl);
 
 // convert the response to PHP object
+$decodedResponse = json_decode($response);
+// convert the response to PHP object
 if(isset($decodedResponse->data->status) && $decodedResponse->data->status === 'success'){
     // get form values
     $email = $_GET['email'];
