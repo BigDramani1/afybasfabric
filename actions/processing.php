@@ -6,8 +6,6 @@ require ('../settings/core.php');
 
 // initialize a client url which we will use to send the reference to the paystack server for verification
 $curl = curl_init();
-
-
 // set options for the curl session insluding the url, headers, timeout, etc
 curl_setopt_array($curl, array(
 CURLOPT_URL => "https://api.paystack.co/transaction/verify/{$_GET['reference']}",
@@ -32,18 +30,20 @@ curl_close($curl);
 
 // convert the response to PHP object
 $decodedResponse = json_decode($response);
+
+$reference = $_GET['reference'];
 // convert the response to PHP object
 if(isset($decodedResponse->data->status) && $decodedResponse->data->status === 'success'){
     // get form values
     $email = $_GET['email'];
-    $amount = $_GET['amount'];
-    $reference = $_GET['reference'];
+    $amount = $_POST['amount'];
+    
 
     $customer_id = $_SESSION['id'];
     $invoice_no = mt_rand(100, 1000);
     $order_date = date('Y/m/d');
     $order_status = 'success';
-
+    $totaling = $_GET['total'];
     $addorder = add_order_controller($customer_id, $invoice_no, $order_date, $order_status);
   
 
@@ -57,6 +57,7 @@ if(isset($decodedResponse->data->status) && $decodedResponse->data->status === '
      
         foreach($products as $product){ 	
             $addorderdetails = add_order_details_controller($new_order['last_order'], $product['p_id'], $product['qty']);
+            $insert = receipt_controller($product['p_id'], $customer_id, $product['qty'], $totaling, $new_order['last_order']);
         }
     
     }
@@ -66,7 +67,6 @@ if(isset($decodedResponse->data->status) && $decodedResponse->data->status === '
 
         if($result) {
             $cartItems = select_all_from_cart_controller($customer_id);
-
             foreach ($cartItems as $cart) {
                 remove_from_cart_controller($cart['p_id'], $customer_id);
                 header("Location:../view/payment_success.php");

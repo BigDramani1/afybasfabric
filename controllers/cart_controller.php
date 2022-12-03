@@ -47,7 +47,7 @@ function  total_amount_controller($customer_id){
     //create an instance of the cart class
     $cart_instance = new Cart();
     //call the total_amount method from the cart class
-    return $cart_instance->total_amount ($customer_id);
+    return $cart_instance->total_amount($customer_id);
 }
 
 // total amount for each item
@@ -109,4 +109,32 @@ function cart_count_controller($customer_id){
     $count = new Cart();
     return $count->cart_count($customer_id);
 }
+
+// add receipt controller 
+function receipt_controller($product_id, $customer_id, $quantity, $total, $order_id) {
+    //create an instance of the cart class
+    $cart_instance = new Cart();
+    // call the add_to_cart method from the cart class
+    return $cart_instance->add_to_receipt($product_id, $customer_id, $quantity, $total, $order_id);
+}
+
+// show receipt controller
+// receipt controller
+function show_receipt_controller($customer_id) {
+    //create an instance of the cart class
+    $cart_instance = new Cart();
+    // call the add_to_cart method from the cart class
+    return $cart_instance->show_receipt($customer_id);
+}
+// remove receipt controller
+function remove_from_receipt_controller($customer_id){
+    $update = new Cart();
+        return $update->remove_from_receipt($customer_id);
+ }
+ // total amount in receipt
+ function total_controller($customer_id){
+    $update = new Cart();
+        return $update->cal_total_amount($customer_id);
+ }
+ 
 ?>

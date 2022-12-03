@@ -9,7 +9,7 @@ if(isset($_POST['updateQty'])){
     $ip_address = $_SERVER['REMOTE_ADDR']; 
     $customer_id = $_SESSION['id'];
     $quantity = $_POST['quantity'];
-
+    
     //select an existing product from the database and store results in a variable
     $item = select_one_item_controller($customer_id, $product_id);
 
@@ -19,6 +19,7 @@ if(isset($_POST['updateQty'])){
 
         //$call the update quantity controller
         $update_qty = update_quantity_controller($product_id, $customer_id, $quantity);
+       
             
         if($update_qty){
         header("Location:../view/cart.php");

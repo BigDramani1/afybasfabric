@@ -73,6 +73,25 @@ class Cart extends Connection {
         return $this->fetchOne("SELECT COUNT(p_id) as counting FROM cart where c_id ='$customer_id'");
     }
 
+        //add to cart class
+        function add_to_receipt($product_id, $customer_id, $quantity, $total, $order_id){
+            //returns true or false
+            return $this->query("insert into receipt (p_id, c_id, qty, total, order_id) values('$product_id', '$customer_id', '$quantity', '$total', '$order_id')");
+        }
+
+        //count receipt
+        function show_receipt($customer_id){
+            return $this->fetch("select * from receipt inner join brands on p_id where c_id='$customer_id'");
+        } 
+  // remove from receipt class
+  function remove_from_receipt($customer_id){
+    return $this->query("delete from receipt where c_id = '$customer_id'");
+}
+
+  // calculate the total amount for items in the cart
+  function cal_total_amount ($customer_id){
+    return $this->fetchOne("SELECT SUM(total *qty) as overall from receipt where c_id = '$customer_id'");
+}  
 }
 
 ?>

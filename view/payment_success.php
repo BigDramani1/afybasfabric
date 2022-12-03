@@ -1,3 +1,21 @@
+<?php
+require('../settings/core.php');
+require('../controllers/product_controller.php');
+require('../controllers/cart_controller.php');
+
+if (empty($_SESSION['id'])){
+    header("Location: ../login/login-user.php");
+ }
+ $customer_id = isset($_SESSION['id'])? $_SESSION['id']: "";
+$amount = total_controller($customer_id);
+$counting=show_customer_order($customer_id);
+$please = "";
+foreach ($counting as $afybas){
+    $please=$afybas['order_id'];
+
+}
+
+?>
 <!doctype html>
 <html lang="zxx">
 <head>
@@ -79,8 +97,9 @@
 
 </style>
 <body>
+    
     <div class="print-button-container">
-        <a href="dash/dashboard.php" class="print-button">View Dashboard</a>
+        <a href="../actions/delete_receipt.php?id='<?php echo $customer_id?>'" class="print-button">View Dashboard</a>
     </div>
     <div class="container invoice mb-0">
         <div class="row">
@@ -93,8 +112,8 @@
                             </div>
 
                             <div class="col-md-6 text-right">
-                                <p class="font-weight-bold mb-1">Payment #550</p>
-                                <p class="text-muted">Date: 4 Jan, 2020</p>
+                                <p class="font-weight-bold mb-1">Payment #<?php echo $please?></p>
+                                <p class="text-muted"><?php echo  date('Y/m/d');?></p>
                             </div>
                         </div>
 
@@ -108,8 +127,8 @@
 
                             <div class="col-md-6 text-right">
                                 <h3 class="font-weight-bold mb-4">Payment Details</h3>
-                                <p class="mb-1">Name:<span style="color:black; font-weight:15px;"><strong> Dramani Alhassan</strong></span></p>
-                                <p class="mb-1">Payment Type: Momo</p>
+                                <p class="mb-1">Name:<span style="color:black; font-weight:15px;"><strong> <?php echo $_SESSION["name"];?></strong></span></p>
+                        
                             </div>
                         </div>
                         <div class="row p-5 the-five">
@@ -124,12 +143,16 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <?php $receipt=show_receipt_controller($customer_id);
+                                         foreach ($receipt as $display) {
+                                         echo"
                                         <tr>
-                                            <td>1</td>
-                                            <td>DOT FABRIC</td>
-                                            <td>1</td>
-                                            <td>GH₵ 5000</td>
-                                        </tr>
+                                            <td>{$display['order_id']}</td>
+                                            <td>{$display['brand_name']}</td>
+                                            <td>{$display['qty']}</td>
+                                            <td>GH₵ {$display['total']}</td>
+                                        </tr>";}
+                                        ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -138,7 +161,7 @@
                         <div class="d-flex flex-row-reverse bg-dark text-white p-4">
                             <div class="py-3 px-5 text-left">
                                 <div class="mb-2">Grand Total</div>
-                                <div class="h2 font-weight-light">GH₵ 5000</div>
+                                <div class="h2 font-weight-light">GH₵ <?php echo $amount['overall'];?></div>
                             </div>
                         </div>
                     </div>

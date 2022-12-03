@@ -146,17 +146,17 @@ start carting -->
                     </thead>
                     <tbody class="align-middle">
                         <?php foreach ($products as $product) {
-$each_item =each_total_amount_controller($customer_id, $product['p_id']);
+                            $each_item =each_total_amount_controller($customer_id, $product['p_id']);
                             echo "
                         <tr>
-                           
                             <td><img src='../images/products/{$product['product_image']}' style=\"width:100px; height:100px;\"></td>
                             <input type='hidden' name='product_id' value= {$product['product_id']} ?>	
                             <td class=\"align-middle\"> {$product['product_title']}</td>
                             <td class=\"align-middle\">{$product['product_price']}</td>
                             <form method = 'post' action='../actions/update_quantity.php'>
                             <td class=\"align-middle\">
-                            <input type='hidden' name='product_id' value= {$product['product_id']} ?>	
+                            <input type='hidden' name='product_id' value= {$product['product_id']}>	
+                            <input type='hidden' name='total' id='total' value= {$each_item['each_amount']}>	
                                 <input style=\"width:50%; text-align:center;\" name='quantity' value={$product['qty']}>
                             </td>
                             <td class=\"align-middle\">{$each_item['each_amount']}</td>
@@ -302,20 +302,12 @@ $each_item =each_total_amount_controller($customer_id, $product['p_id']);
 		key: 'pk_test_9a66f0be5bdc776def0d8776416b637dc1060720', // Replace with your public key
 		email: document.getElementById("email").value,
 		amount: document.getElementById("amount").value * 100,
-		currency:'GHS',
+        currency:'GHS',
 		onClose: function(){
 		alert('Window closed.');
 		},
 		callback: function(response){
-            alert("payment have been made"+ response.reference);
-            $.ajax({
-              url:"processing.php?reference="+ response.reference,
-              method:'GET',
-              success: function (response){
-                alert(response);
-              }
-
-            });
+			window.location = `../actions/processing.php?email=${document.getElementById("email").value}&amount=${document.getElementById("amount").value}&total=${document.getElementById("total").value}&reference=${response.reference}`
 		}
 	});
 	handler.openIframe();
