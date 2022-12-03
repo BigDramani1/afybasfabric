@@ -24,7 +24,7 @@ $num_per_page = 6;
 $start_from = ((int)$page-1)*6;
 $search = $_GET['query'];
 
-$customer_id = $_SESSION['id'];
+$customer_id = isset($_SESSION['id'])? $_SESSION['id']: "";
  // this is for cart counting
     $cart_count = cart_count_controller($customer_id);
 ?>

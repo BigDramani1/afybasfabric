@@ -11,7 +11,7 @@ else{
 	$link="../view/dash/dashboard.php";
     $cart="cart.php";
 }
-$customer_id = $_SESSION['id'];
+$customer_id = isset($_SESSION['id'])? $_SESSION['id']: "";
  // this is for cart counting
     $cart_count = cart_count_controller($customer_id);
 ?>

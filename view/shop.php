@@ -2,9 +2,9 @@
 require('../settings/core.php');
 require('../controllers/product_controller.php');
 include('../controllers/cart_controller.php');
-$customer_id = $_SESSION['id'];
-$cart_count = cart_count_controller($customer_id);
-
+$customer_id = isset($_SESSION['id'])? $_SESSION['id']: "";
+ // this is for cart counting
+    $cart_count = cart_count_controller($customer_id);
 if (empty($_SESSION['id'])) {
 	$link="../login/login-user.php";
     $cart="../login/login-user.php";
