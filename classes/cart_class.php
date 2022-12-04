@@ -41,8 +41,8 @@ class Cart extends Connection {
     return $this->fetchOne("SELECT (products.product_price *cart.qty) as each_amount FROM cart join products on (products.product_id = cart.p_id) where cart.c_id = '$customer_id' and cart.p_id = '$product_id'");
 } 
 
-    function add_order($customer_id, $invoice_no, $order_date, $order_status){
-        return $this->query("insert into orders (customer_id, invoice_no, order_date, order_status) values('$customer_id','$invoice_no', '$order_date', '$order_status')");
+    function add_order($customer_id, $invoice_no, $order_date, $order_status, $amount){
+        return $this->query("insert into orders (customer_id, invoice_no, order_date, order_status, amount) values('$customer_id','$invoice_no', '$order_date', '$order_status', '$amount')");
     }
    
     			
@@ -58,11 +58,18 @@ class Cart extends Connection {
         return $this->query("insert into payment(amt, customer_id, order_id, currency, payment_date) values('$amount', '$customer_id', '$order_id', '$currency', '$payment_date')");
     }
 
-  
+  // show order for admin
     function show_orders(){
         //display orders that customers have placed
-        return $this->fetch("SELECT  `customer`.`customer_name`,`customer`.`customer_id`,  `orders`.`order_id`, `orders`.`invoice_no`, `orders`.`order_date`, `orders`.`order_status` FROM `orders` 
+        return $this->fetch("SELECT  `customer`.`customer_name`,`customer`.`customer_id`,  `orders`.`order_id`, `orders`.`invoice_no`, `orders`.`order_date`, `orders`.`order_status`, `orders`.`amount` FROM `orders` 
         JOIN `customer` ON (`customer`.`customer_id` = `orders`.`customer_id`)");
+    }
+
+    // show order for users
+    function show_user_order($customer_id){
+        //display orders that customers have placed
+        return $this->fetch("SELECT `customer`.`customer_id`,  `orders`.`order_id`, `orders`.`invoice_no`, `orders`.`order_date`, `orders`.`order_status`, `orders`.`amount` FROM `orders` 
+        JOIN `customer` ON (`customer`.`customer_id` = `orders`.`customer_id`) where orders.customer_id = '$customer_id'");
     }
 
     function user_orders($customer_id){
@@ -83,6 +90,7 @@ class Cart extends Connection {
         function show_receipt($customer_id){
             return $this->fetch("select * from receipt inner join brands on p_id where c_id='$customer_id'");
         } 
+        
   // remove from receipt class
   function remove_from_receipt($customer_id){
     return $this->query("delete from receipt where c_id = '$customer_id'");

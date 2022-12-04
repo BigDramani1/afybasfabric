@@ -56,11 +56,11 @@ function each_total_amount_controller($customer_id, $product_id){
     return $new_cart->each_total_amount ($customer_id, $product_id);
 }
 
-function  add_order_controller($customer_id, $invoice_no, $order_date, $order_status){
+function  add_order_controller($customer_id, $invoice_no, $order_date, $order_status, $amount){
     //create an instance of the cart class
     $cart_instance = new Cart();
     //call the add_order method from the cart class
-    return $cart_instance->add_order($customer_id, $invoice_no, $order_date, $order_status);
+    return $cart_instance->add_order($customer_id, $invoice_no, $order_date, $order_status, $amount);
 
 }
 
@@ -95,6 +95,11 @@ function show_customer_order($customer_id){
     return $show->user_orders($customer_id);
 }
 
+// displaying customer order
+function show_user_order_controller($customer_id){
+    $show = new Cart();
+    return $show->show_user_order($customer_id);
+}
 
 function show_orders_controller(){
     //create an instance of the cart class

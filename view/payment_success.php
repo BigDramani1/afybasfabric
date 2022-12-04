@@ -99,7 +99,7 @@ foreach ($counting as $afybas){
 <body>
     
     <div class="print-button-container">
-        <a href="../actions/delete_receipt.php?id='<?php echo $customer_id?>'" class="print-button">View Dashboard</a>
+        <a href="../actions/delete_receipt.php?id=<?php echo $customer_id?>" class="print-button">View Dashboard</a>
     </div>
     <div class="container invoice mb-0">
         <div class="row">

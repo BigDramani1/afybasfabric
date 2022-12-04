@@ -44,7 +44,7 @@ if(isset($decodedResponse->data->status) && $decodedResponse->data->status === '
     $order_date = date('Y/m/d');
     $order_status = 'success';
     $totaling = $_GET['total'];
-    $addorder = add_order_controller($customer_id, $invoice_no, $order_date, $order_status);
+    $addorder = add_order_controller($customer_id, $invoice_no, $order_date, $order_status, $amount['Amount']);
   
 
     if($addorder){

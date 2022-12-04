@@ -154,6 +154,7 @@ if (check_permission() != 1) {
                                             <th>Customer ID</th>
                                             <th>Invoice Number</th>
                                             <th>Order Date</th>
+                                            <th>Total Amount</th>
                                             <th>Order Status</th>
                                         </tr>
                                     </thead>
@@ -168,6 +169,7 @@ if (check_permission() != 1) {
                                                         <td>{$order['customer_name']}</td>
                                                         <td>{$order['invoice_no']}</td>
                                                         <td>{$order['order_date']}</td>
+                                                        <td>{$order['amount']}</td>
                                                         <td>{$order['order_status']}</td>
                                                     </tr>
                                                     ";

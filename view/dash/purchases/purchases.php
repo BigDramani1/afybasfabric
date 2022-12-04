@@ -172,23 +172,29 @@ if ($_SESSION['user_role'] != 2 and empty($_SESSION['id'])){
                         </tr>
                       </thead>
                       <tbody>
+                        <?php 
+                        $display=show_user_order_controller($customer_id);
+                          foreach ($display as $result){
+                        echo "
                         <tr>
                           <td>
-                           Brocade
+                           {$result['order_id']}
                           </td>
                           <td>
-                           12-03-2022
+                          {$result['order_date']}
                           </td>
                           <td>
-                            456494
+                          {$result['invoice_no']}
                           </td>
                           <td>
-                            GH₵ 100.00
+                          {$result['amount']}
                           </td>
                           <td>
-                            success
+                          {$result['order_status']}
                           </td>
                         </tr>
+                        ";}
+                        ?>
                       </tbody>
                     </table>
                   </div>
