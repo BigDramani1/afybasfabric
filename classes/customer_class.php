@@ -40,6 +40,11 @@ class Customer extends Connection{
     function update_user_account($name, $city, $email){
         return $this->query("UPDATE customer set customer_name = '$name', customer_city='$city' where customer_email='$email'");
         }
+
+        //count the number of customers
+    function count_customers(){
+        return $this->fetchOne("Select count(customer_id) as clients from customer where user_role = 2");
+    }
 }
 
 ?>

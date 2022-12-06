@@ -153,6 +153,17 @@ function remove_from_receipt_controller($customer_id){
         return $update->add_to_admin_receipt($product_id, $customer_id, $quantity, $total, $date);
  }
 
+ // function count overall money
+ function cal(){
+    $count =new Cart();
+    return $count->calculate();
+ }
+
+ // function count overall materials purchased
+ function cal_ctr(){
+    $count =new Cart();
+    return $count->calculate_purchase();
+ }
 
  
 ?>

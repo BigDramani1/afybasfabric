@@ -131,4 +131,15 @@ class Cart extends Connection
           return $this->query("insert into admin_receipt (p_id, c_id, qty, each_total, date) values('$product_id', '$customer_id', '$quantity', '$total', '$date')");
       }
 
+      //count total of every amount 
+      function calculate(){
+        return $this->fetchOne('SELECT SUM(amt) as cases from payment');
+      }
+      
+      //count total number of materials purchased
+      function calculate_purchase(){
+        return $this->fetchOne('SELECT count(amt) as pays from payment');
+      }
+
+
 }

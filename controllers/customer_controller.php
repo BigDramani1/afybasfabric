@@ -53,5 +53,10 @@ function select_all_customers_controller(){
         return $update->update_user_account($name, $city, $email);
  }
 
+ function count_customer_ctr(){
+    $count = new Customer();
+    return $count->count_customers();
+ }
+
  
 ?>
