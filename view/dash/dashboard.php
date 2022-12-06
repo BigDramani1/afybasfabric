@@ -7,7 +7,7 @@ if ($_SESSION['user_role'] != 2 and empty($_SESSION['id'])){
   $customer_id = $_SESSION['id'];
  // this is for cart counting
     $cart_count = cart_count_controller($customer_id);
-  
+    $paid=count_paid_r($customer_id)
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,7 +32,7 @@ if ($_SESSION['user_role'] != 2 and empty($_SESSION['id'])){
       <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
           <a class="navbar-brand brand-logo" href="dashboard.php"><img src="images/logo.svg" alt="logo"/></a>
-          <a class="navbar-brand brand-logo-mini" href="dashboard.php"><img src="images/logo-mini.svg" alt="logo"/></a>
+          <a class="navbar-brand brand-logo-mini" href="dashboard.php"><img src="images/logo.svg" alt="logo"/></a>
           <button class="navbar-toggler navbar-toggler align-self-center d-none d-lg-flex" type="button" data-toggle="minimize">
             <span class="typcn typcn-th-menu"></span>
           </button>
@@ -145,7 +145,7 @@ if ($_SESSION['user_role'] != 2 and empty($_SESSION['id'])){
                 <div class="card">
                   <div class="card-body">
                     <div class="d-flex flex-wrap justify-content-between">
-                      <i class="fa fa-money fa-4x" style="color:green"><span style="margin-left:50px">4</span></i>
+                      <i class="fa fa-money fa-4x" style="color:green"><span style="margin-left:50px"><?php echo $paid['paid'];?></span></i>
                     </div> 
                                     <p style="text-align: center;">Number of Materials Purchased</p>           
                   </div>

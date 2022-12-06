@@ -155,7 +155,7 @@ start carting -->
                             <td class=\"align-middle\">{$product['product_price']}</td>
                             <form method = 'post' action='../actions/update_quantity.php'>
                             <td class=\"align-middle\">
-                            <input type='hidden' name='product_id' value= {$product['product_id']}>	
+                            <input type='hidden' name='product_id' id='product_id' value= {$product['product_id']}>	
                             <input type='hidden' name='total' id='total' value= {$each_item['each_amount']}>	
                                 <input style=\"width:50%; text-align:center;\" name='quantity' value={$product['qty']}>
                             </td>
@@ -307,7 +307,7 @@ start carting -->
 		alert('Window closed.');
 		},
 		callback: function(response){
-			window.location = `../actions/processing.php?email=${document.getElementById("email").value}&amount=${document.getElementById("amount").value}&total=${document.getElementById("total").value}&reference=${response.reference}`
+			window.location = `../actions/processing.php?email=${document.getElementById("email").value}&amount=${document.getElementById("amount").value}&reference=${response.reference}`
 		}
 	});
 	handler.openIframe();

@@ -86,10 +86,15 @@ function select_one_categoryname($category){
 	}
 
 // update one product method
-    function update_one_product ($product_id, $product_cat, $product_brand, $product_title, $product_price, $product_desc, $product_image, $product_keywords, $product_yards) {
+    function update_one_product ($product_id, $product_cat, $product_brand, $product_title, $product_price, $product_desc, $product_keywords, $product_yards) {
         // return true or false
-        return $this->query("update products set product_cat = '$product_cat', product_brand = '$product_brand', product_title = '$product_title', product_price = '$product_price', product_desc = '$product_desc', product_image = '$product_image', product_keywords = '$product_keywords',  product_yards = '$product_yards' where product_id = '$product_id'");
+        return $this->query("update products set product_cat = '$product_cat', product_brand = '$product_brand', product_title = '$product_title', product_price = '$product_price', product_desc = '$product_desc', product_keywords = '$product_keywords',  product_yards = '$product_yards' where product_id = '$product_id'");
 
+    }
+    //update one product image
+
+    function update_one_image($product_image, $product_id){
+        return $this->query("update products set product_image = '$product_image' where product_id = '$product_id'");
     }
 
 //delete one product method

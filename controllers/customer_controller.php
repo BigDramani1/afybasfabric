@@ -53,7 +53,5 @@ function select_all_customers_controller(){
         return $update->update_user_account($name, $city, $email);
  }
 
-
-
  
 ?>

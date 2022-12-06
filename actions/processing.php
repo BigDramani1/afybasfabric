@@ -36,18 +36,16 @@ $reference = $_GET['reference'];
 if(isset($decodedResponse->data->status) && $decodedResponse->data->status === 'success'){
     // get form values
     $email = $_GET['email'];
-    $amount = $_POST['amount'];
-    
+    $amount = $_GET['amount'];
 
     $customer_id = $_SESSION['id'];
     $invoice_no = mt_rand(100, 1000);
     $order_date = date('Y/m/d');
     $order_status = 'success';
-    $totaling = $_GET['total'];
-    $addorder = add_order_controller($customer_id, $invoice_no, $order_date, $order_status, $amount['Amount']);
-  
+    $add_order = add_order_controller($customer_id, $invoice_no, $order_date, $order_status, $amount);
 
-    if($addorder){
+
+    if($add_order){
 // get the most recent order id
         $new_order = get_recent_order_controller();
      
@@ -57,11 +55,14 @@ if(isset($decodedResponse->data->status) && $decodedResponse->data->status === '
      
         foreach($products as $product){ 	
             $addorderdetails = add_order_details_controller($new_order['last_order'], $product['p_id'], $product['qty']);
-            $insert = receipt_controller($product['p_id'], $customer_id, $product['qty'], $totaling, $new_order['last_order']);
+            if($addorderdetails){
+            $each_item =each_total_amount_controller($customer_id, $product['p_id']);
+            $insert = receipt_controller($product['p_id'], $customer_id, $product['qty'], $each_item['each_amount'], $new_order['last_order']);
+            }
         }
     
     }
-         $amount = total_amount_controller($customer_id);
+    $amount = total_amount_controller($customer_id);
         // call controller function to insert into the payment table
         $result = add_payment_controller($amount['Amount'], $customer_id, $new_order['last_order'], "GH₵", $order_date);
 

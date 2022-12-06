@@ -141,5 +141,11 @@ function remove_from_receipt_controller($customer_id){
     $update = new Cart();
         return $update->cal_total_amount($customer_id);
  }
+ // count the number of paid items
+ function count_paid_r($customer_id){
+    $update = new Cart();
+        return $update->num_of_paid_items($customer_id);
+ }
+
  
 ?>

@@ -121,12 +121,17 @@ function select_one_product_controller($product_id){
     return $product_instance->select_one_product($product_id);
 }
 
-function update_one_product_controller($product_id, $product_cat, $product_brand, $product_title, $product_price, $product_desc, $product_image, $product_keywords, $product_yards){
+function update_one_product_controller($product_id, $product_cat, $product_brand, $product_title, $product_price, $product_desc, $product_keywords, $product_yards){
     //create an instance of the product class
     $product_instance = new Product();
     //call the update_one_product method from the class
-    return $product_instance-> update_one_product($product_id, $product_cat, $product_brand, $product_title, $product_price, $product_desc, $product_image, $product_keywords, $product_yards);
+    return $product_instance-> update_one_product($product_id, $product_cat, $product_brand, $product_title, $product_price, $product_desc,$product_keywords, $product_yards);
 }
+function update_img_controller($product_image, $product_id){
+$product = new Product();
+return $product->update_one_image($product_image, $product_id);
+}
+
 
 function delete_one_product_controller($product_id){
     //create an instance of the product class

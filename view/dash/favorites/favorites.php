@@ -19,7 +19,7 @@ if ($_SESSION['user_role'] != 2 and empty($_SESSION['id'])){
   <link rel="stylesheet" href="../../dash/vendors/mdi/css/materialdesignicons.min.css">
   <link rel="stylesheet" href="../../dash/css/vertical-layout-light/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="shortcut icon" href="../../dash/images/favicon.png" />
+  <link rel="shortcut icon" href="../../dash/images/logo.svg" />
 </head>
 
 <body>

@@ -136,7 +136,7 @@ foreach ($counting as $afybas){
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th class="border-0 text-uppercase small font-weight-bold">Order #</th>
+                                            <th class="border-0 text-uppercase small font-weight-bold">Item No. #</th>
                                             <th class="border-0 text-uppercase small font-weight-bold">Product Name</th>
                                             <th class="border-0 text-uppercase small font-weight-bold">Quantity</th>
                                             <th class="border-0 text-uppercase small font-weight-bold">Total</th>
@@ -147,7 +147,7 @@ foreach ($counting as $afybas){
                                          foreach ($receipt as $display) {
                                          echo"
                                         <tr>
-                                            <td>{$display['order_id']}</td>
+                                            <td>{$display['receipt_id']}</td>
                                             <td>{$display['brand_name']}</td>
                                             <td>{$display['qty']}</td>
                                             <td>GH₵ {$display['total']}</td>

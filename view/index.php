@@ -25,8 +25,8 @@ $customer_id = isset($_SESSION['id'])? $_SESSION['id']: "";
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="apple-touch-icon" href="../assets/img/apple-icon.png">
-    <link rel="shortcut icon" type="i../mage/x-icon" href="assets/img/favicon.ico">
+    <link rel="apple-touch-icon" href="../assets/img/logo.svg">
+    <link rel="shortcut icon" type="i../mage/x-icon" href="../assets/img/logo.svg">
 
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="../assets/css/templatemo.css">
