@@ -96,7 +96,7 @@ class Cart extends Connection
         return $this->fetchOne("SELECT COUNT(p_id) as counting FROM cart where c_id ='$customer_id'");
     }
 
-    //add to cart class
+    //add to receipt class
     function add_to_receipt($product_id, $customer_id, $quantity, $total, $order_id)
     {
         //returns true or false
@@ -106,7 +106,7 @@ class Cart extends Connection
     //count receipt
     function show_receipt($customer_id)
     {
-        return $this->fetch("select * from receipt inner join brands on p_id =  brand_id where c_id='$customer_id'");
+        return $this->fetch("select * from receipt inner join products on p_id =  product_id where c_id='$customer_id'");
     }
 
     // remove from receipt class
@@ -123,4 +123,12 @@ class Cart extends Connection
     function num_of_paid_items($customer_id){
         return $this->fetchOne("SELECT COUNT(amount) as paid FROM orders where customer_id ='$customer_id'");
     }
+
+      //add to cart class
+      function add_to_admin_receipt($product_id, $customer_id, $quantity, $total, $date)
+      {
+          //returns true or false
+          return $this->query("insert into admin_receipt (p_id, c_id, qty, each_total, date) values('$product_id', '$customer_id', '$quantity', '$total', '$date')");
+      }
+
 }

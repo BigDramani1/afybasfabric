@@ -3,17 +3,13 @@ require('../settings/core.php');
 require('../controllers/product_controller.php');
 require('../controllers/cart_controller.php');
 
-if (empty($_SESSION['id'])){
-    header("Location: ../login/login-user.php");
- }
+// if (empty($_SESSION['id'])){
+//     header("Location: ../login/login-user.php");
+//  }
  $customer_id = isset($_SESSION['id'])? $_SESSION['id']: "";
 $amount = total_controller($customer_id);
-$counting=show_customer_order($customer_id);
-$please = "";
-foreach ($counting as $afybas){
-    $please=$afybas['order_id'];
+$random = rand(10,100);
 
-}
 
 ?>
 <!doctype html>
@@ -108,11 +104,11 @@ foreach ($counting as $afybas){
                     <div class="card-body p-0">
                         <div class="row p-5 the-five">
                             <div class="col-md-6">
-                                <img src="images/rest.png" width="80" alt="Logo">
+                                <img src="../assets/img/logo.svg" width="80" alt="Logo">
                             </div>
 
                             <div class="col-md-6 text-right">
-                                <p class="font-weight-bold mb-1">Payment #<?php echo $please?></p>
+                                <p class="font-weight-bold mb-1">Payment #<?php echo $random?></p>
                                 <p class="text-muted"><?php echo  date('Y/m/d');?></p>
                             </div>
                         </div>
@@ -144,11 +140,12 @@ foreach ($counting as $afybas){
                                     </thead>
                                     <tbody>
                                         <?php $receipt=show_receipt_controller($customer_id);
+                                      
                                          foreach ($receipt as $display) {
                                          echo"
                                         <tr>
                                             <td>{$display['receipt_id']}</td>
-                                            <td>{$display['brand_name']}</td>
+                                            <td>{$display['product_title']}</td>
                                             <td>{$display['qty']}</td>
                                             <td>GH₵ {$display['total']}</td>
                                         </tr>";}

@@ -147,5 +147,12 @@ function remove_from_receipt_controller($customer_id){
         return $update->num_of_paid_items($customer_id);
  }
 
+  // add to admin recipt number of paid items
+  function admin_add_receipt($product_id, $customer_id, $quantity, $total,$date){
+    $update = new Cart();
+        return $update->add_to_admin_receipt($product_id, $customer_id, $quantity, $total, $date);
+ }
+
+
  
 ?>

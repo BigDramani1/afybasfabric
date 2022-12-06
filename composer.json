@@ -1,0 +1,17 @@
+{
+    "name": "johnm/afybasfabric",
+    "require": {
+        "phpunit/phpunit": "^9.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Johnm\\Afybasfabric\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "BigDramani1",
+            "email": "70725785+BigDramani1@users.noreply.github.com"
+        }
+    ]
+}

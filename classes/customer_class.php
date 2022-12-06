@@ -7,7 +7,6 @@ class Customer extends Connection{
         return $this->query("insert into customer(customer_name, customer_email, customer_city, customer_contact, customer_pass, code, status, user_role) values ('$name', '$email', '$city', '$phone','$password', '$code', 'notverified', 2)");
     }
 
-
     function one_customer_email($email){
         return $this->fetchOne("select * from customer where customer_email='$email'");
     }
