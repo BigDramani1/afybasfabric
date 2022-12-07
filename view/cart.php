@@ -299,7 +299,7 @@ start carting -->
   function payWithPaystack(e) {
 	e.preventDefault();
 	let handler = PaystackPop.setup({
-		key: 'pk_live_d52de7dc585a5a5c4c61739ff4eefed6b7ef0e81', // Replace with your public key
+		key: 'pk_live_bd5356607a881f3a0d6843b75d3172b74b9675cd', // Replace with your public key
 		email: document.getElementById("email").value,
 		amount: document.getElementById("amount").value * 100,
         currency:'GHS',
