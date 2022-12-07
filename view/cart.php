@@ -308,6 +308,15 @@ start carting -->
 		},
 		callback: function(response){
 			window.location = `../actions/processing.php?email=${document.getElementById("email").value}&amount=${document.getElementById("amount").value}&reference=${response.reference}`
+            Swal.fire({
+                title: 'Please Wait !',
+                html: 'Payment processing',// add html attribute if you want or remove
+                allowOutsideClick: false,
+                showConfirmButton: false,
+                willOpen: () => {
+                    Swal.showLoading()
+                },
+            });
 		}
 	});
 	handler.openIframe();

@@ -155,13 +155,13 @@ if ($_SESSION['user_role'] != 2 and empty($_SESSION['id'])){
                       <thead>
                         <tr>
                           <th>
-                            My order 
+                            My order #
                           </th>
                           <th>
                             Date Paid
                           </th>
                           <th>
-                           Invoice
+                           Invoice #
                           </th>
                           <th>
                             Amount
