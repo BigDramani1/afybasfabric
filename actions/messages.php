@@ -1,7 +1,7 @@
 <?php
 if (isset($_POST['sendmail'])) {
     $from = "johnmahama65@gmail.com";
-    $to = "a.dramani@aisghana.org";
+    $to = "johnmahama65@gmail.com";
     $subject = "{$_POST['subject']} from Afybas Fabric Haven";
     $msg = "<h3>From {$_POST["name"]}</h3> <br><p style=font-size:18px;>{$_POST['message']}</p>";
     include('../smtp/smtp/PHPMailerAutoload.php');
