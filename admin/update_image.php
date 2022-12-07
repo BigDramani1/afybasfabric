@@ -207,7 +207,7 @@ if (check_permission() != 1) {
                                             <label class="col-lg-4 col-form-label" for="product_image">Product image </label>
                                             <div class="col-lg-6">
                                             <img src="../images/products/<?php echo($product['product_image']);?>" width="200" height="200">
-                                                <input type="file" class="form-control"  name="product_image" placeholder="Product image">
+                                                <input type="file" class="form-control"  name="product_image" placeholder="Product image" accept="image/*">
                                             </div>
                                         </div>
                                         <div class="form-group row">
