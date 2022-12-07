@@ -7,7 +7,7 @@ include_once(dirname(__FILE__)).'../../settings/connection.php';
 class Product extends Connection {
 
 //brand methods
-    
+
 //add brand
     function add_brand($brandname){
         //returns true or false
