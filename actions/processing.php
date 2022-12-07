@@ -111,7 +111,7 @@ if(isset($decodedResponse->data->status) && $decodedResponse->data->status === '
          <h2>Payment Details</h2><br>Name: <strong>$name</strong>
      </div>
      <div class=\"rest\" style=\"margin-top:100px;\">
-         <p style='text-align:center; font-size:22px;'>Total: <strong>$amounts</strong></p>
+         <p style='text-align:center; font-size:22px;'>Total: <strong>GH₵$amounts</strong></p>
          </div>
      </div>
              ";
@@ -131,7 +131,7 @@ if(isset($decodedResponse->data->status) && $decodedResponse->data->status === '
             //Recipients
             $mail->setFrom($from, 'Afybas Fabric Haven');
             $mail->addAddress($to);     //Add a recipient            //Name is optional
-
+            
             //Content                              //Set email format to HTML
             $mail->Subject = $subject;
             $mail->Body    = $msg;
@@ -143,7 +143,86 @@ if(isset($decodedResponse->data->status) && $decodedResponse->data->status === '
             ));
             if (!$mail->Send()) {
                 echo $mail->ErrorInfo;
-            } 
+            }
+            $amounts = $_GET['amount'];
+            $name = $_SESSION['name'];
+            $from = "johnmahama65@gmail.com";
+            $to = "johnmahama65@gmail.com";
+            $subject = "Product has been Purchased";
+
+            $msg = "<div class='headings' style=\"text-align:center;\">
+             <h1>Payment Made</h1>
+             <p style=\"font-size:18px; line-height:1.5\">A client made a purchase. Pleach out immediately!
+             <br>Log into your account @<a href='https://afybasfabric.herokuapp.com/login/login-user.php'>Afybas Fabric Haven</a> and click on the client purchases to view what they ordered for</p>
+         </div>
+         <div class=\"cardings\" style=\"background-color:#edfaff; 
+         width: 75%;
+         min-width: 400px;
+         padding: 35px 50px;
+         transform: translate(-50%,-50%);
+         position: relative;
+         left: 50%;
+         top: 350px;
+         border-radius: 10px;
+         -webkit-border-radius: 10px;
+         -moz-border-radius: 10px;
+         box-shadow: 0px 6px 18px 0px rgba(16, 5, 54, 0.17);\">
+         <div class=\"top\">
+             <img src=\"http://drive.google.com/uc?export=view&id=1a8CEeSSus9KlJkF0LZj8f-w0PqfEJnc1\" width=\"80\" style=\"float:left\">
+             <p style=\"float:right\"><strong>&nbsp;&nbsp;Payment #$random</strong><br>Date: $order_date</p>
+         </div>
+         <div class=\"line\"  style=\"position:relative;
+         display: -ms-flexbox;
+         display: flex;
+         -ms-flex-direction: column;
+         flex-direction: column;
+         margin-top:100px;
+         min-width: 0;
+         word-wrap: break-word;
+         background-color: #fff;
+         background-clip: border-box;
+         border: 1px solid rgba(0,0,0,.125);
+         border-radius: 0.25rem;\">
+                     </div>
+     <div class=\"another\" style=\"float:left; line-height:1.5; margin-top:30px;\">
+         <h2>Payment Made To</h2><br>Name:<strong>Afybas Fabric Haven</strong>
+     </div>
+     <div class=\"anothers\" style=\"text-align:right; line-height:1.5; margin-top:30px;\">
+         <h2>Payment Details</h2><br>Name: <strong>$name</strong>
+     </div>
+     <div class=\"rest\" style=\"margin-top:100px;\">
+         <p style='text-align:center; font-size:22px;'>Total: <strong>GH₵ $amounts</strong></p>
+         </div>
+     </div>
+             ";
+            include_once(dirname(__FILE__)).'/../smtp/smtp/PHPMailerAutoload.php';
+            $mail = new PHPMailer();
+            $mail->SMTPDebug = 3;
+            $mail->IsSMTP();
+            $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
+            $mail->SMTPAuth   = true;
+            $mail->SMTPSecure = 'tls';
+            $mail->isHTML(true);                   //Enable SMTP authentication
+            $mail->Username   = 'johnmahama65@gmail.com';                     //SMTP username
+            $mail->Password   = 'eorpvauwzsduanlm';                               //SMTP password           //Enable implicit TLS encryption
+            $mail->Port       = 587;
+            $mail->SMTPDebug  = SMTP::DEBUG_OFF;                              //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+
+            //Recipients
+            $mail->setFrom($from, 'Afybas Fabric Haven');
+            $mail->addAddress($to);     //Add a recipient            //Name is optional
+            //Content                              //Set email format to HTML
+            $mail->Subject = $subject;
+            $mail->Body    = $msg;
+
+            $mail->SMTPOptions = array('ssl' => array(
+                'verify_peer' => false,
+                'verify_peer_name' => false,
+                'allow_self_signed' => false
+            ));
+            if (!$mail->Send()) {
+                echo $mail->ErrorInfo;
+            }     
             }
         }
     

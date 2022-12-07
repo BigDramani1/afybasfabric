@@ -165,5 +165,11 @@ function remove_from_receipt_controller($customer_id){
     return $count->calculate_purchase();
  }
 
+ // function show everything controller
+ function select_ctr(){
+    $count =new Cart();
+    return $count->select_everything();
+ }
+
  
 ?>

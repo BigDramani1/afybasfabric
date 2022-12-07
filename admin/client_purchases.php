@@ -151,27 +151,26 @@ if (check_permission() != 1) {
                                 <table id="bootstrap-data-table" class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
-                                            <th>Order Id</th>
-                                            <th>Customer ID</th>
-                                            <th>Invoice Number</th>
-                                            <th>Order Date</th>
+                                            <th>Product Name</th>
+                                            <th>Customer Name</th>
+                                            <th>Quantity</th>
                                             <th>Total Amount</th>
-                                            <th>Order Status</th>
+                                            <th>Order Date</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                     <?php
-                                            $orders = show_orders_controller(); 
+                                            $orders = select_ctr(); 
                                             foreach($orders as $order){
                                               echo 
                                                     "
                                                     <tr>
-                                                        <td>{$order['order_id']}</td>
+                                                        <td>{$order['product_title']}</td>
                                                         <td>{$order['customer_name']}</td>
-                                                        <td>{$order['invoice_no']}</td>
-                                                        <td>{$order['order_date']}</td>
-                                                        <td>{$order['amount']}</td>
-                                                        <td>{$order['order_status']}</td>
+                                                        <td>{$order['qty']}</td>
+                                                        <td>{$order['each_total']}</td>
+                                                        <td>{$order['date']}</td>
+                                                        
                                                     </tr>
                                                     ";
                                                 }
@@ -203,8 +202,6 @@ if (check_permission() != 1) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
     <script src="assets/js/main.js"></script>
-
-
     <script src="assets/js/lib/data-table/datatables.min.js"></script>
     <script src="assets/js/lib/data-table/dataTables.bootstrap.min.js"></script>
     <script src="assets/js/lib/data-table/dataTables.buttons.min.js"></script>

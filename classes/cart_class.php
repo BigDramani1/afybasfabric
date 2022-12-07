@@ -140,6 +140,11 @@ class Cart extends Connection
       function calculate_purchase(){
         return $this->fetchOne('SELECT count(amt) as pays from payment');
       }
+       //select everything on cart
+       function select_everything(){
+        return $this->fetch('SELECT * from admin_receipt inner join customer on c_id = customer_id inner join  products on p_id = product_id');
+      }
+
 
 
 }
