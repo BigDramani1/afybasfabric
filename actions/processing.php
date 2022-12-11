@@ -15,7 +15,7 @@ CURLOPT_TIMEOUT => 30,
 CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 CURLOPT_CUSTOMREQUEST => "GET",
 CURLOPT_HTTPHEADER => array(
-    "Authorization: Bearer sk_live_497a3a223893acf3ff8ecfd4dce1158b2fc9b088", // replace with your private key on paystack  
+    "Authorization: Bearer sk_test_b185f885fd9f2d0e2cf8f9f2bfe16dafbd472556", // replace with your private key on paystack  
     "Cache-Control: no-cache",
 ),
 ));
