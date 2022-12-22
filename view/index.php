@@ -19,7 +19,8 @@ $customer_id = isset($_SESSION['id'])? $_SESSION['id']: "";
 
 <!DOCTYPE html>
 <html lang="en">
-
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7468739470326339"
+     crossorigin="anonymous"></script>
 <head>
     <title>Afybas Fabric Haven</title>
     <meta charset="utf-8">
