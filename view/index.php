@@ -1,7 +1,7 @@
 <?php 
 require __DIR__.'/settings/core.php';
-require __DIR__.'/controllers/cart_controller.phpp';
-require __DIR__.'/controllers/product_controller.phpp';
+require __DIR__.'/controllers/cart_controller.php';
+require __DIR__.'/controllers/product_controller.php';
 
  $user_role = isset($_SESSION['user_role'])? $_SESSION['user_role']: "";
 if ($user_role != 2 and empty($_SESSION['customer_id'])) {
