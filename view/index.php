@@ -1,352 +1,572 @@
 <?php 
-require('../settings/core.php');
-require('../controllers/product_controller.php');
-require('../controllers/cart_controller.php');
- 
-if (empty($_SESSION['id'])) {
-	$link="../login/login-user.php";
-    $cart="../login/login-user.php";
+require __DIR__.'/settings/core.php';
+require __DIR__.'/controllers/cart_controller.phpp';
+require __DIR__.'/controllers/product_controller.phpp';
+
+ $user_role = isset($_SESSION['user_role'])? $_SESSION['user_role']: "";
+if ($user_role != 2 and empty($_SESSION['customer_id'])) {
+  session_unset();
+session_destroy();
+	$link="login/index.php";
+    $cart="login/index.php";
 
 }
 else{
-	$link="../view/dash/dashboard.php";
+	$link="history.php";
     $cart="cart.php";
 }
-$customer_id = isset($_SESSION['id'])? $_SESSION['id']: "";
+$customer_id = isset($_SESSION['customer_id'])? $_SESSION['customer_id']: "";
  // this is for cart counting
     $cart_count = cart_count_controller($customer_id);
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7468739470326339"
-     crossorigin="anonymous"></script>
+
 <head>
-    <title>Afybas Fabric Haven</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Afrikanah Store: Home</title>
+    <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- Favicon icon-->
+  <link rel="shortcut icon" type="image/x-icon" href="assets/images/logo/logo1.png">
 
-    <link rel="apple-touch-icon" href="../assets/img/logo.svg">
-    <link rel="shortcut icon" type="i../mage/x-icon" href="../assets/img/logo.svg">
+  <!-- Libs CSS -->
+  <link href="assets/libs/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
+  <link href="assets/libs/feather-webfont/dist/feather-icons.css" rel="stylesheet" />
+  <link href="assets/libs/slick-carousel/slick/slick.css" rel="stylesheet" />
+  <link href="assets/libs/slick-carousel/slick/slick-theme.css" rel="stylesheet" />
+  <link href="assets/libs/simplebar/dist/simplebar.min.css" rel="stylesheet" />
+  <link href="assets/libs/nouislider/dist/nouislider.min.css" rel="stylesheet">
+  <link href="assets/libs/tiny-slider/dist/tiny-slider.css" rel="stylesheet">
+  <link href="assets/libs/dropzone/dist/min/dropzone.min.css" rel="stylesheet" />
+  <link href="assets/libs/prismjs/themes/prism-okaidia.min.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../assets/css/templatemo.css">
-    <link rel="stylesheet" href="../assets/css/custom.css">
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
-
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
-    <link rel="stylesheet" href="../assets/css/fontawesome.min.css">
+  <!-- Theme CSS -->
+  <link rel="stylesheet" href="assets/css/theme.min.css">
 </head>
-
-
 <body>
-    <!-- Header -->
-    <nav class="navbar navbar-expand-lg navbar-light shadow">
-        <div class="container d-flex justify-content-between align-items-center">
+  <style>
+    .fa.fa-instagram {
+  color: transparent;
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+  background: -webkit-radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+  </style>
+  <!-- navigation -->
+  <header>
 
-            <a class="navbar-brand text-success logo h1 align-self-center" href="index.php">
-                Afybas 
+    <div class="navbar navbar-light py-lg-4 pt-3 px-0 pb-0">
+      <div class="container">
+        <div class="row w-100 align-items-center g-lg-2 g-0">
+          <div class="col-xxl-2 col-lg-3">
+            <a class="navbar-brand d-none d-lg-block" href="index.php">
+              <img src="assets/images/logo/logo.png" style="height:100px;">
             </a>
+            <div class="d-flex justify-content-between w-100 d-lg-none">
+              <a class="navbar-brand" href="index.php">
+                <img src="assets/images/logo/logo.png" style="width:100px">
+              </a>
+              <div class="d-flex align-items-center lh-1">
 
-            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#templatemo_main_nav" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+                <div class="list-inline me-2">
+                  <div class="list-inline-item">
 
-            <div class="align-self-center collapse navbar-collapse flex-fill  d-lg-flex justify-content-lg-between" id="templatemo_main_nav">
-                <div class="flex-fill">
-                    <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.php">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="about.php">About</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="shop.php">Shop</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="contact.php">Contact</a>
-                        </li>
-                    </ul>
+                    <a href="<?php echo $link; ?>"><i class='fa fa-user' style="font-size:20px;    
+                     color:#284b70"></i></a>
+                  </div>
+                  <div class="list-inline-item">
+                    <a href="<?php echo $cart; ?>" class="text-muted position-relative"><i class="fa fa-shopping-cart"
+                      style="font-size:20px; color:#E75480"></i>
+                    <span class="position-absolute translate-middle badge rounded-pill bg-dark">
+                    <?php
+                    if($cart_count['counting']== 0){
+                      echo "0";
+                    } else{
+                      echo $cart_count['counting'];
+                    }
+                    ?>
+                    </span>
+                  </a>
+                  </div>
+
                 </div>
-                <div class="navbar align-self-center d-flex">
-                    <div class="d-lg-none flex-sm-fill mt-3 mb-4 col-7 col-sm-auto pr-3">
-                        <div class="input-group">
-                            <input type="text" class="form-control" id="inputMobileSearch" placeholder="Search ...">
-                            <div class="input-group-text">
-                                <i class="fa fa-fw fa-search"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <a class="nav-icon d-none d-lg-inline" href="#" data-bs-toggle="modal" data-bs-target="#templatemo_search">
-                        <i class="fa fa-fw fa-search text-dark mr-2"></i>
-                    </a>
-                    <a class="nav-icon position-relative text-decoration-none" href="<?php echo $cart; ?>">
-                        <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i><span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark"><?php echo $cart_count['counting'];?></span>
-                    </a>
-                    <a class="nav-icon position-relative text-decoration-none" href="<?php echo $link; ?>">
-                        <i class="fa fa-fw fa-user text-dark mr-3"></i>
-                    </a>
-                </div>
+                <!-- Button -->
+                <button class="navbar-toggler collapsed" type="button" data-bs-toggle="offcanvas"
+                  data-bs-target="#navbar-default" aria-controls="navbar-default" aria-expanded="false"
+                  aria-label="Toggle navigation">
+                  <span class="icon-bar top-bar mt-0"></span>
+                  <span class="icon-bar middle-bar"></span>
+                  <span class="icon-bar bottom-bar"></span>
+                </button>
+
+              </div>
             </div>
 
-        </div>
-    </nav>
-    <!-- Close Header -->
-
-    <!-- Modal -->
-    <div class="modal fade bg-white" id="templatemo_search" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="w-100 pt-1 mb-5 text-right">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <form action="../actions/search.php" method="get" class="modal-content modal-body border-0 p-0">
-                <div class="input-group mb-2">
-                    <input type="text" class="form-control" id="inputModalSearch" name="query" placeholder="Search ...">
+          </div>
+          <div class="col-xxl-6 col-lg-5 d-none d-lg-block">
+          <form action="action/all_process.php" method="GET">
+                  <div class="input-group">
+                    <input type="text" class="form-control" id="inputModalSearch" name="query" placeholder="Search ..." >
                     <button type="submit" name=search class="input-group-text bg-success text-light">
                         <i class="fa fa-fw fa-search text-white"></i>
                     </button>
                 </div>
-            </form>
-        </div>
-    </div>
-
-
-
-    <!-- Start Banner Hero -->
-    <div id="template-mo-zay-hero-carousel" class="carousel slide" data-bs-ride="carousel">
-        <ol class="carousel-indicators">
-            <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="0" class="active"></li>
-            <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="1"></li>
-            <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="2"></li>
-        </ol>
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <div class="container">
-                    <div class="row p-5">
-                        <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-                            <img class="img-fluid" src="../assets/img/3.png" alt="">
-                        </div>
-                        <div class="col-lg-6 mb-0 d-flex align-items-center">
-                            <div class="text-align-left align-self-center">
-                                <h1 class="h1 text-success"><b>Afybas</b> Fabric Haven</h1>
-                                <h3 class="h2">Don't miss out</h3>
-                                <p>
-                                    Get your affordable clothing fabrics from here!
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="container">
-                    <div class="row p-5">
-                        <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-                            <img class="img-fluid" src="../assets/img/final.png" alt="">
-                        </div>
-                        <div class="col-lg-6 mb-0 d-flex align-items-center">
-                            <div class="text-align-left">
-                                <h1 class="h1">Our prices are Cheap!!!</h1>
-                                <p> The starting price is GH₵ 35 per yard</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="container">
-                    <div class="row p-5">
-                        <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-                            <img class="img-fluid" src="../assets/img/1.png" alt="">
-                        </div>
-                        <div class="col-lg-6 mb-0 d-flex align-items-center">
-                            <div class="text-align-left">
-                                <h1 class="h1 text-success"><b>Explore your true style</b></h1>
-                                <p>
-                                    We promise comfort!
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <a class="carousel-control-prev text-decoration-none w-auto ps-3" href="#template-mo-zay-hero-carousel" role="button" data-bs-slide="prev">
-            <i class="fas fa-chevron-left"></i>
-        </a>
-        <a class="carousel-control-next text-decoration-none w-auto pe-3" href="#template-mo-zay-hero-carousel" role="button" data-bs-slide="next">
-            <i class="fas fa-chevron-right"></i>
-        </a>
-    </div>
-    <!-- End Banner Hero -->
-
-
-    <!-- Start Categories of The Month -->
-    <section class="container py-5">
-        <div class="row text-center pt-3">
-            <div class="col-lg-6 m-auto">
-                <h1 class="h1">Categories of The Month</h1>
-                <p>
-                    Our new stocks fabrics. It gets randomized every single time
-                </p>
-            </div>
-        </div>
-        <div class="row">
-        <?php 
-                $random = random_three_controller();
-                                            foreach($random as $product){
-                                                echo "
-            <div class=\"col-12 col-md-4 p-5 mt-3\">
-            <input type='hidden'>
-                <a href=\"#\"><img  src='../images/products/{$product["product_image"]}' class=\"rounded-circle img-fluid border\" style='height:300px; width:300px;'></a>
-                <h5 class=\"text-center mt-3 mb-3\">{$product['product_title']}</h5>
-                <p class=\"text-center\"><a  href=\"shop.php\" class=\"btn btn-success\">Go Shop</a></p>
-            </div>";
-        }?>
-        </div>
-    </section>
-    <!-- End Categories of The Month -->
-
-    <!-- Start Featured Product -->
-    <section class="bg-light">
-        <div class="container py-5">
-            <div class="row text-center py-3">
-                <div class="col-lg-6 m-auto">
-                    <h1 class="h1">Featured Product</h1>
-                    <p>
-                        <p class="text-center"><a  href="shop.php" class="btn btn-success">View more</a></p>
-                    </p>
-                </div>
-            </div>
-            <div class="row">
+                </form>
+          </div>
+          <div class="col-md-2 col-xxl-3 d-none d-lg-block">
+          </div>
+          <div class="col-md-2 col-xxl-1 text-end d-none d-lg-block">
+            <div class="list-inline">
+              <div class="list-inline-item">
+                <a href="<?php echo $cart; ?>" class="text-muted position-relative"><i class="fa fa-shopping-cart"
+                  style="font-size:20px; color:#E75480"></i>
+                <span class="position-absolute translate-middle badge rounded-pill bg-dark">
                 <?php
-                 $picks = random_three_controller();
-                 foreach($picks as $product){
-                echo"
-                <div class=\"col-12 col-md-4 mb-4\">
-                    <div class=\"card mb-4 product-wap rounded-0\">
-                            <div class=\"card rounded-0\">
-                                <img class=\"card-img rounded-0 img-fluid\" src='../images/products/{$product["product_image"]}'style=\"height:355px\">
-                                <div class=\"card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center\">
-                                    <ul class=\"list-unstyled\">
-                                        <li><a class=\"btn btn-success text-white mt-2\" href=\"shop_detail.php?product_id={$product["product_id"]}\"><i class=\"far fa-eye\"></i></a></li>
-                                        <li><a class=\"btn btn-success text-white mt-2\" href=\"shop_detail.php?product_id={$product["product_id"]}\"><i class=\"fas fa-cart-plus\"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        <div class=\"card-body\">
-                            <a href=\"view/shop_detail.php\" class=\"p text-decoration-none text-dark\">{$product['product_title']}</a>
-                            <p class=\"card-text\">
-                            <strong>GH₵ {$product['product_price']}</strong>     &nbsp;{$product['product_yards']}
-                            </p>
-                        </div>
-                    </div>
-                </div>";
-    }
-               ?>
+                    if($cart_count['counting']== 0){
+                      echo "0";
+                    } else{
+                      echo $cart_count['counting'];
+                    }
+                    ?>
+                </span>
+              </a>
+              </div>
+              <div class="list-inline-item">
+
+                <a href="<?php echo $link; ?>"><i class='fa fa-user' style="font-size:20px; color:#284b70"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="border-bottom pb-lg-4 pb-3">
+    <nav class="navbar navbar-expand-lg navbar-light navbar-default pt-0 pb-0">
+      <div class="container px-0 px-md-3">
+        <div class="offcanvas offcanvas-start p-4 p-lg-0" id="navbar-default">
+
+          <div class="d-flex justify-content-between align-items-center mb-2 d-block d-lg-none">
+            <a href="index.php"> <img src="assets/images/logo/logo.png" style="width:200px"></a>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="d-none d-lg-block">
+            <ul class="navbar-nav ">
+              <li class="nav-item dropdown">
+                <a class="nav-link" href="index.php" role="button">
+                  Home
+                </a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  Categories
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="shoes.php">
+                      &nbsp; Shoes</a></li>
+                  <li><a class="dropdown-item" href="bags.php">
+                      &nbsp; Bags</a></li>
+                      <li><a class="dropdown-item" href="clothing.php">
+                      &nbsp; Clothing</a></li>
+                  <li><a class="dropdown-item" href="fabrics.php">
+                      &nbsp; Fabrics</a></li>
+                  <li><a class="dropdown-item" href="accessories.php">
+                      &nbsp; Accessories</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link" href="about.php" role="button">
+                  About Us
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="contact.php" role="button" aria-expanded="false">
+                  Contact
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="d-block d-lg-none">
+            <ul class="navbar-nav ">
+              <li class="nav-item">
+                <form action="action/all_process.php" method="GET">
+                  <div class="input-group">
+                    <input type="text" class="form-control" id="inputModalSearch" name="query" placeholder="Search ..." >
+                    <button type="submit" name=search class="input-group-text bg-success text-light">
+                        <i class="fa fa-fw fa-search text-white"></i>
+                    </button>
+                </div>
+                </form>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="index.php">
+                  Home
+                </a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  Categories
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="shoes.php">
+                    &nbsp; Shoes</a></li>
+                <li><a class="dropdown-item" href="bags.php">
+                    &nbsp; Bags</a></li>
+                    <li><a class="dropdown-item" href="clothing.php">
+                    &nbsp; Clothing</a></li>
+                <li><a class="dropdown-item" href="fabrics.php">
+                    &nbsp; Fabrics</a></li>
+                <li><a class="dropdown-item" href="accessories.php">
+                    &nbsp; Accessories</a></li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="about.php" role="button" aria-expanded="false">
+                  About Us
+                </a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link" href="contact.php" role="button">
+                  Contact
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+  <main>
+      <section class="mt-8">
+   <div class="container">
+<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"></li>
+    <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></li>
+    <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner">
+    <div class="carousel-item active" style="background-color:#434754; border-radius: .5rem;">
+      <div class="container">
+        <div class="row p-5">
+            <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
+                <img class="img-fluid" src="assets/images/logo/couple.png" alt="" style="height:600px">
+            </div>
+            <div class="col-lg-6 mb-0 d-flex align-items-center">
+                <div class="text-align-left" style="padding-left:10px;">
+                    <h1 class="h1 text-white">Our prices are Cheap!!!</h1>
+                    <p class="text-white"> The starting price for everything is GH₵ 50</p>
+                </div>
             </div>
         </div>
+    </div>
+    </div>
+    <div class="carousel-item" style="background-color:#284b70; border-radius: .5rem;">
+      <div class="container">
+        <div class="row p-5">
+            <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
+                <img class="img-fluid" src="assets/images/logo/7.png" alt="" style="height:600px">
+            </div>
+            <div class="col-lg-6 mb-0 d-flex align-items-center">
+                <div class="text-align-left"  style="padding-left:10px;">
+                    <h1 class="h1 text-white">Explore your true style</h1>
+                    <p class="text-white"> Don't Hold Back!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="carousel-item" style="background-color:#77a290; border-radius: .5rem;">
+      <div class="container">
+        <div class="row p-5">
+            <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
+                <img class="img-fluid" src="assets/images/logo/shoe.png" alt="" style="height:600px">
+            </div>
+            <div class="col-lg-6 mb-0 d-flex align-items-center">
+                <div class="text-align-left"  style="padding-left:10px;">
+                    <h1 class="h1 text-white">See What We Have!!!</h1>
+                    <p class="text-white"> We promise comfort!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </a>
+</div>
+</div>
+</section>
+    <section class="mb-lg-10 mt-lg-14 my-8">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 mb-6">
+            <h3 class="mb-0">Featured Categories</h3>
+          </div>
+        </div>
+        <div class="category-slider">
+          <div class="item"> <a href="shoes.php" class="text-decoration-none text-inherit">
+            <div class="card card-product mb-lg-4">
+              <div class="card-body text-center py-8">
+                <img src="assets/images/logo/22.png" class="mb-3" height="85">
+                <div class="text-truncate" style="font-size:16px">Shoes</div>
+              </div>
+            </div>
+          </a></div>
+          <div class="item"> <a href="bags.php" class="text-decoration-none text-inherit">
+            <div class="card card-product mb-lg-4">
+              <div class="card-body text-center py-8">
+                <img src="assets/images/logo/21.png" class="mb-3" height="85">
+                <div class="text-truncate"  style="font-size:16px">Bags</div>
+              </div>
+            </div>
+          </a></div>
+          <div class="item"> <a href="clothing.php" class="text-decoration-none text-inherit">
+            <div class="card card-product mb-lg-4">
+              <div class="card-body text-center py-8">
+                <img src="assets/images/logo/25.png" class="mb-3" height="85">
+                <div class="text-truncate"  style="font-size:16px">Clothing</div>
+              </div>
+            </div>
+          </a></div>
+          <div class="item"> <a href="fabrics.php" class="text-decoration-none text-inherit">
+            <div class="card card-product mb-lg-4">
+              <div class="card-body text-center py-8">
+                <img src="assets/images/logo/24.png" class="mb-3" height="85" width="200">
+                <div class="text-truncate" style="font-size:16px">Fabrics</div>
+              </div>
+            </div>
+          </a></div>
+            <div class="item"><a href="accessories.php" class="text-decoration-none text-inherit">
+              <div class="card card-product mb-lg-4">
+                <div class="card-body text-center py-8">
+                  <img src="assets/images/logo/23.png" class="mb-3" height="85">
+                  <div class="text-truncate" style="font-size:16px">Accessories</div>
+                </div>
+              </div>
+            </a></div>
+        </div>
+      </div>
     </section>
-    <!-- End Featured Product -->
 
-  <!-- Start Footer -->
-  <footer class="bg-dark" id="tempaltemo_footer">
-        <div class="container">
-            <div class="row">
-
-                <div class="col-md-4 pt-5">
-                    <h2 class="h2 text-success border-bottom pb-3 border-light logo">Afybas Fabric Haven</h2>
-                    <ul class="list-unstyled text-light footer-link-list">
-                        <li>
-                            <i class="fas fa-map-marker-alt fa-fw"></i>
-                            Haatso Pear Street 4
-                        </li>
-                        <li>
-                            <i class="fa fa-phone fa-fw"></i>
-                            <a class="text-decoration-none">+233 553058208</a>
-                        </li>
-                        <li>
-                            <i class="fa fa-envelope fa-fw"></i>
-                            <a class="text-decoration-none" href="mailto:sandybons28@gmail.com">sandybons28@gmail.com</a>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="col-md-4 pt-5">
-                    <h2 class="h2 text-light border-bottom pb-3 border-light">Products</h2>
-                    <ul class="list-unstyled text-light footer-link-list">
-                        <li><a class="text-decoration-none" href="shop.php">Brocade Fabrics</a></li>
-                        <li><a class="text-decoration-none" href="shop.php">Lace Fabrics</a></li>
-                        <li><a class="text-decoration-none" href="shop.php">Cotton Fabrics</a></li>
-                        <li><a class="text-decoration-none" href="shop.php">Crepe Fabrics</a></li>
-                        <li><a class="text-decoration-none" href="shop.php">Satins Fabrics</a></li>
-                        <li><a class="text-decoration-none" href="shop.php">Silk Fabrics</a></li>
-                    </ul>
-                </div>
-
-                <div class="col-md-4 pt-5">
-                    <h2 class="h2 text-light border-bottom pb-3 border-light">Further Info</h2>
-                    <ul class="list-unstyled text-light footer-link-list">
-                        <li><a class="text-decoration-none" href="index.php">Home</a></li>
-                        <li><a class="text-decoration-none" href="about.php">About Us</a></li>
-                        <li><a class="text-decoration-none" href="contact.php">Shop Locations</a></li>
-                        <li><a class="text-decoration-none" href="#">FAQs</a></li>
-                        <li><a class="text-decoration-none" href="contact.php">Contact</a></li>
-                    </ul>
-                </div>
-
-            </div>
-
-            <div class="row text-light mb-4">
-                <div class="col-12 mb-3">
-                    <div class="w-100 my-3 border-top border-light"></div>
-                </div>
-                <div class="col-auto me-auto">
-                    <ul class="list-inline text-left footer-icons">
-                        <li class="list-inline-item border border-light rounded-circle text-center">
-                            <a class="text-light text-decoration-none" target="_blank" href="https://www.facebook.com/profile.php?id=100075874705542&mibextid=ZbWKwL"><i class="fab fa-facebook-f fa-lg fa-fw"></i></a>
-                        </li>
-                        <li class="list-inline-item border border-light rounded-circle text-center">
-                            <a class="text-light text-decoration-none" target="_blank" href="https://instagram.com/afybas_fabric_haven?igshid=YmMyMTA2M2Y="><i class="fab fa-instagram fa-lg fa-fw"></i></a>
-                        </li>
-                        <li class="list-inline-item border border-light rounded-circle text-center">
-                            <a class="text-light text-decoration-none" target="_blank" href=""><i class="fab fa-tiktok fa-lg fa-fw"></i></a>
-                        </li>
-                        <li class="list-inline-item border border-light rounded-circle text-center">
-                            <a class="text-light text-decoration-none" target="_blank" href="https://wa.me/233553058208"><i class="fab fa-whatsapp fa-lg fa-fw"></i></a>
-                        </li>
-                    </ul>
-                </div>
-               
-            </div>
+    <!-- Popular Products End-->
+    <section class="my-lg-14 my-8">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 mb-6" style="text-align:center;">
+            <h3 class="mb-0" style="padding-bottom:10px">Categories of the Month</h3>
+            <a href="all_products.php" class="btn btn-primary">View All Product</a>
         </div>
-
-        <div class="w-100 bg-black py-3">
-            <div class="container">
-                <div class="row pt-2">
-                    <div class="col-12">
-                        <p class="text-left text-light">
-                            2022 © Copyright - All Rights Reserved.
-                            | Made By <a href="mailto:alhassan.dramani@ashesi.edu.gh">Dramani Alhassan </a>
-
-                        </p>
+        <div class="row row-cols-lg-3 row-cols-1 row-cols-md-2 g-4">
+        <?php
+        $products = select_6_products_controller();
+        foreach ($products as $bag){
+        echo"
+          <div class=\"col\">
+            <div class=\"card card-product\">
+              <div class=\"card-body\">
+                <div class=\"text-center  position-relative \"> <a href=\"product_detail.php?product_id={$bag["product_id"]}\"><img
+                      src=\"assets/images/products/{$bag['image_1']}\" style=\"height:300px\" class=\"mb-3 img-fluid\"></a></div>
+                      <div class=\"d-flex justify-content-between align-items-center mt-3\">
+                      <a href='product_detail.php?product_id={$bag["product_id"]}' style='font-size:20px;'>{$bag['title']}</a>
+                      <div><span style=\"font-size:16px; color:#277b35\">In stock</span></div>
+                      </div>
+                      <div class=\"d-flex justify-content-between align-items-center mt-3\">
+                        <div><span style=\"font-size:16px; color:#277b35\">GH₵ {$bag['price']}</div>
+                          <div><span style=\"font-size:16px; color:#DC143C\"><i class=\"fa fa-map-marker\"></i>{$bag['country']}</div>
+                      </div>
                     </div>
+                  </div>
+                </div>";}
+          ?>
+      </div>
+      <?php if(!$products){
+            echo "<h3>😟Sorry, no product is available</h3>";
+         }
+         ?>
+    </section>
+  </main>
+
+
+  <!-- Modal for displaying product -->
+  <div class="modal fade" id="quickViewModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-body p-8">
+          <div class="position-absolute top-0 end-0 me-3 mt-3">
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="row">
+            <div class="col-lg-6">
+              <!-- img slide -->
+              <div class="product productModal" id="productModal">
+                <div class="zoom" onmousemove="zoom(event)" style="
+                  background-image: url(assets/images/products/bikin2.jpg);
+                ">
+                  <!-- img -->
+                  <img src="assets/images/products/bikin2.jpgF" style="height:400px" alt="" />
                 </div>
+                <div>
+                  <div class="zoom" onmousemove="zoom(event)" style="
+                    background-image: url(assets/images/products/bikini1.webp);
+                  ">
+                    <!-- img -->
+                    <img src="assets/images/products/bikini1.webp" style="height:400px" alt="" />
+                  </div>
+                </div>
+                <div>
+                  <div class="zoom" onmousemove="zoom(event)" style="
+                    background-image: url(assets/images/products/bikini2.webp);
+                  ">
+                    <!-- img -->
+                    <img src="assets/images/products/bikini2.webp" style="height:400px" alt="" />
+                  </div>
+                </div>
+                <div>
+                  <div class="zoom" onmousemove="zoom(event)" style="
+                    background-image: url(assets/images/products/bikini3.webp);
+                  ">
+                    <!-- img -->
+                    <img src="assets/images/products/bikini3.webp"style="height:400px" alt="" />
+                  </div>
+                </div>
+              </div>
+              <!-- product tools -->
+              <div class="product-tools">
+                <div class="thumbnails row g-3" id="productModalThumbnails">
+                  <div class="col-3">
+                    <div class="thumbnails-img">
+                      <!-- img -->
+                      <img src="assets/images/products/bikin2.jpg" alt="" />
+                    </div>
+                  </div>
+                  <div class="col-3">
+                    <div class="thumbnails-img">
+                      <!-- img -->
+                      <img src="assets/images/products/bikini1.webp" alt="" />
+                    </div>
+                  </div>
+                  <div class="col-3">
+                    <div class="thumbnails-img">
+                      <!-- img -->
+                      <img src="assets/images/products/bikini2.webp" alt="" />
+                    </div>
+                  </div>
+                  <div class="col-3">
+                    <div class="thumbnails-img">
+                      <!-- img -->
+                      <img src="assets/images/products/bikini3.webp" alt="" />
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
         </div>
+      </div>
+    </div>
+  </div>
 
-    </footer>
-    <!-- End Footer -->
-   
-
-    <!-- Start Script -->
-    <script src="../assets/js/jquery-1.11.0.min.js"></script>
-    <script src="../assets/js/jquery-migrate-1.2.1.min.js"></script>
-    <script src="../assets/js/bootstrap.bundle.min.js"></script>
-    <script src="../assets/js/templatemo.js"></script>
-    <script src="../assets/js/custom.js"></script>
-    <!-- End Script -->
+  </div>
+  <footer class="footer">
+  <div class="container">
+    <div class="row">
+          <div class="col-md-3">
+            <h3 class="mb-4 text-white">Categories</h3>
+            <ul class="nav flex-column border-top py-4">
+              <li class="nav-item mb-2"><a href="shoes.php" class="nav-link"> Shoes</span></a></li>
+              <li class="nav-item mb-2"><a href="bags.php" class="nav-link">Bags</a></li>
+              <li class="nav-item mb-2"><a href="clothing.php" class="nav-link">Clothing</a></li>
+              <li class="nav-item mb-2"><a href="fabrics.php" class="nav-link">Fabrics</a></li>
+              <li class="nav-item mb-2"><a href="accessories.php" class="nav-link"> Accessories</a></li>
+            </ul>
+          </div>
+          <div class="col-md-3">
+            <h3 class="mb-4 text-white">Further Information</h3>
+            <ul class="nav flex-column border-top py-4">
+              <li class="nav-item mb-2"><a href="faq.php" class="nav-link">FAQ</a></li>
+              <li class="nav-item mb-2"><a href="return_&_refund.php" class="nav-link">Return & Refund Policy</a></li>
+              <li class="nav-item mb-2"><a href="login/seller_register.php" class="nav-link">Want to be a seller?</a></li>
+              <li class="nav-item mb-2"><a href="faq.php" class="nav-link">Want to Report?</a></li>
+            </ul>
+          </div>
+          <div class="col-md-3">
+            <h3 class="mb-4 text-white">Get to know us</h3>
+            <ul class="nav flex-column border-top py-4">
+              <li class="nav-item mb-2"><a href="about.php" class="nav-link">Company</a></li>
+              <li class="nav-item mb-2"><a href="about.php" class="nav-link">About</a></li>
+              <li class="nav-item mb-2"><a href="privacy_policy.php" class="nav-link">Privacy Policy</a></li>
+              <li class="nav-item mb-2"><a href="terms_and_conditions.php" class="nav-link">Terms and Conditions</a></li>
+              <li class="nav-item mb-2"><a href="contact.php" class="nav-link">Help Center</a></li>
+            </ul>
+          </div>
+          <div class="col-md-3">
+            <h3 class="mb-4 text-white">Reach us on</h3>
+            <ul class="nav flex-column border-top py-4">
+              <li class="nav-item mb-2"><a href="https://wa.me/233548342821"><i class="fa fa-twitter fa-2x" style="color:#4169e1"></i> <span class='text-white'>Twitter</span></a></li>
+              <li class="nav-item mb-2"><a href="https://wa.me/233548342821"><i class="fa fa-instagram fa-2x"></i><span class='text-white'>&nbsp; Instagram</span></a></li>
+              <li class="nav-item mb-2">  <a href="https://wa.me/233548342821"><i class="fa fa-whatsapp fa-2x"style="color:green"></i> <span class='text-white'>&nbsp;WhatsApp</span></a></li>
+            </ul>
+          </div>
+          <div class="border-top py-4">
+      <div class="row align-items-center">
+        <div class="col-lg-5 text-lg-start text-center mb-2 mb-lg-0">
+          <ul class="list-inline mb-0">
+            <li class="list-inline-item text-white">Our Payment Platforms</li>
+            <li class="list-inline-item">
+              <a href="#!"><img src="assets/images/payment/american-express.svg" alt=""></a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#!"><img src="assets/images/payment/mastercard.svg" alt=""></a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#!"><img src="assets/images/payment/visa.svg" alt=""></a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#!"><img src="assets/images/payment/momo.png" alt="" style='width:100px'></a>
+            </li>
+          </ul>
+        </div>
+        
+      </div>
+    </div>
+    <div class="border-top py-4">
+      <div class="row align-items-center" >
+        <div class="col-md-12" style="text-align:center;"><span class="text-white">2022 © Copyright - All Rights Reserved. |
+         Created by <a href="mailto:a.dramani@aisghana.org" style="color:yellow;">Dramani Alhassan</a></span></div>
+      </div>
+    </div>
+</footer>
+    <!-- Javascript-->
+    <!-- Libs JS -->
+    <script src="assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/libs/jquery-countdown/dist/jquery.countdown.min.js"></script>
+    <script src="assets/libs/slick-carousel/slick/slick.min.js"></script>
+    <script src="assets/libs/simplebar/dist/simplebar.min.js"></script>
+    <script src="assets/libs/nouislider/dist/nouislider.min.js"></script>
+    <script src="assets/libs/wnumb/wNumb.min.js"></script>
+    <script src="assets/libs/rater-js/index.js"></script>
+    <script src="assets/libs/prismjs/prism.js"></script>
+    <script src="assets/libs/prismjs/components/prism-scss.min.js"></script>
+    <script src="assets/libs/prismjs/plugins/toolbar/prism-toolbar.min.js"></script>
+    <script src="assets/libs/prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script>
+    <script src="assets/libs/tiny-slider/dist/min/tiny-slider.js"></script>
+    <script src="assets/libs/dropzone/dist/min/dropzone.min.js"></script>
+    <script src="assets/libs/flatpickr/dist/flatpickr.min.js"></script>
+    <script src="assets/libs/inputmask/dist/jquery.inputmask.min.js"></script>
+    <!-- Theme JS -->
+    <script src="assets/js/theme.min.js"></script>
 </body>
 
 </html>
